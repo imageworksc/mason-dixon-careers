@@ -9,7 +9,7 @@
    breadcrumb, left-aligned title and intro, actions and facts beside it
    --------------------------------------------------------------------- */
 .chero {
-  padding-block: clamp(2.475rem, 4.4vw, 3.85rem) clamp(2.25rem, 4vw, 3.5rem); /* top +10% */
+  padding-block: clamp(3.25rem, 5.5vw, 5rem) clamp(3rem, 5vw, 4.5rem);
   background: var(--color-bg-light);
   border-bottom: 1px solid var(--color-border);
 }
@@ -44,29 +44,17 @@
 }
 
 /* ---------------------------------------------------------------------
-   2. Why work here — split edge to edge: a photo fills the left half
-   (paw badge on the seam) and the brand-navy right half (faint paw
+   2. Why work here — split edge to edge: a photo fills the left half and the brand-navy right half (faint paw
    watermark) holds the heading, check list and CTA
    --------------------------------------------------------------------- */
 .why-work { padding: 0; }
 .why-work__inner { display: grid; padding-inline: 0; max-width: none; }
 
-/* z-index keeps the photo (and the badge riding its edge) above the panel,
-   including while the scroll-reveal transform gives it its own stacking context */
-.why-work__media { position: relative; z-index: 2; margin: 0; aspect-ratio: 4 / 3; }
+.why-work__media { position: relative; margin: 0; aspect-ratio: 4 / 3; }
 .why-work__media img {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: 50% 40%;
 }
-
-.why-work__sticker {
-  position: absolute; right: var(--container-pad); bottom: -2rem;
-  width: 4rem; height: 4rem; border-radius: 50%;
-  display: grid; place-items: center;
-  background: #fff; color: var(--color-red);
-  box-shadow: 0 14px 30px -12px rgba(16, 24, 64, 0.35);
-}
-.why-work__sticker svg { width: 2.4rem; height: 2.4rem; transform: rotate(-12deg); }
 
 .why-work__panel {
   position: relative; overflow: hidden; isolation: isolate;
@@ -99,8 +87,6 @@
     grid-template-columns: 1fr 1fr;
   }
   .why-work__media { aspect-ratio: auto; }
-  .why-work__sticker { right: -2.5rem; bottom: 3rem; width: 5rem; height: 5rem; }
-  .why-work__sticker svg { width: 3rem; height: 3rem; }
   .why-work__panel { padding-left: clamp(4rem, 7vw, 7.5rem); padding-right: var(--edge); }
 }
 /* Wide screens: a narrower photo, and the reasons flow into two columns
