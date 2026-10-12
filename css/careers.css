@@ -6,7 +6,7 @@
 
 /* ---------------------------------------------------------------------
    1. Hero — slim split: headline and intro on a pale ground (soft glow,
-   faint paw scatter), beside a navy card with the facts and the actions
+   faint paw scatter), beside the facts and the actions
    --------------------------------------------------------------------- */
 .chero {
   position: relative; overflow: clip; isolation: isolate;
@@ -29,33 +29,24 @@
 .chero h1 em { font-style: normal; color: var(--color-red); }
 .chero__copy > p { margin-top: var(--space-4); max-width: 36rem; font-size: 1.1rem; line-height: 1.7; }
 
-/* Navy card: facts with mini paw bullets, then the two actions */
-.chero__card {
-  position: relative; overflow: hidden; isolation: isolate;
-  padding: clamp(1.5rem, 2.5vw, 2rem);
-  border-radius: var(--radius-xl);
-  background: linear-gradient(150deg, var(--color-navy), var(--color-navy-dark));
-  box-shadow: var(--shadow-float);
-}
+/* Facts with mini paw bullets, then the two actions — no card, just a
+   hairline divider beside the headline on desktop */
 .chero__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3) var(--space-5); }
 .chero__facts li {
   display: flex; align-items: center; gap: 0.6rem;
-  font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: #fff; white-space: nowrap;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--color-navy); white-space: nowrap;
 }
 .chero__facts li::before {
-  content: ""; flex-shrink: 0; width: 0.9rem; height: 0.9rem; background: #ff8f9a;
+  content: ""; flex-shrink: 0; width: 0.9rem; height: 0.9rem; background: var(--color-red);
   -webkit-mask: url("../assets/images/paw-mini.svg") no-repeat center / contain;
           mask: url("../assets/images/paw-mini.svg") no-repeat center / contain;
   transform: rotate(-12deg);
 }
-.chero__card .btn-row {
-  margin-top: var(--space-5); padding-top: var(--space-5);
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-}
-.chero__card .btn { flex: 1 1 auto; }
+.chero__aside .btn-row { margin-top: var(--space-5); }
 
 @media (min-width: 1200px) {
   .chero__inner { grid-template-columns: 1fr auto; column-gap: var(--space-9); }
+  .chero__aside { padding-left: var(--space-8); border-left: 1px solid var(--color-border); }
 }
 @media (max-width: 479px) {
   .chero__facts { grid-template-columns: 1fr; }
