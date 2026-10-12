@@ -129,12 +129,8 @@
 /* ---------------------------------------------------------------------
    5. Openings — job cards
    --------------------------------------------------------------------- */
-.openings__head { display: grid; gap: var(--space-4); margin-bottom: var(--space-7); }
-.openings__head h2 + p { font-size: 1.05rem; line-height: 1.65; max-width: 38rem; }
-.openings__label {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  font-family: var(--font-display); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-red);
-}
+.openings__head { max-width: 46rem; margin-bottom: var(--space-7); }
+.openings__head p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.65; max-width: 38rem; }
 
 /* Filter chips — progressive enhancement; hidden without JS */
 .job-filter { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5); }
@@ -194,9 +190,6 @@ html:not(.js) .job-filter { display: none; }
 .openings__more div > span { display: block; margin-top: 0.15rem; font-size: 0.95rem; color: var(--color-gray); }
 
 @media (min-width: 768px) { .jobs { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) {
-  .openings__head { grid-template-columns: 1.1fr 0.9fr; align-items: end; column-gap: var(--space-9); }
-}
 
 /* ---------------------------------------------------------------------
    6. Giving back — copy + donated-services stat
