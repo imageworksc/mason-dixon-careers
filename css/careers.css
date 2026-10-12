@@ -21,7 +21,7 @@
 .chero__crumbs a:hover { color: var(--color-red); }
 .chero__crumbs [aria-current] { color: var(--color-gray); }
 
-.chero h1 { margin-top: var(--space-4); max-width: 40rem; font-size: clamp(1.9rem, 1.8vw + 1rem, 2.75rem); }
+.chero h1 { margin-top: var(--space-5); max-width: 40rem; font-size: clamp(1.9rem, 1.8vw + 1rem, 2.75rem); }
 .chero h1 em { font-style: normal; color: var(--color-red); }
 .chero__main > p { margin-top: var(--space-4); max-width: 38rem; font-size: 1.05rem; line-height: 1.7; }
 
