@@ -56,34 +56,34 @@
 }
 
 /* ---------------------------------------------------------------------
-   2. Why work here — split edge to edge: a photo fills the left
-   half (paw badge on the seam) and the brand-navy right half (faint paw
-   watermark) holds the
-   heading, check list and CTA, its copy aligned to the page container
+   2. Why work here — split edge to edge: a photo fills the left half
+   (paw badge on the seam) and the brand-navy right half (faint paw
+   watermark) holds the heading, check list and CTA
    --------------------------------------------------------------------- */
 .why-work { padding: 0; }
 .why-work__inner { display: grid; padding-inline: 0; max-width: none; }
 
-.why-work__media { position: relative; margin: 0; min-height: 22rem; }
+/* z-index keeps the photo (and the badge riding its edge) above the panel,
+   including while the scroll-reveal transform gives it its own stacking context */
+.why-work__media { position: relative; z-index: 2; margin: 0; aspect-ratio: 4 / 3; }
 .why-work__media img {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: 44% 50%; /* centres the dog in the half */
 }
 
-/* Paw badge on the seam between photo and panel */
 .why-work__sticker {
-  position: absolute; right: -2.5rem; bottom: 3rem; z-index: 1;
-  width: 5rem; height: 5rem; border-radius: 50%;
+  position: absolute; right: var(--container-pad); bottom: -2rem;
+  width: 4rem; height: 4rem; border-radius: 50%;
   display: grid; place-items: center;
   background: #fff; color: var(--color-red);
   box-shadow: 0 14px 30px -12px rgba(16, 24, 64, 0.35);
 }
-.why-work__sticker svg { width: 3rem; height: 3rem; transform: rotate(-12deg); }
+.why-work__sticker svg { width: 2.4rem; height: 2.4rem; transform: rotate(-12deg); }
 
 .why-work__panel {
+  position: relative; overflow: hidden; isolation: isolate;
   display: grid; align-content: center;
   padding: clamp(3rem, 6vw, 6rem) var(--container-pad);
-  position: relative; overflow: hidden; isolation: isolate;
   background: var(--color-navy); color: var(--text-on-dark-secondary);
 }
 /* Faint paw watermark, as on the new-graduate banner */
@@ -103,20 +103,17 @@
 /* Balanced wrapping keeps each description's lines close in length */
 .reason p { margin-top: 0.2rem; max-width: 30rem; font-size: 0.95rem; line-height: 1.55; color: var(--text-on-dark-muted); text-wrap: balance; }
 
-/* Desktop: two halves; the copy keeps generous room from the photo and
-   lines up with the page container on the right */
+/* Desktop: two halves; the photo takes the panel's height, the badge sits
+   on the seam, and the copy lines up with the page container on the right */
 @media (min-width: 900px) {
   .why-work__inner {
     --edge: max(var(--container-pad), calc((100vw - var(--container)) / 2 + var(--container-pad)));
     grid-template-columns: 1fr 1fr;
   }
-  .why-work__media { min-height: 0; }
+  .why-work__media { aspect-ratio: auto; }
+  .why-work__sticker { right: -2.5rem; bottom: 3rem; width: 5rem; height: 5rem; }
+  .why-work__sticker svg { width: 3rem; height: 3rem; }
   .why-work__panel { padding-left: clamp(4rem, 7vw, 7.5rem); padding-right: var(--edge); }
-}
-@media (max-width: 899px) {
-  .why-work__sticker { right: var(--container-pad); bottom: -2rem; width: 4rem; height: 4rem; }
-  .why-work__sticker svg { width: 2.4rem; height: 2.4rem; }
-  .why-work__media { aspect-ratio: 4 / 3; min-height: 0; }
 }
 @media (max-width: 639px) {
   .why-work__panel .btn { justify-self: stretch; }
