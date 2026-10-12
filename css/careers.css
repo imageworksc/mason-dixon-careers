@@ -60,8 +60,8 @@
 }
 
 /* ---------------------------------------------------------------------
-   2. Why work here — one left-aligned block in the page header's
-   language: heading, then the numbered reasons on a hairline grid
+   2. Why work here — one left-aligned block: heading, then the
+   numbered reasons on a grid with rules between rows only
    --------------------------------------------------------------------- */
 .why-work { padding-block: clamp(3.5rem, 6vw, 5.5rem); background: #fff; }
 
@@ -96,7 +96,7 @@
 }
 
 /* ---------------------------------------------------------------------
-   2b. Culture — the final CTA's dark glow backdrop (.cta-glass): intro
+   3. Culture — the final CTA's dark glow backdrop (.cta-glass): intro
    and CTA on the left, vertically centred against the four points as a
    ruled list on the right
    --------------------------------------------------------------------- */
@@ -107,12 +107,15 @@
 .culture__head p { margin-top: var(--space-4); max-width: 30rem; font-size: 1.1rem; line-height: 1.7; color: var(--text-on-dark-secondary); }
 .culture__head .btn { margin-top: var(--space-6); }
 
-.culture__grid { display: grid; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+.culture__grid { display: grid; }
 .culture__card {
   display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-5); row-gap: 0.3rem;
   padding-block: var(--space-5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
+/* Rules only between items */
+.culture__card:first-child { padding-top: 0; }
+.culture__card:last-child { border-bottom: 0; padding-bottom: 0; }
 .culture__icon { grid-row: span 2; display: inline-flex; color: #fff; }
 .culture__icon svg { width: 2.25rem; height: 2.25rem; }
 .culture__card h3 { font-size: 1.1rem; color: #fff; }
@@ -120,14 +123,11 @@
 
 @media (min-width: 1024px) {
   .culture__inner { grid-template-columns: 0.85fr 1.15fr; column-gap: var(--space-9); }
-  .culture__grid { border-top: 0; }
-  .culture__card:first-child { padding-top: 0; }
-  .culture__card:last-child { border-bottom: 0; padding-bottom: 0; }
 }
 @media (max-width: 639px) { .culture__head .btn { width: 100%; } }
 
 /* ---------------------------------------------------------------------
-   3. Emergency medicine — two-column icon list and new-graduate banner
+   4. Emergency medicine — two-column icon list and new-graduate banner
    --------------------------------------------------------------------- */
 .medicine__head { max-width: 46rem; margin-bottom: var(--space-7); }
 .medicine__sub {
@@ -182,7 +182,7 @@
 }
 
 /* ---------------------------------------------------------------------
-   4. Photo band — slim variant of .why__band (sections.css): copy on
+   5. Photo band — slim variant of .why__band (sections.css): copy on
    solid navy, photo on the right with its left edge masked into the navy
    --------------------------------------------------------------------- */
 .why__band--slim { height: clamp(12rem, 19vw, 16.875rem); } /* ~270px on desktop */
@@ -206,7 +206,7 @@
 }
 
 /* ---------------------------------------------------------------------
-   5. Openings — tabbed roles: a list of roles beside one readable,
+   6. Openings — tabbed roles: a list of roles beside one readable,
    document-style panel. Without JS every panel simply stacks.
    --------------------------------------------------------------------- */
 .openings__head { max-width: 46rem; margin-bottom: var(--space-7); }
@@ -311,7 +311,7 @@ html:not(.js) .job + .job { border-top: 1px solid var(--color-border); }
 
 
 /* ---------------------------------------------------------------------
-   6. Giving back — copy beside the donated-services stat
+   7. Giving back — copy beside the donated-services stat
    --------------------------------------------------------------------- */
 .giving { background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
 .giving__inner { display: grid; gap: var(--space-7); align-items: center; }
@@ -338,7 +338,7 @@ html:not(.js) .job + .job { border-top: 1px solid var(--color-border); }
 @media (min-width: 1024px) { .giving__inner { grid-template-columns: 1.1fr 0.9fr; gap: var(--space-9); } }
 
 /* ---------------------------------------------------------------------
-   7. Final CTA — additions to the shared glass card
+   8. Final CTA — additions to the shared glass card
    --------------------------------------------------------------------- */
 .glass-card .glass-card__lead { font-size: 1.1rem; }
 .glass-card .glass-card__contact { font-size: 0.95rem; color: var(--text-on-dark-muted); }
@@ -349,13 +349,13 @@ html:not(.js) .job + .job { border-top: 1px solid var(--color-border); }
 .glass-card__contact a:hover { text-decoration-color: #fff; }
 
 /* ---------------------------------------------------------------------
-   8. FAQ — address line inside an answer
+   9. FAQ — address line inside an answer
    --------------------------------------------------------------------- */
 .accordion__body strong { color: var(--color-navy); }
 
 /* ---------------------------------------------------------------------
-   9. Small screens — tighter cards, full-width button pairs, readable
-   and room at the end of the page for the sticky Apply bar
+   10. Small screens — full-width button pairs, and room at the end of
+   the page for the sticky Apply bar
    --------------------------------------------------------------------- */
 @media (max-width: 639px) {
   .openings__more { padding: var(--space-5); }
