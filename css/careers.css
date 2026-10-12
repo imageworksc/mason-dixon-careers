@@ -56,7 +56,7 @@
 }
 
 /* ---------------------------------------------------------------------
-   2. Why work here — split edge to edge: the team photo fills the left
+   2. Why work here — split edge to edge: a photo fills the left
    half (paw sticker on the seam) and the light-blue right half holds the
    heading, check list and CTA, its copy aligned to the page container
    --------------------------------------------------------------------- */
@@ -66,7 +66,7 @@
 .why-work__media { position: relative; margin: 0; min-height: 22rem; }
 .why-work__media img {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: 50% 30%;
+  object-fit: cover; object-position: 62% 50%; /* keep the dog in frame */
 }
 .why-work__sticker {
   position: absolute; right: -2.75rem; bottom: 3rem; z-index: 1;
