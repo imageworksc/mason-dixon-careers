@@ -56,7 +56,7 @@
 .why-work__media { position: relative; z-index: 2; margin: 0; aspect-ratio: 4 / 3; }
 .why-work__media img {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: 55% 50%;
+  object-fit: cover; object-position: 50% 40%;
 }
 
 .why-work__sticker {
@@ -71,7 +71,7 @@
 .why-work__panel {
   position: relative; overflow: hidden; isolation: isolate;
   display: grid; align-content: center;
-  padding: clamp(3rem, 6vw, 6rem) var(--container-pad);
+  padding: clamp(2.25rem, 4vw, 4rem) var(--container-pad);
   background: var(--color-navy); color: var(--text-on-dark-secondary);
 }
 /* Faint paw watermark, as on the new-graduate banner */
@@ -79,12 +79,12 @@
   position: absolute; right: -2rem; bottom: -3rem; z-index: -1;
   width: 16rem; height: 16rem; color: #fff; opacity: 0.06; transform: rotate(-14deg);
 }
-.why-work__panel h2 { font-size: clamp(1.9rem, 2vw + 1rem, 2.9rem); color: #fff; }
+.why-work__panel h2 { font-size: clamp(1.75rem, 1.6vw + 1rem, 2.5rem); color: #fff; }
 .why-work__panel h2 em { font-style: normal; color: #e3233a; } /* brand red, a touch brighter so it holds on navy */
-.why-work__sub { margin-top: var(--space-3); font-size: 1.1rem; line-height: 1.6; }
+.why-work__sub { margin-top: var(--space-2); font-size: 1.05rem; line-height: 1.6; }
 .why-work__panel .btn { justify-self: start; }
 
-.reasons { margin-block: var(--space-5) var(--space-6); display: grid; gap: var(--space-4); }
+.reasons { margin-block: var(--space-4) var(--space-5); display: grid; gap: var(--space-3); }
 .reason { display: grid; grid-template-columns: auto 1fr; gap: var(--space-3); align-items: start; }
 .reason__check { width: 1.35rem; height: 1.35rem; margin-top: 0.1rem; color: var(--color-red); }
 .reason h3 { font-size: 1.02rem; color: #fff; }
