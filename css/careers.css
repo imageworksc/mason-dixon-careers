@@ -57,7 +57,7 @@
 
 /* ---------------------------------------------------------------------
    2. Why work here — one left-aligned block in the page header's
-   language: heading, then the numbered reasons on a hairline grid, then CTA
+   language: heading, then the numbered reasons on a hairline grid
    --------------------------------------------------------------------- */
 .why-work { padding-block: clamp(3.5rem, 6vw, 5.5rem); background: #fff; }
 
@@ -79,7 +79,6 @@
 }
 .reason h3 { font-size: 1.05rem; }
 .reason p { margin-top: 0.25rem; max-width: 36rem; font-size: 0.97rem; line-height: 1.6; color: var(--color-gray); text-wrap: pretty; }
-.why-work__inner > .btn { margin-top: var(--space-6); }
 
 /* Tablet up: reasons in two columns; desktop: three, so the block stays short */
 @media (min-width: 768px) {
@@ -92,8 +91,7 @@
   .reason:nth-child(n+4) { border-bottom: 0; padding-bottom: 0; }
 }
 @media (max-width: 639px) {
-  .why-work__inner > .btn { width: 100%; }
-}
+  }
 
 /* ---------------------------------------------------------------------
    2b. Culture — the final CTA's dark glow backdrop (.cta-glass): intro
