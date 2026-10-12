@@ -208,8 +208,10 @@
 .jobs {
   display: grid; gap: 0;
   border: 1px solid var(--color-border); border-radius: var(--radius-lg);
-  background: #fff; overflow: hidden;
+  background: #fff;
 }
+/* Rounded corners without overflow clipping, so the role list can stick */
+.jobs__tabs { border-radius: var(--radius-lg) var(--radius-lg) 0 0; overflow: hidden; }
 html:not(.js) .jobs__tabs { display: none; }
 
 /* Tab list: a 2 × 2 grid on phones and tablets, a column of roles on desktop */
@@ -228,6 +230,7 @@ html:not(.js) .jobs__tabs { display: none; }
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
   background: var(--color-red); transform: scaleX(0); transition: transform var(--dur-med) var(--ease-out);
 }
+.jobs__tab:last-child:nth-child(odd) { grid-column: 1 / -1; } /* odd count: last tab spans the row */
 .jobs__tab:hover { background: #fff; }
 .jobs__tab[aria-selected="true"] { background: #fff; }
 .jobs__tab[aria-selected="true"]::after { transform: none; }
@@ -246,6 +249,17 @@ html:not(.js) .job + .job { border-top: 1px solid var(--color-border); }
 .job__meta { margin-top: var(--space-3); font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--color-slate); }
 .job__pay { color: var(--color-red); font-weight: 700; }
 .job p:not(.job__meta) { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.75; color: var(--color-slate); max-width: 38rem; }
+/* Full postings: section headings and bulleted lists */
+.job h4 {
+  margin-top: var(--space-6);
+  font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--color-navy);
+}
+.job__list { margin-top: var(--space-3); display: grid; gap: var(--space-2); max-width: 38rem; }
+.job__list li { position: relative; padding-left: 1.25rem; font-size: 1.02rem; line-height: 1.6; color: var(--color-slate); }
+.job__list li::before {
+  content: ""; position: absolute; left: 0; top: 0.65em;
+  width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--color-red);
+}
 .job__link {
   margin-top: var(--space-6);
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -264,10 +278,16 @@ html:not(.js) .job + .job { border-top: 1px solid var(--color-border); }
 
 @media (min-width: 900px) {
   .jobs { grid-template-columns: minmax(17rem, 0.42fr) 1fr; }
-  .jobs__tabs { grid-template-columns: 1fr; align-content: start; border-bottom: 0; border-right: 1px solid var(--color-border); }
+  /* The role list stays in view while a long posting is read */
+  .jobs__tabs {
+    grid-template-columns: 1fr; align-self: start; position: sticky; top: calc(var(--header-offset) + 1rem);
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    border-bottom: 0;
+  }
+  .job { border-left: 1px solid var(--color-border); min-height: 100%; }
   .jobs__tab { align-items: center; padding: var(--space-5) var(--space-6); }
   .jobs__tab::after { left: auto; top: 0; right: 0; width: 3px; height: auto; transform: scaleY(0); }
-  .job { align-self: center; }
+  .jobs__tab:last-child { grid-column: auto; }
 }
 @media (max-width: 479px) {
   .jobs__tab { flex-direction: column; gap: var(--space-2); padding: var(--space-3) var(--space-4); }
