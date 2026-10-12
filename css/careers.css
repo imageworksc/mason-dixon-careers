@@ -90,8 +90,6 @@
   .reason:nth-child(3) { padding-top: 0; }
   .reason:nth-child(n+4) { border-bottom: 0; padding-bottom: 0; }
 }
-@media (max-width: 639px) {
-  }
 
 /* ---------------------------------------------------------------------
    2b. Culture — the final CTA's dark glow backdrop (.cta-glass): intro
