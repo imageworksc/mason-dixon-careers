@@ -27,13 +27,6 @@
 }
 .chero__inner { display: flex; flex-direction: column; align-items: center; }
 
-.chero__eyebrow {
-  display: inline-flex; align-items: center; gap: 0.85rem; margin-bottom: var(--space-5);
-  font-family: var(--font-display); font-weight: 700; font-size: 0.78rem;
-  letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-red);
-}
-.chero__rule { width: 1.75rem; height: 2px; border-radius: 2px; background: currentColor; opacity: 0.5; }
-
 .chero h1 { max-width: 52rem; font-size: clamp(2.1rem, 2.6vw + 1rem, 3.5rem); }
 .chero h1 em { font-style: normal; color: var(--color-red); }
 .chero__inner > p { margin-top: var(--space-5); max-width: 38rem; font-size: 1.1rem; line-height: 1.7; }
