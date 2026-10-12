@@ -56,17 +56,13 @@
 }
 
 /* ---------------------------------------------------------------------
-   2. Why work here — tinted rounded panel (heading, check list, CTA)
-   beside a rounded team photo with a paw sticker riding its edge
+   2. Why work here — copy (heading, check list, CTA) on the section's
+   tint, beside a rounded team photo with a paw sticker riding its edge
    --------------------------------------------------------------------- */
-.why-work { padding-block: clamp(3rem, 5vw, 5rem); }
+.why-work { padding-block: clamp(3.5rem, 6vw, 6rem); background: var(--color-bg-faq); }
 .why-work__inner { display: grid; gap: var(--space-4); }
 
-.why-work__panel {
-  padding: clamp(2rem, 5vw, 4rem);
-  border-radius: var(--radius-2xl);
-  background: var(--color-bg-faq);
-}
+.why-work__panel { padding-block: clamp(0rem, 2vw, 2rem); }
 .why-work__panel h2 { font-size: clamp(2rem, 2.4vw + 1rem, 3.25rem); }
 .why-work__panel h2 em { font-style: normal; color: var(--color-red); }
 .why-work__sub { margin-top: var(--space-3); font-size: 1.1rem; line-height: 1.6; }
@@ -91,7 +87,7 @@
 }
 
 @media (min-width: 900px) {
-  .why-work__inner { grid-template-columns: 1.15fr 0.85fr; gap: var(--space-4); }
+  .why-work__inner { grid-template-columns: 1.15fr 0.85fr; gap: var(--space-9); }
 }
 @media (max-width: 899px) {
   .why-work__media { min-height: 0; aspect-ratio: 4 / 3; }
