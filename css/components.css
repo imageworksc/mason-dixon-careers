@@ -30,9 +30,6 @@
 .btn--primary { background: var(--color-red); border-color: var(--color-red); color: #fff; box-shadow: 0 10px 24px -12px rgba(192, 29, 46, 0.6); }
 .btn--primary:hover { background: var(--color-red-dark); border-color: var(--color-red-dark); box-shadow: 0 16px 32px -12px rgba(192, 29, 46, 0.6); }
 
-.btn--navy { background: var(--color-navy); border-color: var(--color-navy); color: #fff; box-shadow: 0 10px 24px -12px rgba(36, 38, 103, 0.6); }
-.btn--navy:hover { background: var(--color-navy-dark); border-color: var(--color-navy-dark); }
-
 .btn--outline { background: transparent; border-color: var(--color-navy); color: var(--color-navy); }
 .btn--outline:hover { background: var(--color-navy); color: #fff; }
 

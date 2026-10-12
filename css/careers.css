@@ -57,7 +57,7 @@
 
 /* ---------------------------------------------------------------------
    2. Why work here — split edge to edge: a photo fills the left
-   half (paw sticker on the seam) and the light-blue right half holds the
+   half (paw sticker on the seam) and the brand-navy right half holds the
    heading, check list and CTA, its copy aligned to the page container
    --------------------------------------------------------------------- */
 .why-work { padding: 0; }
@@ -81,19 +81,19 @@
 .why-work__panel {
   display: grid; align-content: center;
   padding: clamp(3rem, 6vw, 6rem) var(--container-pad);
-  background: var(--color-bg-faq);
+  background: var(--color-navy); color: var(--text-on-dark-secondary);
 }
-.why-work__panel h2 { font-size: clamp(1.9rem, 2vw + 1rem, 2.9rem); }
-.why-work__panel h2 em { font-style: normal; color: var(--color-red); }
+.why-work__panel h2 { font-size: clamp(1.9rem, 2vw + 1rem, 2.9rem); color: #fff; }
+.why-work__panel h2 em { font-style: normal; color: #ff8f9a; } /* red lifted for contrast on navy */
 .why-work__sub { margin-top: var(--space-3); font-size: 1.1rem; line-height: 1.6; }
 .why-work__panel .btn { justify-self: start; }
 
 .reasons { margin-block: var(--space-5) var(--space-6); display: grid; gap: var(--space-4); }
 .reason { display: grid; grid-template-columns: auto 1fr; gap: var(--space-3); align-items: start; }
-.reason__check { width: 1.35rem; height: 1.35rem; margin-top: 0.1rem; color: var(--color-red); }
-.reason h3 { font-size: 1.02rem; }
+.reason__check { width: 1.35rem; height: 1.35rem; margin-top: 0.1rem; color: #ff8f9a; }
+.reason h3 { font-size: 1.02rem; color: #fff; }
 /* Balanced wrapping keeps each description's lines close in length */
-.reason p { margin-top: 0.2rem; max-width: 30rem; font-size: 0.95rem; line-height: 1.55; color: var(--color-gray); text-wrap: balance; }
+.reason p { margin-top: 0.2rem; max-width: 30rem; font-size: 0.95rem; line-height: 1.55; color: var(--text-on-dark-muted); text-wrap: balance; }
 
 /* Desktop: two halves; the copy keeps generous room from the photo and
    lines up with the page container on the right */
