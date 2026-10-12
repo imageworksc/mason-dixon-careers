@@ -54,6 +54,7 @@
 /* ---------------------------------------------------------------------
    2. Why work here — five reasons on navy
    --------------------------------------------------------------------- */
+.why-work { padding-block: clamp(3.5rem, 6vw, 6rem); }
 .why-work__head { max-width: 44rem; }
 .why-work__head .why-work__sub {
   margin-top: var(--space-3);
@@ -61,10 +62,10 @@
   letter-spacing: -0.015em; color: #ff8f9a;
 }
 
-.reasons { margin-top: var(--space-8); display: grid; gap: var(--space-4); }
+.reasons { margin-top: var(--space-6); display: grid; gap: var(--space-4); }
 .reason {
-  position: relative; display: grid; align-content: start; gap: var(--space-3);
-  padding: var(--space-6) var(--space-5);
+  position: relative; display: grid; align-content: start; gap: var(--space-2);
+  padding: var(--space-5);
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -72,16 +73,16 @@
 }
 .reason:hover { transform: translateY(-4px); background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 143, 154, 0.45); }
 .reason__icon {
-  width: 2.75rem; height: 2.75rem; border-radius: 50%;
+  width: 2.4rem; height: 2.4rem; border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--color-red); color: #fff;
   box-shadow: 0 10px 22px -10px rgba(192, 29, 46, 0.9);
 }
-.reason__icon svg { width: 1.25rem; height: 1.25rem; }
-.reason h3 { margin-top: var(--space-2); font-size: 1.15rem; }
+.reason__icon svg { width: 1.1rem; height: 1.1rem; }
+.reason h3 { margin-top: var(--space-2); font-size: 1.1rem; }
 .reason p { font-size: 0.95rem; line-height: 1.6; color: var(--text-on-dark-secondary); }
 
-.why-work__foot { margin-top: var(--space-7); display: flex; justify-content: center; }
+.why-work__foot { margin-top: var(--space-6); display: flex; justify-content: center; }
 
 @media (min-width: 640px) { .reasons { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) {
