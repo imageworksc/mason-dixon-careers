@@ -57,7 +57,7 @@
 
 /* ---------------------------------------------------------------------
    2. Why work here — split edge to edge: a photo fills the left
-   half (paw sticker on the seam) and the brand-navy right half holds the
+   half and the brand-navy right half (faint paw watermark) holds the
    heading, check list and CTA, its copy aligned to the page container
    --------------------------------------------------------------------- */
 .why-work { padding: 0; }
@@ -68,29 +68,26 @@
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: 44% 50%; /* centres the dog in the half */
 }
-/* Paw badge on the seam between photo and panel */
-.why-work__sticker {
-  position: absolute; right: -2.5rem; bottom: 3rem; z-index: 1;
-  width: 5rem; height: 5rem; border-radius: 50%;
-  display: grid; place-items: center;
-  background: #fff; color: var(--color-red);
-  box-shadow: 0 14px 30px -12px rgba(16, 24, 64, 0.35);
-}
-.why-work__sticker svg { width: 3rem; height: 3rem; transform: rotate(-12deg); }
 
 .why-work__panel {
   display: grid; align-content: center;
   padding: clamp(3rem, 6vw, 6rem) var(--container-pad);
+  position: relative; overflow: hidden; isolation: isolate;
   background: var(--color-navy); color: var(--text-on-dark-secondary);
 }
+/* Faint paw watermark, as on the new-graduate banner */
+.why-work__paw {
+  position: absolute; right: -2rem; bottom: -3rem; z-index: -1;
+  width: 16rem; height: 16rem; color: #fff; opacity: 0.06; transform: rotate(-14deg);
+}
 .why-work__panel h2 { font-size: clamp(1.9rem, 2vw + 1rem, 2.9rem); color: #fff; }
-.why-work__panel h2 em { font-style: normal; color: #ff8f9a; } /* red lifted for contrast on navy */
+.why-work__panel h2 em { font-style: normal; color: var(--color-red); }
 .why-work__sub { margin-top: var(--space-3); font-size: 1.1rem; line-height: 1.6; }
 .why-work__panel .btn { justify-self: start; }
 
 .reasons { margin-block: var(--space-5) var(--space-6); display: grid; gap: var(--space-4); }
 .reason { display: grid; grid-template-columns: auto 1fr; gap: var(--space-3); align-items: start; }
-.reason__check { width: 1.35rem; height: 1.35rem; margin-top: 0.1rem; color: #ff8f9a; }
+.reason__check { width: 1.35rem; height: 1.35rem; margin-top: 0.1rem; color: var(--color-red); }
 .reason h3 { font-size: 1.02rem; color: #fff; }
 /* Balanced wrapping keeps each description's lines close in length */
 .reason p { margin-top: 0.2rem; max-width: 30rem; font-size: 0.95rem; line-height: 1.55; color: var(--text-on-dark-muted); text-wrap: balance; }
@@ -107,8 +104,6 @@
 }
 @media (max-width: 899px) {
   .why-work__media { aspect-ratio: 4 / 3; min-height: 0; }
-  .why-work__sticker { right: var(--container-pad); bottom: -2rem; width: 4rem; height: 4rem; }
-  .why-work__sticker svg { width: 2.4rem; height: 2.4rem; }
 }
 @media (max-width: 639px) {
   .why-work__panel .btn { justify-self: stretch; }
