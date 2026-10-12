@@ -103,6 +103,20 @@
   .why-work__sticker svg { width: 3rem; height: 3rem; }
   .why-work__panel { padding-left: clamp(4rem, 7vw, 7.5rem); padding-right: var(--edge); }
 }
+/* Wide screens: a narrower photo, and the reasons flow into two columns
+   with the CTA filling the sixth cell, so the band stays short */
+@media (min-width: 1200px) {
+  .why-work__inner { grid-template-columns: 5fr 7fr; }
+  .why-work__panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5) var(--space-7);
+    padding-left: clamp(3rem, 4.5vw, 5rem);
+  }
+  .why-work__panel h2, .why-work__sub { grid-column: 1 / -1; }
+  .why-work__sub { margin-top: calc(-1 * var(--space-4)); margin-bottom: var(--space-2); }
+  .reasons { display: contents; }
+  .reason p { max-width: none; text-wrap: pretty; }
+  .why-work__panel .btn { align-self: center; }
+}
 @media (max-width: 639px) {
   .why-work__panel .btn { justify-self: stretch; }
 }
