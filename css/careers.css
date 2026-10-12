@@ -159,11 +159,6 @@
   position: absolute; right: -1.5rem; bottom: -2.5rem; z-index: -1;
   width: 10rem; height: 10rem; color: #fff; opacity: 0.06; transform: rotate(-14deg);
 }
-.newgrad__tag {
-  display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: var(--space-3);
-  font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: #ff8f9a;
-}
-.newgrad__tag svg { width: 1rem; height: 1rem; }
 .newgrad h3 { color: #fff; font-size: clamp(1.2rem, 0.8vw + 0.95rem, 1.5rem); line-height: 1.2; }
 .newgrad p { margin-top: var(--space-2); font-size: 1rem; line-height: 1.6; max-width: 38rem; }
 
@@ -196,22 +191,9 @@
 }
 
 /* ---------------------------------------------------------------------
-   5. Openings — filter chips and job cards
+   5. Openings — job cards
    --------------------------------------------------------------------- */
 .openings__head { max-width: 46rem; margin-bottom: var(--space-7); }
-.openings__head p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.65; max-width: 38rem; }
-
-/* Filter chips — progressive enhancement; hidden without JS */
-.job-filter { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5); }
-html:not(.js) .job-filter { display: none; }
-.job-filter__btn {
-  padding: 0.55rem 1rem; border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border); background: #fff;
-  font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; color: var(--color-navy);
-  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
-}
-.job-filter__btn:hover { border-color: var(--color-navy); }
-.job-filter__btn[aria-pressed="true"] { background: var(--color-navy); border-color: var(--color-navy); color: #fff; }
 
 .jobs { display: grid; gap: var(--space-4); }
 /* Same hover as the Why Work cards: lift and a red-tinted border */
@@ -222,7 +204,6 @@ html:not(.js) .job-filter { display: none; }
   transition: transform var(--dur-med) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
 .job:hover { transform: translateY(-4px); border-color: rgba(192, 29, 46, 0.35); }
-.job[hidden] { display: none; }
 
 .job__top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
 .job__icon { display: inline-flex; flex-shrink: 0; color: var(--color-red); }
@@ -289,12 +270,6 @@ html:not(.js) .job-filter { display: none; }
   font-variant-numeric: tabular-nums;
 }
 .stat__label { display: block; margin-top: var(--space-3); font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--text-on-dark-secondary); }
-.stat__partners {
-  margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid rgba(255, 255, 255, 0.14);
-  display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); font-size: 0.9rem; color: var(--text-on-dark-muted);
-}
-.stat__partners li { display: flex; align-items: center; gap: 0.55rem; }
-.stat__partners svg { width: 1rem; height: 1rem; color: #ff8f9a; }
 
 @media (min-width: 1024px) { .giving__inner { grid-template-columns: 1.1fr 0.9fr; gap: var(--space-9); } }
 
@@ -316,16 +291,13 @@ html:not(.js) .job-filter { display: none; }
 
 /* ---------------------------------------------------------------------
    9. Small screens — tighter cards, full-width button pairs, readable
-   CTA meta, and room at the end of the page for the sticky Apply bar
+   and room at the end of the page for the sticky Apply bar
    --------------------------------------------------------------------- */
 @media (max-width: 639px) {
   .job { padding: var(--space-5); }
   .openings__more { padding: var(--space-5); }
   .newgrad .btn-row .btn, .glass-card .btn-row .btn, .openings__more .btn { flex: 1 1 100%; }
   .glass-card .btn-row { align-self: stretch; }
-  .glass-card__meta { flex-direction: column; align-items: center; gap: var(--space-2); }
-  .glass-card__meta li { display: block; text-align: center; }
-  .glass-card__meta li > svg, .glass-card__meta li > .live-dot { display: inline-block; vertical-align: -0.1em; margin-right: 0.45rem; }
 }
 @media (max-width: 1023px) {
   .site-footer { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }

@@ -6,27 +6,6 @@
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------------------------------------------------------------
-   Openings filter — All / Full-Time / Part-Time chips
-   --------------------------------------------------------------- */
-const initJobFilter = () => {
-  const root = document.querySelector("[data-job-filter]");
-  if (!root) return;
-  const buttons = [...root.querySelectorAll("button")];
-  const jobs = [...document.querySelectorAll("[data-job]")];
-
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const filter = btn.dataset.filter;
-      buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-      jobs.forEach((job) => {
-        const types = job.dataset.job.split(" ");
-        job.hidden = filter !== "all" && !types.includes(filter);
-      });
-    });
-  });
-};
-
-/* ---------------------------------------------------------------
    Donated-services stat — counts up once when it scrolls into view
    --------------------------------------------------------------- */
 const initCountUp = () => {
@@ -55,5 +34,4 @@ const initCountUp = () => {
   observer.observe(el);
 };
 
-initJobFilter();
 initCountUp();

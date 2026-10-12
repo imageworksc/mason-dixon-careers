@@ -125,11 +125,6 @@
 .glass-card h2 { color: #fff; font-size: clamp(1.4rem, 1.6vw + 0.6rem, 2.1rem); }
 .glass-card p { font-size: 1.02rem; line-height: 1.65; max-width: 34rem; color: var(--text-on-dark-secondary); }
 .glass-card p strong { color: #fff; }
-.glass-card__meta { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3) var(--space-6); font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.02em; }
-.glass-card__meta li { display: inline-flex; align-items: center; gap: 0.55rem; }
-/* The pulsing ring is kept for the header status; down the page it is just a dot */
-.glass-card__meta .live-dot::before { display: none; }
-.glass-card__meta svg { width: 1rem; height: 1rem; color: #ff8f9a; }
 .glass-card .btn-row { margin-top: var(--space-2); justify-content: center; }
 
 /* ---------------------------------------------------------------------
