@@ -97,34 +97,77 @@
 .culture { background: var(--color-bg-light); }
 
 /* ---------------------------------------------------------------------
-   4. Emergency medicine — reuses .services; new-graduate callout
+   4. Emergency medicine — type-led head, capability grid, new-grad banner
    --------------------------------------------------------------------- */
-.services__lede { margin-bottom: var(--space-5); font-size: 1.05rem; line-height: 1.65; max-width: 40rem; }
+.medicine__head { max-width: 46rem; margin-bottom: var(--space-7); }
+.medicine__sub {
+  margin-top: var(--space-3);
+  font-family: var(--font-display); font-weight: 600; font-size: clamp(1.1rem, 0.8vw + 0.9rem, 1.4rem);
+  letter-spacing: -0.015em; color: var(--color-red);
+}
+.medicine__head p:not(.medicine__sub) { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 40rem; }
+
+/* Hairline grid: cells share borders, like a spec sheet */
+.caps {
+  display: grid; grid-template-columns: 1fr;
+  border-top: 1px solid var(--color-border); border-left: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.cap {
+  position: relative; display: grid; align-content: start; gap: var(--space-2);
+  padding: var(--space-6) var(--space-5);
+  background: #fff;
+  border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.cap:hover { background: var(--color-bg-light); }
+.cap__icon {
+  width: 2.5rem; height: 2.5rem; margin-bottom: var(--space-3); border-radius: var(--radius-sm);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(192, 29, 46, 0.08); color: var(--color-red);
+  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.cap:hover .cap__icon { background: var(--color-red); color: #fff; }
+.cap__icon svg { width: 1.2rem; height: 1.2rem; }
+.cap h3 { font-size: 1.05rem; }
+.cap p { font-size: 0.92rem; line-height: 1.55; color: var(--color-gray); }
+
+/* The eighth cell carries the hospital's size, in navy */
+.cap--feature { background: var(--color-navy); align-content: end; }
+.cap--feature:hover { background: var(--color-navy-dark); }
+.cap__figure {
+  font-family: var(--font-display); font-weight: 600; line-height: 1;
+  font-size: clamp(2.25rem, 2.5vw + 1rem, 3rem); letter-spacing: -0.03em; color: #fff;
+}
+.cap__figure small { margin-left: 0.35rem; font-size: 0.4em; font-weight: 600; letter-spacing: 0.02em; color: #ff8f9a; }
+.cap--feature p { color: var(--text-on-dark-secondary); }
+
+@media (min-width: 640px) { .caps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .caps { grid-template-columns: repeat(4, 1fr); } }
 
 .newgrad {
   margin-top: var(--space-6);
   position: relative; overflow: hidden; isolation: isolate;
+  display: grid; gap: var(--space-5); align-items: center;
   padding: var(--space-6);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   background: linear-gradient(150deg, var(--color-navy), var(--color-navy-dark));
   color: var(--text-on-dark-secondary);
-  box-shadow: var(--shadow-float);
 }
 .newgrad__paw {
-  position: absolute; right: -1.5rem; bottom: -2rem; z-index: -1;
-  width: 10rem; height: 10rem; color: #fff; opacity: 0.07; transform: rotate(-14deg);
+  position: absolute; right: -1.5rem; bottom: -2.5rem; z-index: -1;
+  width: 10rem; height: 10rem; color: #fff; opacity: 0.06; transform: rotate(-14deg);
 }
 .newgrad__tag {
-  display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: var(--space-4);
-  padding: 0.35rem 0.75rem; border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.18);
-  font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff;
+  display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: var(--space-3);
+  font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: #ff8f9a;
 }
-.newgrad__tag svg { width: 1rem; height: 1rem; color: #ff8f9a; }
-.newgrad h3 { color: #fff; font-size: clamp(1.25rem, 1vw + 0.95rem, 1.6rem); line-height: 1.2; }
-.newgrad p { margin-top: var(--space-3); font-size: 1rem; line-height: 1.65; max-width: 36rem; }
-.newgrad .btn-row { margin-top: var(--space-5); }
-@media (min-width: 768px) { .newgrad { padding: var(--space-7); } }
+.newgrad__tag svg { width: 1rem; height: 1rem; }
+.newgrad h3 { color: #fff; font-size: clamp(1.2rem, 0.8vw + 0.95rem, 1.5rem); line-height: 1.2; }
+.newgrad p { margin-top: var(--space-2); font-size: 1rem; line-height: 1.6; max-width: 38rem; }
+@media (min-width: 1024px) {
+  .newgrad { grid-template-columns: 1fr auto; gap: var(--space-7); padding: var(--space-6) var(--space-7); }
+}
 
 /* ---------------------------------------------------------------------
    5. Openings — job cards
