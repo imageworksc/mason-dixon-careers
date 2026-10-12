@@ -66,7 +66,7 @@
 .why-work__media { position: relative; margin: 0; min-height: 22rem; }
 .why-work__media img {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: 62% 50%; /* keep the dog in frame */
+  object-fit: cover; object-position: 44% 50%; /* centres the dog in the half */
 }
 .why-work__sticker {
   position: absolute; right: -2.75rem; bottom: 3rem; z-index: 1;
