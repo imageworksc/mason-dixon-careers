@@ -168,10 +168,10 @@
    solid navy, photo on the right with its left edge masked into the navy
    --------------------------------------------------------------------- */
 .why__band--slim { height: clamp(12rem, 19vw, 16.875rem); } /* ~270px on desktop */
-/* Capped at 960px (1.5x the 640px source) so large screens never blow it up */
+/* Capped at 2000px (~1.25x the 1600px source) so 4K/5K screens never blow it up */
 .why__band--slim img {
-  left: auto; right: 0; width: min(60%, 960px);
-  object-position: 50% 55%;
+  left: auto; right: 0; width: min(60%, 2000px);
+  object-position: 50% 88%; /* keeps the puppy in frame */
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 45%);
           mask-image: linear-gradient(to right, transparent 0%, #000 45%);
 }
@@ -182,7 +182,7 @@
 /* Phones: full-width photo, the copy along the bottom */
 @media (max-width: 767px) {
   .why__band--slim { height: 17rem; }
-  .why__band--slim img { width: 100%; object-position: 50% 50%; -webkit-mask-image: none; mask-image: none; }
+  .why__band--slim img { width: 100%; object-position: 50% 80%; -webkit-mask-image: none; mask-image: none; }
   .why__band--slim::after { display: block; background: linear-gradient(to top, rgba(18, 19, 58, 0.95) 0%, rgba(18, 19, 58, 0.75) 40%, rgba(18, 19, 58, 0) 75%); }
   .why__band--slim .why__band-caption { align-items: flex-end; padding-bottom: var(--space-5); }
 }
