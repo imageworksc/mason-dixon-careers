@@ -253,7 +253,7 @@ html:not(.js) .job-filter { display: none; }
    8. Photo band — slim variant: a short strip, copy on the left with the
    navy fading out to the right so the photo carries the other half
    --------------------------------------------------------------------- */
-.why__band--slim { height: clamp(12rem, 18vw, 15.625rem); } /* ~250px on desktop */
+.why__band--slim { height: clamp(12rem, 19vw, 16.875rem); } /* ~270px on desktop */
 /* Photo fills only the right ~60%, so it is scaled less and the whole
    puppy face fits the short strip; navy carries the copy on the left */
 .why__band--slim img { left: auto; right: 0; width: 60%; object-position: 50% 40%; }
