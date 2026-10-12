@@ -5,46 +5,57 @@
    ========================================================================= */
 
 /* ---------------------------------------------------------------------
-   1. Hero — quiet light split: copy left, pet cutout on a soft disc right.
-   Deliberately unlike the home page's full-bleed video hero.
+   1. Hero — slim and type-led: centred copy on a pale ground with a
+   barely-there paw scatter and a soft lavender glow. No imagery, so it
+   reads as its own page rather than an echo of the home hero.
    --------------------------------------------------------------------- */
 .chero {
-  position: relative; overflow: clip;
-  background: var(--color-bg-light);
+  position: relative; overflow: clip; isolation: isolate;
+  padding-block: clamp(3.5rem, 6vw, 5.5rem) 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 0%, rgba(231, 231, 244, 0.95), rgba(231, 231, 244, 0) 70%),
+    var(--color-bg-light);
   border-bottom: 1px solid var(--color-border);
-  padding-block: clamp(3rem, 6vw, 5.5rem);
+  text-align: center;
 }
-.chero__inner { display: grid; gap: var(--space-6); align-items: center; }
-.chero__copy { max-width: 40rem; }
+.chero__paws {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: url("../assets/images/paw-tile.svg") repeat center / 26rem 26rem;
+  opacity: 0.035;
+  -webkit-mask-image: radial-gradient(ellipse 70% 90% at 50% 40%, transparent 30%, #000 85%);
+          mask-image: radial-gradient(ellipse 70% 90% at 50% 40%, transparent 30%, #000 85%);
+}
+.chero__inner { display: flex; flex-direction: column; align-items: center; }
 
 .chero__eyebrow {
-  display: inline-flex; align-items: center; gap: 0.6rem; margin-bottom: var(--space-5);
+  display: inline-flex; align-items: center; gap: 0.85rem; margin-bottom: var(--space-5);
   font-family: var(--font-display); font-weight: 700; font-size: 0.78rem;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-red);
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-red);
 }
-.chero__eyebrow .live-dot::before { display: none; }
-.chero h1 { font-size: clamp(2.2rem, 3vw + 1rem, 3.75rem); }
+.chero__rule { width: 1.75rem; height: 2px; border-radius: 2px; background: currentColor; opacity: 0.5; }
+
+.chero h1 { max-width: 52rem; font-size: clamp(2.1rem, 2.6vw + 1rem, 3.5rem); }
 .chero h1 em { font-style: normal; color: var(--color-red); }
-.chero__copy > p { margin-top: var(--space-5); font-size: 1.1rem; line-height: 1.7; max-width: 34rem; }
-.chero .btn-row { margin-top: var(--space-6); }
+.chero__inner > p { margin-top: var(--space-5); max-width: 38rem; font-size: 1.1rem; line-height: 1.7; }
+.chero .btn-row { margin-top: var(--space-6); justify-content: center; }
 
+/* Facts sit on a hairline along the bottom edge of the hero */
 .chero__facts {
-  margin-top: var(--space-6);
-  display: flex; flex-wrap: wrap; gap: var(--space-2) 0;
-  font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; color: var(--color-navy);
+  margin-top: clamp(2.5rem, 4vw, 3.5rem);
+  align-self: stretch;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2) 0;
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-display); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.02em; color: var(--color-navy);
 }
-.chero__facts li:not(:last-child)::after { content: "·"; margin-inline: 0.6rem; color: var(--color-red); }
-
-/* The kittens sit beside the copy, vertically centred, no frame */
-.chero__media { justify-self: center; width: min(100%, 34rem); }
-.chero__media img { width: 100%; height: auto; }
-
-@media (min-width: 900px) {
-  .chero__inner { grid-template-columns: 1.15fr 0.85fr; gap: var(--space-7); }
-  .chero__media { justify-self: end; width: min(100%, 38rem); }
+.chero__facts li { display: inline-flex; align-items: center; }
+.chero__facts li:not(:last-child)::after {
+  content: ""; width: 0.3rem; height: 0.3rem; margin-inline: 1rem; border-radius: 50%; background: var(--color-red);
 }
-@media (max-width: 899px) {
-  .chero__media { width: min(90%, 28rem); }
+@media (max-width: 639px) {
+  .chero .btn-row .btn { flex: 1 1 100%; }
+  .chero__facts { gap: var(--space-2) var(--space-5); }
+  .chero__facts li:not(:last-child)::after { display: none; }
 }
 
 /* ---------------------------------------------------------------------
