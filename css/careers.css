@@ -56,29 +56,31 @@
 }
 
 /* ---------------------------------------------------------------------
-   2. Why work here — two equal blocks across the full container: the square
-   team photo on white (paw sticker on its edge) and the light-blue panel
-   with the heading, check list and CTA
+   2. Why work here — split edge to edge: a white half holding the square
+   team photo (paw sticker on its edge) and a light-blue half with the
+   heading, check list and CTA. Content stays aligned to the container.
    --------------------------------------------------------------------- */
-.why-work { padding-block: clamp(3rem, 5vw, 5rem); background: #fff; }
-.why-work__inner { display: grid; gap: var(--space-4); }
+.why-work { padding: 0; background: #fff; }
+.why-work__inner { display: grid; padding-inline: 0; max-width: none; }
 
-.why-work__media { position: relative; margin: 0; }
+.why-work__media {
+  position: relative; margin: 0;
+  padding: clamp(3rem, 5vw, 5rem) var(--container-pad);
+}
 .why-work__media img {
-  width: 100%; height: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 35%;
+  display: block; width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 35%;
   border-radius: var(--radius-2xl);
 }
 .why-work__sticker {
-  position: absolute; right: -2.25rem; bottom: 2.5rem; z-index: 1;
+  position: absolute; right: calc(var(--container-pad) - 2.25rem); bottom: calc(clamp(3rem, 5vw, 5rem) + 2.5rem); z-index: 1;
   width: 5.5rem; height: 5.5rem; color: var(--color-red);
   transform: rotate(14deg);
   filter: drop-shadow(0 10px 18px rgba(192, 29, 46, 0.3));
 }
 
 .why-work__panel {
-  display: grid; place-content: center;
-  padding: clamp(2rem, 4vw, 3.5rem);
-  border-radius: var(--radius-2xl);
+  display: grid; align-content: center;
+  padding: clamp(3rem, 5vw, 5rem) var(--container-pad);
   background: var(--color-bg-faq);
 }
 .why-work__panel h2 { font-size: clamp(1.9rem, 2vw + 1rem, 2.9rem); }
@@ -93,12 +95,20 @@
 /* Balanced wrapping keeps each description's lines close in length */
 .reason p { margin-top: 0.2rem; max-width: 30rem; font-size: 0.95rem; line-height: 1.55; color: var(--color-gray); text-wrap: balance; }
 
+/* Desktop: each half reaches the screen edge; the inner padding lines the
+   photo and the copy up with the page container */
 @media (min-width: 900px) {
-  .why-work__inner { grid-template-columns: 1fr 1fr; }
+  .why-work__inner {
+    --edge: max(var(--container-pad), calc((100vw - var(--container)) / 2 + var(--container-pad)));
+    grid-template-columns: 1fr 1fr;
+  }
+  .why-work__media { padding-left: var(--edge); padding-right: clamp(2rem, 4vw, 4rem); }
+  .why-work__sticker { right: calc(clamp(2rem, 4vw, 4rem) - 2.75rem); }
+  .why-work__panel { padding-left: clamp(2.5rem, 5vw, 5rem); padding-right: var(--edge); }
 }
 @media (max-width: 899px) {
-  .why-work__media { max-width: 32rem; width: 100%; justify-self: center; }
-  .why-work__sticker { right: 1.25rem; bottom: auto; top: -2rem; width: 4.5rem; height: 4.5rem; }
+  .why-work__media { max-width: calc(32rem + 2 * var(--container-pad)); width: 100%; justify-self: center; }
+  .why-work__sticker { right: calc(var(--container-pad) - 0.75rem); bottom: calc(clamp(3rem, 5vw, 5rem) - 1.5rem); width: 4.5rem; height: 4.5rem; }
 }
 @media (max-width: 639px) {
   .why-work__panel .btn { justify-self: stretch; }
