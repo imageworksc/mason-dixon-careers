@@ -56,12 +56,12 @@
 }
 
 /* ---------------------------------------------------------------------
-   2. Why work here — two equal blocks centred in the container: the square
+   2. Why work here — two equal blocks across the full container: the square
    team photo on white (paw sticker on its edge) and the light-blue panel
    with the heading, check list and CTA
    --------------------------------------------------------------------- */
 .why-work { padding-block: clamp(3rem, 5vw, 5rem); background: #fff; }
-.why-work__inner { display: grid; gap: var(--space-4); max-width: 72rem; }
+.why-work__inner { display: grid; gap: var(--space-4); }
 
 .why-work__media { position: relative; margin: 0; }
 .why-work__media img {
