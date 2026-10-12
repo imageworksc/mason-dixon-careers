@@ -1,0 +1,219 @@
+/* =========================================================================
+   Mason Dixon Animal Emergency Hospital — Careers
+   careers.css — sections specific to the careers page, built on the
+   Option A tokens and components (base / components / sections)
+   ========================================================================= */
+
+/* ---------------------------------------------------------------------
+   1. Hero — eyebrow + fact strip under the CTAs
+   --------------------------------------------------------------------- */
+.hero__eyebrow {
+  display: block; margin-bottom: var(--space-3);
+  font-family: var(--font-display); font-weight: 700; font-size: 0.8rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: #ff8f9a;
+}
+.hero__facts {
+  margin-top: var(--space-6);
+  display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5);
+  font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; color: #fff;
+}
+.hero__facts li { display: inline-flex; align-items: center; gap: 0.5rem; }
+.hero__facts svg { width: 1rem; height: 1rem; color: #ff8f9a; }
+
+/* ---------------------------------------------------------------------
+   2. Why work here — five reasons on navy
+   --------------------------------------------------------------------- */
+.why-work__head { max-width: 44rem; }
+.why-work__head .why-work__sub {
+  margin-top: var(--space-3);
+  font-family: var(--font-display); font-weight: 600; font-size: clamp(1.1rem, 0.8vw + 0.9rem, 1.4rem);
+  letter-spacing: -0.015em; color: #ff8f9a;
+}
+
+.reasons { margin-top: var(--space-8); display: grid; gap: var(--space-4); }
+.reason {
+  position: relative; display: grid; align-content: start; gap: var(--space-3);
+  padding: var(--space-6) var(--space-5);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform var(--dur-med) var(--ease-out), background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.reason:hover { transform: translateY(-4px); background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 143, 154, 0.45); }
+.reason__icon {
+  width: 2.75rem; height: 2.75rem; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-red); color: #fff;
+  box-shadow: 0 10px 22px -10px rgba(192, 29, 46, 0.9);
+}
+.reason__icon svg { width: 1.25rem; height: 1.25rem; }
+.reason h3 { margin-top: var(--space-2); font-size: 1.15rem; }
+.reason p { font-size: 0.95rem; line-height: 1.6; color: var(--text-on-dark-secondary); }
+
+.why-work__foot { margin-top: var(--space-7); display: flex; justify-content: center; }
+
+@media (min-width: 640px) { .reasons { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) {
+  /* 3 + 2: the last two cards share the bottom row, wider */
+  .reasons { grid-template-columns: repeat(6, 1fr); }
+  .reason { grid-column: span 2; }
+  .reason:nth-child(4), .reason:nth-child(5) { grid-column: span 3; }
+}
+
+/* ---------------------------------------------------------------------
+   3. Culture — reuses the process timeline (.steps) from sections.css
+   --------------------------------------------------------------------- */
+.culture { background: var(--color-bg-light); }
+
+/* ---------------------------------------------------------------------
+   4. Emergency medicine — reuses .services; new-graduate callout
+   --------------------------------------------------------------------- */
+.services__lede { margin-bottom: var(--space-5); font-size: 1.05rem; line-height: 1.65; max-width: 40rem; }
+
+.newgrad {
+  margin-top: var(--space-6);
+  position: relative; overflow: hidden; isolation: isolate;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(150deg, var(--color-navy), var(--color-navy-dark));
+  color: var(--text-on-dark-secondary);
+  box-shadow: var(--shadow-float);
+}
+.newgrad__paw {
+  position: absolute; right: -1.5rem; bottom: -2rem; z-index: -1;
+  width: 10rem; height: 10rem; color: #fff; opacity: 0.07; transform: rotate(-14deg);
+}
+.newgrad__tag {
+  display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: var(--space-4);
+  padding: 0.35rem 0.75rem; border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.18);
+  font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff;
+}
+.newgrad__tag svg { width: 1rem; height: 1rem; color: #ff8f9a; }
+.newgrad h3 { color: #fff; font-size: clamp(1.25rem, 1vw + 0.95rem, 1.6rem); line-height: 1.2; }
+.newgrad p { margin-top: var(--space-3); font-size: 1rem; line-height: 1.65; max-width: 36rem; }
+.newgrad .btn-row { margin-top: var(--space-5); }
+@media (min-width: 768px) { .newgrad { padding: var(--space-7); } }
+
+/* ---------------------------------------------------------------------
+   5. Openings — job cards
+   --------------------------------------------------------------------- */
+.openings__head { display: grid; gap: var(--space-4); margin-bottom: var(--space-7); }
+.openings__head h2 + p { font-size: 1.05rem; line-height: 1.65; max-width: 38rem; }
+.openings__label {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-display); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-red);
+}
+
+/* Filter chips — progressive enhancement; hidden without JS */
+.job-filter { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5); }
+html:not(.js) .job-filter { display: none; }
+.job-filter__btn {
+  padding: 0.55rem 1rem; border-radius: var(--radius-full);
+  border: 1px solid var(--color-border); background: #fff;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; color: var(--color-navy);
+  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.job-filter__btn:hover { border-color: var(--color-navy); }
+.job-filter__btn[aria-pressed="true"] { background: var(--color-navy); border-color: var(--color-navy); color: #fff; }
+
+.jobs { display: grid; gap: var(--space-4); }
+.job {
+  position: relative; display: flex; flex-direction: column; gap: var(--space-3);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg); background: #fff; border: 1px solid var(--color-border);
+  transition: transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.job::before {
+  content: ""; position: absolute; left: 0; top: var(--space-6); bottom: var(--space-6); width: 3px;
+  border-radius: 0 3px 3px 0; background: var(--color-red);
+  transform: scaleY(0.35); transform-origin: top; transition: transform var(--dur-med) var(--ease-out);
+}
+.job:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); border-color: transparent; }
+.job:hover::before { transform: scaleY(1); }
+.job[hidden] { display: none; }
+
+.job__top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.job__icon {
+  width: 2.75rem; height: 2.75rem; border-radius: 50%; flex-shrink: 0;
+  background: rgba(192, 29, 46, 0.1); color: var(--color-red);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.job__icon svg { width: 1.25rem; height: 1.25rem; }
+.job__tags { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.4rem; }
+.job__tag {
+  padding: 0.3rem 0.65rem; border-radius: var(--radius-sm);
+  background: var(--color-lavender);
+  font-family: var(--font-display); font-weight: 600; font-size: 0.75rem; color: var(--color-navy);
+}
+.job h3 { margin-top: var(--space-2); font-size: 1.3rem; }
+.job .job__pay { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; line-height: 1.35; color: var(--color-red); letter-spacing: -0.01em; }
+.job__pay small { display: block; margin-top: 0.15rem; font-size: 0.85rem; font-weight: 600; color: var(--color-slate); }
+.job p { font-size: 0.97rem; line-height: 1.6; color: var(--color-gray); }
+.job .btn { margin-top: auto; align-self: flex-start; }
+.job__body { display: grid; gap: var(--space-3); margin-bottom: var(--space-3); }
+
+.openings__more {
+  margin-top: var(--space-5);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius-lg); border: 2px dashed rgba(36, 38, 103, 0.2); background: var(--color-bg-light);
+}
+.openings__more strong { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-navy); }
+.openings__more div > span { display: block; margin-top: 0.15rem; font-size: 0.95rem; color: var(--color-gray); }
+
+@media (min-width: 768px) { .jobs { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) {
+  .openings__head { grid-template-columns: 1.1fr 0.9fr; align-items: end; column-gap: var(--space-9); }
+}
+
+/* ---------------------------------------------------------------------
+   6. Giving back — copy + donated-services stat
+   --------------------------------------------------------------------- */
+.giving { background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
+.giving__inner { display: grid; gap: var(--space-7); align-items: center; }
+.giving__copy p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 38rem; }
+.giving__copy .btn { margin-top: var(--space-6); }
+
+.stat .bezel__core {
+  position: relative; overflow: hidden; isolation: isolate;
+  padding: clamp(2rem, 4vw, 3.25rem);
+  background: linear-gradient(150deg, var(--color-navy), var(--color-navy-900));
+  color: #fff;
+}
+.stat__paw { position: absolute; right: -2rem; top: -2rem; z-index: -1; width: 11rem; height: 11rem; color: #fff; opacity: 0.06; transform: rotate(18deg); }
+.stat__icon {
+  width: 3rem; height: 3rem; border-radius: 50%; margin-bottom: var(--space-5);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-red); color: #fff; box-shadow: 0 10px 22px -10px rgba(192, 29, 46, 0.9);
+}
+.stat__icon svg { width: 1.35rem; height: 1.35rem; }
+.stat__value {
+  display: block; font-family: var(--font-display); font-weight: 800; line-height: 1;
+  font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.035em; color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.stat__label { display: block; margin-top: var(--space-3); font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--text-on-dark-secondary); }
+.stat__partners {
+  margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: grid; gap: var(--space-2); font-size: 0.9rem; color: var(--text-on-dark-muted);
+}
+.stat__partners li { display: flex; align-items: center; gap: 0.55rem; }
+.stat__partners svg { width: 1rem; height: 1rem; color: #ff8f9a; }
+
+@media (min-width: 1024px) { .giving__inner { grid-template-columns: 1.1fr 0.9fr; gap: var(--space-9); } }
+
+/* ---------------------------------------------------------------------
+   7. Final CTA additions
+   --------------------------------------------------------------------- */
+.glass-card__lead { font-size: 1.1rem !important; }
+.glass-card__contact { font-size: 0.95rem; color: var(--text-on-dark-muted); }
+.glass-card__contact a {
+  color: #fff; font-weight: 600; text-decoration: underline; text-decoration-color: rgba(255, 143, 154, 0.7);
+  text-underline-offset: 3px; transition: text-decoration-color var(--dur-fast) var(--ease-out);
+}
+.glass-card__contact a:hover { text-decoration-color: #fff; }
+
+/* FAQ — address line inside an answer */
+.accordion__body p + p { margin-top: -0.6rem; }
+.accordion__body p strong { color: var(--color-navy); }

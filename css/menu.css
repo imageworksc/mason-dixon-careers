@@ -1,0 +1,1043 @@
+/* =========================================================================
+   Mason Dixon Animal Emergency Hospital — Option A
+   menu.css — two-tier header and navigation, brought in from
+   imageworksc/menu-mason-dixon (no-icons version) without changes to its look.
+   Loaded after components.css; the page's own sections are untouched.
+   ========================================================================= */
+
+/* ---------------------------------------------------------------------
+   0. Menu tokens and utilities
+   --------------------------------------------------------------------- */
+:root {
+  --transition: 180ms ease;
+  /* --- Menu additions --------------------------------------------------
+     Values the shared system does not define because nothing else on the
+     site needs them. */
+  --color-open: #66d08e; /* 24/7 status dot + Careers accent on navy */
+  --color-open-soft: #8fe0a8; /* hover state for the same pair */
+  --color-open-ink: #1f9d57; /* the same dot, on a light surface */
+  --color-red-tint: #fbedef; /* wash behind the lead link on panel hover */
+
+  --alert-h: 2.875rem; /* utility tier */
+  --header-h: 5.5rem; /* main tier: logo + breathing room */
+  --logo-h: 3.55rem; /* the site uses 3.85rem, but it carries five short
+                        links; five dropdown labels need the width back */
+  --nav-btn-pad: 0.7rem;
+  --panel-w: 22rem;
+  --panel-w-wide: 40rem; /* two-column panels (Emergency Care, Our Hospital) */
+  /* Three tight layers rather than one soft cloud — a dropdown should sit
+     on the page, not float above it. */
+  --shadow-panel: 0 1px 1px rgba(16, 24, 64, 0.05), 0 8px 16px -6px rgba(16, 24, 64, 0.14),
+    0 24px 40px -20px rgba(16, 24, 64, 0.22);
+  /* The whole two-tier header is sticky, so sticky columns and anchor
+     jumps on the page clear both tiers */
+  --header-offset: calc(var(--alert-h) + var(--header-h));
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------------------------
+   1. Header buttons — scoped so the page's own .btn styles stay as they are
+   --------------------------------------------------------------------- */
+:where(.site-header) .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: var(--space-4) var(--space-6);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition), transform var(--transition);
+}
+
+:where(.site-header) .btn:hover {
+  transform: translateY(-1px);
+}
+
+:where(.site-header) .btn:active {
+  transform: translateY(1px);
+}
+
+:where(.site-header) .btn--primary {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  color: #fff;
+}
+
+:where(.site-header) .btn--primary:hover {
+  background: var(--color-red-dark);
+  border-color: var(--color-red-dark);
+}
+
+.btn-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+/* ---------------------------------------------------------------------
+   2. Tier 1 — utility bar
+   --------------------------------------------------------------------- */
+.util {
+  background: var(--color-navy-dark);
+  color: var(--text-on-dark-secondary);
+}
+
+.util__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  height: var(--alert-h);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  white-space: nowrap;
+  font-size: 0.8rem;
+}
+
+.status__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--color-open);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(102, 208, 142, 0.6);
+  animation: status-pulse 2.6s infinite;
+}
+
+@keyframes status-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(102, 208, 142, 0.6); }
+  70% { box-shadow: 0 0 0 0.45rem rgba(102, 208, 142, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(102, 208, 142, 0); }
+}
+
+.status__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-on-dark);
+}
+
+.status__note {
+  font-weight: 500;
+  color: var(--text-on-dark-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status__note::before {
+  content: "·";
+  margin-right: 0.4em;
+}
+
+.util__links {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.util__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  color: var(--text-on-dark-secondary);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.util__links a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-on-dark);
+}
+
+.util__links svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  opacity: 0.85;
+}
+
+/* Careers keeps a green briefcase that wiggles on a slow loop — the one
+   deliberately playful note in an otherwise urgent header. */
+.util__job:hover {
+  color: var(--color-open-soft);
+}
+
+.util__job svg {
+  color: var(--color-open-soft);
+  opacity: 1;
+  transform-origin: 50% 70%;
+  animation: bag-wiggle 3.2s ease-in-out infinite;
+}
+
+@keyframes bag-wiggle {
+  0%, 72%, 100% { transform: rotate(0); }
+  76% { transform: rotate(-11deg); }
+  81% { transform: rotate(9deg); }
+  86% { transform: rotate(-6deg); }
+  91% { transform: rotate(3deg); }
+  96% { transform: rotate(0); }
+}
+
+/* Now Hiring (no-icons page only): underlined, and on hover the label rolls
+   up to "Apply Here →". Each label sits in a 1.5em box, the same height as a
+   line of body text, with its leading on top so the underline clears the
+   clip at the bottom. */
+.util__links .is-hiring,
+.util__links .is-hiring:hover {
+  color: var(--text-on-dark);
+}
+
+.job-flip {
+  display: inline-block;
+  height: 1.5em;
+  line-height: 1.25em;
+  overflow: hidden;
+}
+
+.job-flip__track {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 320ms var(--ease-out);
+}
+
+.job-flip__track > span {
+  height: 1.5em;
+  padding-top: 0.125em;
+  white-space: nowrap;
+  text-decoration: underline 2px;
+  text-underline-offset: 0.2em;
+}
+
+.is-hiring:hover .job-flip__track,
+.is-hiring:focus-visible .job-flip__track {
+  transform: translateY(-1.5em);
+}
+
+.job-flip__arrow {
+  display: inline-block;
+  margin-left: 0.3em;
+}
+
+.is-hiring:hover .job-flip__arrow,
+.is-hiring:focus-visible .job-flip__arrow {
+  animation: job-nudge 0.9s ease-in-out 0.3s infinite;
+}
+
+@keyframes job-nudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+/* ---------------------------------------------------------------------
+   3. Tier 2 — header shell
+   --------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid var(--color-border);
+  transition: box-shadow var(--transition);
+}
+
+.site-header.is-scrolled .navbar {
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: var(--header-h);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.logo img {
+  height: var(--logo-h);
+  width: auto;
+}
+
+/* ---------------------------------------------------------------------
+   4. Primary navigation — desktop
+   --------------------------------------------------------------------- */
+.nav {
+  flex: 1;
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+}
+
+.nav__list {
+  display: flex;
+  align-items: stretch;
+  gap: 0.125rem;
+}
+
+.nav__item {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+.nav__btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--nav-btn-pad);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-slate);
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+
+.nav__btn:hover,
+.nav__item.is-open .nav__btn {
+  color: var(--color-navy);
+}
+
+.nav__btn::after {
+  content: "";
+  position: absolute;
+  left: var(--nav-btn-pad);
+  right: var(--nav-btn-pad);
+  bottom: 27%; /* proportional, so it keeps its gap as the bar steps down */
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-red);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 180ms var(--ease-out);
+}
+
+.nav__item.is-open .nav__btn::after {
+  transform: scaleX(1);
+}
+
+.nav__chev {
+  width: 0.6rem;
+  height: 0.6rem;
+  opacity: 0.5;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.nav__item.is-open .nav__chev {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------
+   5. Dropdown panels
+   --------------------------------------------------------------------- */
+.panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: var(--panel-w);
+  padding: var(--space-4) var(--space-3) var(--space-3);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-top: 0;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.25rem);
+  /* `visibility` is switched instantly on open and held back to the end of
+     the fade on close. Transitioning it like a normal property would leave
+     the panel unfocusable on the frame it opens, which breaks ArrowDown. */
+  transition: opacity 160ms ease, transform 160ms var(--ease-out), visibility 0s linear 160ms;
+}
+
+/* Invisible bridge so the pointer can cross the header border without
+   the panel closing underneath it. */
+.panel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1rem;
+  height: 1rem;
+}
+
+.nav__item.is-open .panel {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 160ms ease, transform 160ms var(--ease-out), visibility 0s linear 0s;
+}
+
+.panel--right {
+  left: auto;
+  right: 0;
+}
+
+/* Groups carry the structure, so the rows stay quiet: a hairline label,
+   then titles with one muted line each. The icon is a mark beside the
+   title, not a badge behind it. */
+/* A wide panel puts its groups in columns. Every column is a .pgroup-col,
+   so the stack margin below can only ever apply *within* a column — as
+   siblings in the grid itself, two groups would sit in different columns
+   and the margin would drop the right one half a row. */
+.pgroup-col {
+  min-width: 0;
+}
+
+.pgroup + .pgroup {
+  margin-top: var(--space-5);
+}
+
+.pgroup__label {
+  display: block;
+  padding: 0 var(--space-2) var(--space-2);
+  margin-bottom: var(--space-1);
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+}
+
+.pitem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition);
+}
+
+.pitem:hover {
+  background: var(--color-bg-light);
+}
+
+.pitem__icon {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.12rem;
+  color: var(--color-gray);
+  opacity: 0.55;
+  transition: color var(--transition), opacity var(--transition);
+}
+
+.pitem:hover .pitem__icon {
+  color: var(--color-red);
+  opacity: 1;
+}
+
+.pitem__text,
+.pfeat__text {
+  min-width: 0;
+}
+
+.pitem__title {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  color: var(--color-navy);
+}
+
+.pitem__desc {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--color-gray);
+}
+
+/* The one destination someone in a panic should hit first: a red rule and
+   a hairline, not a card. */
+.panel__lead {
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pfeat {
+  position: relative;
+  display: block;
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition);
+}
+
+.pfeat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: var(--space-2);
+  bottom: var(--space-2);
+  width: 2px;
+  border-radius: 2px;
+  background: var(--color-red);
+}
+
+.pfeat:hover {
+  background: var(--color-red-tint);
+}
+
+.pfeat__title {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  color: var(--color-red);
+}
+
+.pfeat__desc {
+  display: block;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--color-slate);
+}
+
+/* Contact's panel ends with the details you would otherwise open a page
+   to find — set as a colophon, not a widget. */
+.pfoot {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-2) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.pfoot__status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-navy);
+}
+
+.pfoot__status .status__dot {
+  background: var(--color-open-ink);
+  box-shadow: none;
+  animation: none;
+}
+
+.pfoot__addr {
+  margin-top: var(--space-2);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--color-gray);
+}
+
+.pfoot__call {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: var(--color-navy);
+  transition: color var(--transition);
+}
+
+.pfoot__call:hover {
+  color: var(--color-red);
+}
+
+/* Ten and eight destinations respectively. In one column those panels run
+   past the fold on a 720p laptop, so their groups split into two columns
+   for as long as they are dropdowns at all. */
+@media (min-width: 1121px) {
+  .panel--wide {
+    width: var(--panel-w-wide);
+  }
+
+  .panel--wide .panel__groups {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-5);
+    align-items: start;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   6. Call CTA + mobile toggle
+   --------------------------------------------------------------------- */
+.navbar__call {
+  flex: none;
+  padding: var(--space-3) var(--space-5);
+  font-size: 0.9rem;
+}
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-navy);
+  transition: background-color var(--transition);
+}
+
+.nav-toggle:hover {
+  background: var(--color-bg-light);
+}
+
+.nav-toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.nav-toggle__close {
+  display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__open {
+  display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__close {
+  display: block;
+}
+
+.nav-veil {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(26, 27, 78, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility 0s linear 180ms;
+}
+
+/* Drawer-only: a visible dismiss target, since the toggle sits underneath
+   the open drawer and cannot be reached by pointer or keyboard. */
+.nav__close {
+  display: none;
+}
+
+/* Quick links repeated inside the drawer, where the utility tier is hidden */
+.nav__util {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------
+   7. Drawer breakpoint
+   --------------------------------------------------------------------- */
+/* Five dropdown labels, a wide wordmark and a phone number share one row,
+   so the bar steps down in three stages before it gives up and becomes a
+   drawer. Each stage is sized to clear the logo at its narrowest width. */
+@media (max-width: 1300px) {
+  :root {
+    --header-h: 5.25rem;
+    --logo-h: 3.3rem;
+    --nav-btn-pad: 0.625rem;
+  }
+
+  .nav__btn {
+    font-size: 0.875rem;
+  }
+
+  .status__note--wide {
+    display: none;
+  }
+}
+
+/* 1240, not 1160: just above this the five labels are already within a
+   couple of pixels of the wordmark. */
+@media (max-width: 1240px) {
+  :root {
+    --header-h: 4.75rem;
+    --logo-h: 2.9rem;
+    --nav-btn-pad: 0.5rem;
+    /* Emergency Care sits mid-row, so its left-aligned panel runs off the
+       right edge here at the full width. */
+    --panel-w-wide: 40rem;
+  }
+
+  .navbar__inner {
+    gap: var(--space-3);
+  }
+
+  .nav__btn {
+    font-size: 0.82rem;
+    gap: var(--space-1);
+  }
+
+  .navbar__call {
+    padding: var(--space-2) var(--space-4);
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 1120px) {
+  :root {
+    --header-h: 4.5rem;
+    --logo-h: 2.9rem;
+  }
+
+  .util__inner {
+    justify-content: center;
+  }
+
+  .util__links {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-veil {
+    display: block;
+  }
+
+  .nav-veil.is-open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--transition), visibility 0s linear 0s;
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+
+  .navbar__call {
+    margin-left: auto;
+  }
+
+  /* The nav becomes a right-hand drawer. `visibility` (not just the
+     transform) is what keeps its links out of the tab order while closed. */
+  .nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 95;
+    flex: none;
+    display: block;
+    width: min(26rem, 90vw);
+    padding-block: var(--space-5) var(--space-8);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    box-shadow: -1rem 0 3rem rgba(16, 24, 64, 0.18);
+    transform: translateX(104%);
+    visibility: hidden;
+    transition: transform 260ms var(--ease-out), visibility 0s linear 260ms;
+  }
+
+  .nav.is-open {
+    transform: none;
+    visibility: visible;
+    transition: transform 260ms var(--ease-out), visibility 0s linear 0s;
+  }
+
+  .nav__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: 0 var(--space-4) var(--space-2) auto;
+    border-radius: var(--radius-md);
+    color: var(--color-navy);
+    transition: background-color var(--transition);
+  }
+
+  .nav__close:hover {
+    background: var(--color-bg-light);
+  }
+
+  .nav__close svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .nav__item {
+    flex-direction: column;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav__btn {
+    width: 100%;
+    min-height: 3.75rem;
+    padding: var(--space-4) var(--space-5);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    justify-content: space-between;
+  }
+
+  .nav__btn::after {
+    display: none;
+  }
+
+  .nav__item.is-open .nav__btn {
+    background: var(--color-bg-light);
+  }
+
+  .nav__chev {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .panel {
+    position: static;
+    width: 100%;
+    display: none;
+    padding: var(--space-2) var(--space-3) var(--space-4);
+    background: var(--color-bg-light);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .panel::before {
+    display: none;
+  }
+
+  .nav__item.is-open .panel {
+    display: block;
+  }
+
+  /* In the drawer you scroll a list rather than scan a panel, and the
+     descriptions would push Emergency Care past a whole phone screen. */
+  .pitem__desc {
+    display: none;
+  }
+
+  .pitem {
+    align-items: center;
+    min-height: 3rem;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .pitem__icon {
+    margin-top: 0;
+    opacity: 0.7;
+  }
+
+  .pitem__title {
+    font-size: 1rem;
+  }
+
+  .pgroup + .pgroup {
+    margin-top: var(--space-4);
+  }
+
+  .pgroup__label {
+    padding-inline: var(--space-3);
+    border-bottom-color: rgba(36, 38, 103, 0.12);
+  }
+
+  .pfeat {
+    padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  }
+
+  .pfeat::before {
+    top: var(--space-3);
+    bottom: var(--space-3);
+  }
+
+  .pfoot {
+    padding-inline: var(--space-3);
+  }
+
+  .nav__util {
+    display: block;
+    padding: var(--space-5) var(--space-5) 0;
+  }
+
+  .nav__util a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-navy);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav__util svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    color: var(--color-red);
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --header-h: 4.25rem;
+    --container-pad: 1rem;
+  }
+
+  .navbar__inner {
+    gap: var(--space-2);
+  }
+
+  .logo img {
+    height: 2.25rem;
+  }
+
+  .status {
+    font-size: 0.75rem;
+  }
+
+  .status__note--mid {
+    display: none;
+  }
+
+  .navbar__call {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.78rem;
+  }
+
+  .navbar__call .btn-icon {
+    width: 0.95rem;
+    height: 0.95rem;
+  }
+
+  .nav-toggle {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .nav {
+    width: min(26rem, 94vw);
+  }
+}
+
+/* Narrow phones (320px and up): the wordmark, the phone number and the
+   toggle still have to share one row, so everything gives a little. */
+@media (max-width: 380px) {
+  :root {
+    --header-h: 4rem;
+    --logo-h: 1.8rem;
+    --container-pad: 0.625rem;
+  }
+
+  .navbar__call {
+    padding: var(--space-1) var(--space-2);
+    font-size: 0.72rem;
+    gap: var(--space-1);
+  }
+
+  .navbar__call .btn-icon {
+    width: 0.85rem;
+    height: 0.85rem;
+  }
+
+  .nav-toggle {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .nav-toggle svg {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .status {
+    font-size: 0.7rem;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   8. No-JS fallback
+   The panels are opened by class, so without JS they need another way in.
+   --------------------------------------------------------------------- */
+html:not(.js) .nav__item:hover .panel,
+html:not(.js) .nav__item:focus-within .panel {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+html:not(.js) .nav__item:focus-within .nav__btn::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 1120px) {
+  /* No JS means no drawer — fall back to an always-open stacked list
+     that wraps onto its own row under the logo and call button. */
+  html:not(.js) .navbar__inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding-block: var(--space-3);
+  }
+
+  html:not(.js) .nav {
+    position: static;
+    order: 4;
+    flex-basis: 100%;
+    width: 100%;
+    transform: none;
+    visibility: visible;
+    box-shadow: none;
+    padding-block: 0 var(--space-4);
+  }
+
+  html:not(.js) .panel,
+  html:not(.js) .nav__util {
+    display: block;
+  }
+
+  html:not(.js) .nav-toggle,
+  html:not(.js) .nav__close {
+    display: none;
+  }
+}

@@ -1,0 +1,34 @@
+/* =========================================================================
+   Mason Dixon Animal Emergency Hospital — Option A
+   motion.css — scroll reveals and reduced-motion overrides
+   ========================================================================= */
+
+/* ---------------------------------------------------------------------
+   1. Motion — scroll reveals (gated on reduced motion)
+   --------------------------------------------------------------------- */
+/* Reveals run as keyframe animations (fill-mode: backwards) rather than
+   transitions, so they never override an element's own hover transitions
+   and release the transform once finished. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal]:not(.is-visible),
+  .js [data-reveal-stagger]:not(.is-visible) > * { opacity: 0; }
+
+  .js [data-reveal].is-visible,
+  .js [data-reveal-stagger].is-visible > * {
+    animation: reveal-up var(--dur-slow) var(--ease-out) backwards;
+    animation-delay: var(--reveal-delay, 0ms);
+  }
+
+  @keyframes reveal-up { from { opacity: 0; transform: translateY(1.75rem); } to { opacity: 1; transform: none; } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .live-dot::before { display: none; }
+  .why__band img { transform: none; }
+}
