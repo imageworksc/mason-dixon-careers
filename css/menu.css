@@ -901,6 +901,10 @@
 @media (max-width: 600px) {
   :root {
     --header-h: 4.25rem;
+  }
+
+  /* Tight gutters for the header row only; page content keeps the roomier base gutter */
+  .site-header {
     --container-pad: 1rem;
   }
 
@@ -946,6 +950,9 @@
   :root {
     --header-h: 4rem;
     --logo-h: 1.8rem;
+  }
+
+  .site-header {
     --container-pad: 0.625rem;
   }
 

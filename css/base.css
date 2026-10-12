@@ -57,7 +57,7 @@
   --dur-slow: 0.8s;
 
   --container: 80rem;
-  --container-pad: clamp(1.25rem, 4vw, 3rem);
+  --container-pad: clamp(1.5rem, 5vw, 3rem);
   --section-space: clamp(5rem, 9vw, 11rem);
   --header-offset: 0px; /* no header bar; sticky columns and anchor jumps use this */
 }
