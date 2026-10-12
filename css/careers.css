@@ -253,13 +253,16 @@ html:not(.js) .job-filter { display: none; }
    8. Photo band — slim variant: a short strip, copy on the left with the
    navy fading out to the right so the photo carries the other half
    --------------------------------------------------------------------- */
-.why__band--slim { height: clamp(13rem, 22vw, 19rem); }
-.why__band--slim img { object-position: 50% 42%; }
+.why__band--slim { height: clamp(12rem, 18vw, 15.625rem); } /* ~250px on desktop */
+/* Photo fills only the right ~60%, so it is scaled less and the whole
+   puppy face fits the short strip; navy carries the copy on the left */
+.why__band--slim img { left: auto; right: 0; width: 60%; object-position: 50% 40%; }
 .why__band--slim::after {
-  background: linear-gradient(to right, rgba(18, 19, 58, 0.92) 0%, rgba(18, 19, 58, 0.78) 38%, rgba(18, 19, 58, 0.15) 75%, rgba(18, 19, 58, 0) 100%);
+  background: linear-gradient(to right, var(--color-navy-900) 0%, var(--color-navy-900) 40%, rgba(18, 19, 58, 0.55) 52%, rgba(18, 19, 58, 0) 72%);
 }
 .why__band--slim .why__band-caption { top: 0; display: flex; align-items: center; padding-block: 0; }
 .why__band--slim .why__band-caption p { max-width: 36rem; font-size: clamp(1.15rem, 1.5vw, 1.5rem); }
 @media (max-width: 767px) {
+  .why__band--slim img { width: 100%; }
   .why__band--slim::after { background: linear-gradient(to right, rgba(18, 19, 58, 0.9), rgba(18, 19, 58, 0.55)); }
 }
