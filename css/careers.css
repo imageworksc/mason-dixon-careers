@@ -57,7 +57,7 @@
 
 /* ---------------------------------------------------------------------
    2. Why work here — centred head over an open 3-column grid of
-   two-tone line illustrations; the sixth cell holds a paw scatter and the CTA
+   framed line icons; the sixth cell holds a paw scatter and the CTA
    --------------------------------------------------------------------- */
 .why-work { padding-block: clamp(4rem, 7vw, 7rem); background: #fff; }
 .why-work__head { max-width: 44rem; margin-inline: auto; text-align: center; }
@@ -69,26 +69,18 @@
 
 .reasons { margin-top: clamp(3rem, 5vw, 4.5rem); display: grid; gap: var(--space-8) var(--space-7); }
 .reason { position: relative; display: grid; align-content: start; gap: var(--space-3); max-width: 22rem; }
-.reason h3 { margin-top: var(--space-3); font-size: 1.2rem; }
+.reason h3 { margin-top: var(--space-4); font-size: 1.2rem; }
 .reason p { font-size: 0.97rem; line-height: 1.65; color: var(--color-gray); }
 
-/* Two-tone line art: navy strokes over soft red fills, with red accents */
-.art {
-  width: 7rem; height: 7rem; overflow: visible;
-  transition: transform var(--dur-med) var(--ease-spring);
+/* Single-colour line icons in a quiet square frame */
+.reason__icon {
+  width: 4rem; height: 4rem; border-radius: var(--radius-md);
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--color-border); background: #fff; color: var(--color-red);
+  transition: border-color var(--dur-fast) var(--ease-out), transform var(--dur-med) var(--ease-out);
 }
-.reason:hover .art { transform: translateY(-4px) rotate(-3deg); }
-.art__line, .art__shape, .art__mark, .art__dash {
-  stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round;
-}
-.art__line, .art__shape, .art__dash { stroke: var(--color-navy); }
-.art__shape { fill: #fff; } /* opaque, so overlapping figures read as front and back */
-.art__shape--tint { fill: #f6d6d9; }
-.art__line, .art__mark, .art__dash { fill: none; }
-.art__dash { stroke-dasharray: 3 4; }
-.art__mark { stroke: var(--color-red); }
-.art__fill { fill: #f6d6d9; } /* brand red at ~18% on white */
-.art__accent { fill: var(--color-red); }
+.reason__icon svg { width: 2.5rem; height: 2.5rem; }
+.reason:hover .reason__icon { border-color: rgba(192, 29, 46, 0.35); transform: translateY(-3px); }
 
 /* Sixth cell: a faint trail of paws behind the CTA */
 .reason--cta { max-width: none; min-height: 12rem; align-content: center; justify-items: center; }
@@ -105,7 +97,6 @@
 @media (max-width: 639px) {
   .reasons { row-gap: var(--space-7); }
   .reason { max-width: none; }
-  .art { width: 6rem; height: 6rem; }
   .reason--cta { min-height: 9rem; }
   .reason--cta .btn { width: 100%; }
 }
