@@ -240,12 +240,19 @@ html:not(.js) .job-filter { display: none; }
 .job__pay small { display: block; margin-top: 0.15rem; font-size: 0.85rem; font-weight: 600; color: var(--color-slate); }
 .job__link {
   margin-top: auto; align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 0.5rem;
   font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--color-navy);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.job__link span {
   text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.3em;
   text-decoration-color: rgba(36, 38, 103, 0.3);
-  transition: color var(--dur-fast) var(--ease-out), text-decoration-color var(--dur-fast) var(--ease-out);
+  transition: text-decoration-color var(--dur-fast) var(--ease-out);
 }
-.job__link:hover { color: var(--color-red); text-decoration-color: currentColor; }
+.job__link svg { width: 1.05rem; height: 1.05rem; transition: transform var(--dur-med) var(--ease-out); }
+.job__link:hover { color: var(--color-red); }
+.job__link:hover span { text-decoration-color: currentColor; }
+.job__link:hover svg { transform: translateX(4px); }
 
 .openings__more {
   margin-top: var(--space-5);
