@@ -79,40 +79,6 @@ const initReveals = () => {
 };
 
 /* ---------------------------------------------------------------
-   Timeline — a stop is "done" once it has scrolled past about
-   three-quarters of the way down the viewport. Stops that finish
-   on the same scroll are staggered so they complete one after another.
-   --------------------------------------------------------------- */
-const initProcess = () => {
-  const steps = [...document.querySelectorAll(".steps .step")];
-  if (!steps.length) return;
-  let ticking = false;
-
-  const update = () => {
-    ticking = false;
-    const line = window.innerHeight * 0.75;
-    let fresh = 0;
-    steps.forEach((step, i) => {
-      const node = step.querySelector(".step__node");
-      const done = node.getBoundingClientRect().top < line;
-      if (done && !step.classList.contains("is-done")) {
-        const delay = `${fresh * 0.9}s`;
-        step.style.setProperty("--d", delay);
-        steps[i - 1]?.style.setProperty("--dl", delay);
-        fresh += 1;
-      }
-      step.classList.toggle("is-done", done);
-      steps[i - 1]?.classList.toggle("is-linked", done); // the line above fills once this stop is reached
-    });
-  };
-  const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
-
-  window.addEventListener("scroll", request, { passive: true });
-  window.addEventListener("resize", request);
-  update();
-};
-
-/* ---------------------------------------------------------------
    FAQ accordion (one open at a time, animated with grid rows)
    --------------------------------------------------------------- */
 const initAccordion = () => {
@@ -139,5 +105,4 @@ const initAccordion = () => {
 
 initScrollState();
 initReveals();
-initProcess();
 initAccordion();

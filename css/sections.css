@@ -5,80 +5,7 @@
    ========================================================================= */
 
 /* ---------------------------------------------------------------------
-   1. Process — sticky intro + progress timeline
-   --------------------------------------------------------------------- */
-.process { background: var(--color-bg-light); }
-
-.process__inner { display: grid; gap: var(--space-7); align-items: start; }
-.process__head p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.65; max-width: 28rem; }
-.process__head .btn { margin-top: var(--space-5); }
-
-/* Progress timeline: as each stop is reached the line above it draws in, its circle
-   fills red, a check draws and holds for a moment, then gives way to the stop's own
-   icon, now white on the red. initProcess (main.js) adds .is-done / .is-linked;
-   --d / --dl stagger stops that complete on the same scroll so they still read
-   one after another. Going back up simply undoes it, quickly. */
-.steps { position: relative; display: grid; }
-.step { --lead: 0s; position: relative; display: grid; grid-template-columns: 3.25rem 1fr; column-gap: var(--space-5); padding: var(--space-4) 0; }
-.step:not(:first-child) { --lead: 0.5s; } /* the line above finishes drawing first */
-/* Connector running from each node down to the next (dashed track, red fill on top); none after the last */
-.step:not(:last-child)::before, .step:not(:last-child)::after {
-  content: ""; position: absolute; left: calc(1.625rem - 1px); top: calc(var(--space-4) + 3.25rem); bottom: calc(-1 * var(--space-4));
-}
-.step:not(:last-child)::after { border-left: 2px dashed rgba(36, 38, 103, 0.2); }
-.step:not(:last-child)::before {
-  z-index: 1; border-left: 2px solid var(--color-red);
-  transform: scaleY(0); transform-origin: top; transition: transform 0.3s var(--ease-out);
-}
-.step.is-linked::before { transform: scaleY(1); transition: transform 0.7s var(--ease-out) var(--dl, 0s); }
-.step__node {
-  position: relative; z-index: 2; overflow: hidden;
-  width: 3.25rem; height: 3.25rem; border-radius: 50%;
-  display: grid; place-items: center;
-  background: #fff; color: var(--color-red);
-  border: 2px solid rgba(192, 29, 46, 0.25);
-  transition: border-color var(--dur-fast) var(--ease-out);
-}
-/* The fill grows from the centre of the circle */
-.step__node::before {
-  content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--color-red);
-  transform: scale(0); transition: transform 0.3s var(--ease-out);
-}
-.step__icon { position: relative; width: 1.4rem; height: 1.4rem; }
-.step__check {
-  position: absolute; width: 1.6rem; height: 1.6rem; fill: none; stroke: #fff; stroke-width: 3;
-  stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1 1; stroke-dashoffset: 1; opacity: 0;
-}
-.step.is-done .step__node { border-color: var(--color-red); }
-.step.is-done .step__node::before { transform: scale(1); transition: transform 0.9s var(--ease-out) calc(var(--d, 0s) + var(--lead)); }
-/* One 2.8s run per stop, after the fill starts: the icon steps aside, the check
-   draws (about 0.55s-1.15s), holds, and fades as the icon returns in white */
-.step.is-done .step__icon { animation: step-icon 2.8s var(--ease-out) calc(var(--d, 0s) + var(--lead)) both; }
-.step.is-done .step__check { animation: step-check 2.8s var(--ease-out) calc(var(--d, 0s) + var(--lead)) both; }
-@keyframes step-icon {
-  0%   { opacity: 1; transform: none; color: var(--color-red); }
-  12%  { opacity: 0; transform: scale(0.6); color: var(--color-red); }
-  68%  { opacity: 0; transform: scale(0.6); color: #fff; }
-  88%  { opacity: 1; transform: none; color: #fff; }
-  100% { opacity: 1; transform: none; color: #fff; }
-}
-@keyframes step-check {
-  0%, 19% { opacity: 0; stroke-dashoffset: 1; }
-  20%     { opacity: 1; stroke-dashoffset: 1; }
-  42%, 62% { opacity: 1; stroke-dashoffset: 0; }
-  74%, 100% { opacity: 0; stroke-dashoffset: 0; }
-}
-.step__body { padding-top: 0.1rem; }
-.step__body h3 { font-size: 1.2rem; }
-.step__body p { margin-top: 0.3rem; font-size: 0.98rem; line-height: 1.6; color: var(--color-gray); }
-
-@media (min-width: 1024px) {
-  .process__inner { grid-template-columns: 0.8fr 1.2fr; gap: var(--space-9); }
-  .process__head { position: sticky; top: calc(var(--header-offset) + 1rem); }
-}
-
-/* ---------------------------------------------------------------------
-   2. Photo band — full-bleed, light parallax on desktop
+   1. Photo band — full-bleed, light parallax on desktop
    --------------------------------------------------------------------- */
 .why__band { position: relative; height: clamp(18rem, 48vw, 36rem); overflow: hidden; background: var(--color-navy-900); }
 .why__band img { position: absolute; left: 0; top: -15%; width: 100%; height: 130%; object-fit: cover; object-position: 50% 85%; transform: translateY(var(--parallax, 0)); will-change: transform; }
@@ -89,7 +16,7 @@
 @media (min-width: 1024px) { .why__br { display: inline; } }
 
 /* ---------------------------------------------------------------------
-   3. Final CTA — glass card over a dark backdrop with soft colour glows
+   2. Final CTA — glass card over a dark backdrop with soft colour glows
    --------------------------------------------------------------------- */
 .cta-glass { position: relative; overflow: clip; background: var(--color-navy-900); color: #fff; }
 .cta-glass__glow { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(40px); }
@@ -128,7 +55,7 @@
 .glass-card .btn-row { margin-top: var(--space-2); justify-content: center; }
 
 /* ---------------------------------------------------------------------
-   4. FAQ — accordion with animated grid rows
+   3. FAQ — accordion with animated grid rows
    --------------------------------------------------------------------- */
 .faq { position: relative; z-index: 1; background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
 .faq__inner { display: grid; gap: var(--space-7); align-items: start; }
@@ -164,7 +91,7 @@
 }
 
 /* ---------------------------------------------------------------------
-   5. Footer
+   4. Footer
    --------------------------------------------------------------------- */
 .site-footer { background: var(--color-navy-dark); color: var(--text-on-dark-muted); font-size: 0.875rem; }
 .footer__main { padding-block: var(--space-9) var(--space-8); display: grid; gap: var(--space-6) var(--space-7); grid-template-columns: 1fr; }

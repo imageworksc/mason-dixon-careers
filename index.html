@@ -13,13 +13,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
-  <script src="js/head.js?v=202610121655"></script>
-  <link rel="stylesheet" href="css/base.css?v=202610121655" />
-  <link rel="stylesheet" href="css/components.css?v=202610121655" />
-  <link rel="stylesheet" href="css/sections.css?v=202610121655" />
-  <link rel="stylesheet" href="css/motion.css?v=202610121655" />
-  <link rel="stylesheet" href="css/menu.css?v=202610121655" />
-  <link rel="stylesheet" href="css/careers.css?v=202610121655" />
+  <script src="js/head.js?v=202610121706"></script>
+  <link rel="stylesheet" href="css/base.css?v=202610121706" />
+  <link rel="stylesheet" href="css/components.css?v=202610121706" />
+  <link rel="stylesheet" href="css/sections.css?v=202610121706" />
+  <link rel="stylesheet" href="css/motion.css?v=202610121706" />
+  <link rel="stylesheet" href="css/menu.css?v=202610121706" />
+  <link rel="stylesheet" href="css/careers.css?v=202610121706" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -566,33 +566,43 @@
       </div>
     </section>
 
-    <!-- ============================ Culture — timeline ============================ -->
-    <section class="section process" id="culture" aria-labelledby="culture-heading">
-      <div class="container process__inner">
-        <div class="process__head" data-reveal>
+    <!-- ============================ Culture — on the dark glow backdrop shared with the final CTA ============================ -->
+    <section class="section cta-glass culture" id="culture" aria-labelledby="culture-heading">
+      <div class="cta-glass__paws" aria-hidden="true"></div>
+      <div class="cta-glass__glow cta-glass__glow--red" aria-hidden="true"></div>
+      <div class="cta-glass__glow cta-glass__glow--blue" aria-hidden="true"></div>
+      <div class="container">
+        <div class="culture__head" data-reveal>
           <h2 id="culture-heading">This Is the Part You Can’t Put in a Benefits List.</h2>
           <p>The team matters. The culture matters. And so does how you feel at the end of a hard shift.</p>
-          <a class="btn btn--outline" href="#openings"><span>Start Your Career at Mason Dixon</span><span class="btn__orb" aria-hidden="true"><svg><use href="#icon-arrow-right"/></svg></span></a>
         </div>
 
-        <ol class="steps" data-reveal-stagger>
-          <li class="step">
-            <span class="step__node"><svg class="step__icon" aria-hidden="true"><use href="#icon-users"/></svg><svg class="step__check" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5.5 12.5l4.3 4.3L18.5 7.8"/></svg></span>
-            <div class="step__body"><h3>You’re Never on an Island.</h3><p>Tough cases happen. You’ll have people around you who step in, share the load and help solve the problem.</p></div>
+        <ul class="culture__grid" data-reveal-stagger>
+          <li class="culture__card">
+            <span class="culture__icon"><svg aria-hidden="true"><use href="#icon-users"/></svg></span>
+            <h3>You’re Never on an Island.</h3>
+            <p>Tough cases happen. You’ll have people around you who step in, share the load and help solve the problem.</p>
           </li>
-          <li class="step">
-            <span class="step__node"><svg class="step__icon" aria-hidden="true"><use href="#icon-trending"/></svg><svg class="step__check" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5.5 12.5l4.3 4.3L18.5 7.8"/></svg></span>
-            <div class="step__body"><h3>You Keep Getting Better.</h3><p>Learn from experienced emergency professionals, sharpen your skills and take on more as you’re ready.</p></div>
+          <li class="culture__card">
+            <span class="culture__icon"><svg aria-hidden="true"><use href="#icon-trending"/></svg></span>
+            <h3>You Keep Getting Better.</h3>
+            <p>Learn from experienced emergency professionals, sharpen your skills and take on more as you’re ready.</p>
           </li>
-          <li class="step">
-            <span class="step__node"><svg class="step__icon" aria-hidden="true"><use href="#icon-sun"/></svg><svg class="step__check" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5.5 12.5l4.3 4.3L18.5 7.8"/></svg></span>
-            <div class="step__body"><h3>Your Life Still Matters Outside of Work.</h3><p>Flexible scheduling, PTO, sick days and mental health days help make demanding work more sustainable.</p></div>
+          <li class="culture__card">
+            <span class="culture__icon"><svg aria-hidden="true"><use href="#icon-sun"/></svg></span>
+            <h3>Your Life Still Matters Outside of Work.</h3>
+            <p>Flexible scheduling, PTO, sick days and mental health days help make demanding work more sustainable.</p>
           </li>
-          <li class="step">
-            <span class="step__node"><svg class="step__icon" aria-hidden="true"><use href="#icon-heart"/></svg><svg class="step__check" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5.5 12.5l4.3 4.3L18.5 7.8"/></svg></span>
-            <div class="step__body"><h3>The Work Feels Worth It.</h3><p>The cases are real. The stakes are real. And when your shift ends, you know you did something that mattered.</p></div>
+          <li class="culture__card">
+            <span class="culture__icon"><svg aria-hidden="true"><use href="#icon-heart"/></svg></span>
+            <h3>The Work Feels Worth It.</h3>
+            <p>The cases are real. The stakes are real. And when your shift ends, you know you did something that mattered.</p>
           </li>
-        </ol>
+        </ul>
+
+        <div class="culture__foot" data-reveal>
+          <a class="btn btn--primary btn--lg" href="#openings"><span>Start Your Career at Mason Dixon</span><span class="btn__orb" aria-hidden="true"><svg><use href="#icon-arrow-right"/></svg></span></a>
+        </div>
       </div>
     </section>
 
@@ -916,8 +926,8 @@
     </a>
   </div>
 
-  <script type="module" src="js/main.js?v=202610121655"></script>
-  <script type="module" src="js/menu.js?v=202610121655"></script>
-  <script type="module" src="js/careers.js?v=202610121655"></script>
+  <script type="module" src="js/main.js?v=202610121706"></script>
+  <script type="module" src="js/menu.js?v=202610121706"></script>
+  <script type="module" src="js/careers.js?v=202610121706"></script>
 </body>
 </html>
