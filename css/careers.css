@@ -190,7 +190,7 @@ html:not(.js) .job-filter { display: none; }
    --------------------------------------------------------------------- */
 .giving { background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
 .giving__inner { display: grid; gap: var(--space-7); align-items: center; }
-.giving__copy p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 38rem; }
+.giving__copy p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 38rem; text-wrap: balance; }
 .giving__copy .btn { margin-top: var(--space-6); }
 
 .stat .bezel__core {
