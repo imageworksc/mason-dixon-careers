@@ -109,7 +109,7 @@
   transition: transform var(--dur-med) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
 .culture__card:hover { transform: translateY(-4px); border-color: rgba(255, 143, 154, 0.45); }
-.culture__icon { display: inline-flex; margin-bottom: var(--space-2); color: #ff8f9a; } /* brand red, lifted for contrast on navy */
+.culture__icon { display: inline-flex; margin-bottom: var(--space-2); color: #fff; }
 .culture__icon svg { width: 2.25rem; height: 2.25rem; }
 .culture__card h3 { font-size: 1.1rem; color: #fff; }
 .culture__card p { font-size: 0.95rem; line-height: 1.6; color: var(--text-on-dark-secondary); }
