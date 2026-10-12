@@ -5,54 +5,42 @@
    ========================================================================= */
 
 /* ---------------------------------------------------------------------
-   1. Hero — slim and type-led: centred copy on a pale ground with a
-   barely-there paw scatter and a soft lavender glow
+   1. Page header — an interior-page header rather than a home hero:
+   breadcrumb, left-aligned title and intro, actions and facts beside it
    --------------------------------------------------------------------- */
 .chero {
-  position: relative; overflow: clip; isolation: isolate;
-  padding-block: clamp(3.5rem, 6vw, 5.5rem) 0;
-  background:
-    radial-gradient(ellipse 60% 70% at 50% 0%, rgba(231, 231, 244, 0.95), rgba(231, 231, 244, 0) 70%),
-    var(--color-bg-light);
+  padding-block: clamp(2.25rem, 4vw, 3.5rem);
+  background: var(--color-bg-light);
   border-bottom: 1px solid var(--color-border);
-  text-align: center;
 }
-.chero__paws {
-  position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: url("../assets/images/paw-tile.svg") repeat center / 26rem 26rem;
-  opacity: 0.035;
-  -webkit-mask-image: radial-gradient(ellipse 70% 90% at 50% 40%, transparent 30%, #000 85%);
-          mask-image: radial-gradient(ellipse 70% 90% at 50% 40%, transparent 30%, #000 85%);
-}
-.chero__inner { display: flex; flex-direction: column; align-items: center; }
+.chero__inner { display: grid; gap: var(--space-6); align-items: end; }
 
-.chero h1 { max-width: 52rem; font-size: clamp(2.1rem, 2.6vw + 1rem, 3.5rem); }
+.chero__crumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--color-gray); }
+.chero__crumbs li + li::before { content: "/"; margin-right: 0.5rem; color: var(--color-border); }
+.chero__crumbs a { color: var(--color-navy); font-weight: 500; transition: color var(--dur-fast) var(--ease-out); }
+.chero__crumbs a:hover { color: var(--color-red); }
+.chero__crumbs [aria-current] { color: var(--color-gray); }
+
+.chero h1 { margin-top: var(--space-4); max-width: 40rem; font-size: clamp(1.9rem, 1.8vw + 1rem, 2.75rem); }
 .chero h1 em { font-style: normal; color: var(--color-red); }
-.chero__inner > p { margin-top: var(--space-5); max-width: 38rem; font-size: 1.1rem; line-height: 1.7; }
-.chero .btn-row { margin-top: var(--space-6); justify-content: center; }
+.chero__main > p { margin-top: var(--space-4); max-width: 38rem; font-size: 1.05rem; line-height: 1.7; }
 
-/* Explicit two-line break on desktop only; below that the heading wraps naturally */
-.chero__br { display: none; }
-
-/* Facts sit on a hairline along the bottom edge of the hero */
 .chero__facts {
-  margin-top: clamp(2.5rem, 4vw, 3.5rem);
-  align-self: stretch;
-  display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2) 0;
-  padding-block: var(--space-4);
-  border-top: 1px solid var(--color-border);
-  font-family: var(--font-display); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.02em; color: var(--color-navy);
+  margin-top: var(--space-5);
+  display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5);
+  font-family: var(--font-display); font-weight: 600; font-size: 0.82rem; color: var(--color-navy);
 }
-.chero__facts li { display: inline-flex; align-items: center; }
-.chero__facts li:not(:last-child)::after {
-  content: ""; width: 0.3rem; height: 0.3rem; margin-inline: 1rem; border-radius: 50%; background: var(--color-red);
-}
+.chero__facts li { display: inline-flex; align-items: center; gap: 0.5rem; }
+.chero__facts li::before { content: ""; width: 0.3rem; height: 0.3rem; border-radius: 50%; background: var(--color-red); }
 
-@media (min-width: 1024px) { .chero__br { display: inline; } }
+/* Desktop: title block left, actions and facts in a narrow column on the right */
+@media (min-width: 1024px) {
+  .chero__inner { grid-template-columns: 1fr auto; column-gap: var(--space-9); }
+  .chero__aside { padding-left: var(--space-7); border-left: 1px solid var(--color-border); }
+  .chero__facts { display: grid; grid-template-columns: repeat(2, auto); }
+}
 @media (max-width: 639px) {
   .chero .btn-row .btn { flex: 1 1 100%; }
-  .chero__facts { gap: var(--space-2) var(--space-5); }
-  .chero__facts li:not(:last-child)::after { display: none; }
 }
 
 /* ---------------------------------------------------------------------
