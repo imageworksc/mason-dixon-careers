@@ -90,35 +90,34 @@
 }
 
 /* ---------------------------------------------------------------------
-   2b. Culture — the final CTA's dark glow backdrop (.cta-glass), a
-   centred head and four glass cards in a row
+   2b. Culture — the final CTA's dark glow backdrop (.cta-glass): intro
+   and CTA on the left, the four points as a ruled list on the right
    --------------------------------------------------------------------- */
-.culture__head { max-width: 44rem; margin-inline: auto; text-align: center; }
-.culture__head h2 { color: #fff; }
-.culture__head p { margin-top: var(--space-4); font-size: 1.1rem; line-height: 1.7; color: var(--text-on-dark-secondary); text-wrap: balance; }
+.culture__inner { display: grid; gap: var(--space-7); align-items: start; }
 
-.culture__grid { margin-top: clamp(2.5rem, 4vw, 3.5rem); display: grid; gap: var(--space-4); }
+.culture__head h2 { color: #fff; }
+.culture__head p { margin-top: var(--space-4); max-width: 30rem; font-size: 1.1rem; line-height: 1.7; color: var(--text-on-dark-secondary); }
+.culture__head .btn { margin-top: var(--space-6); }
+
+.culture__grid { display: grid; border-top: 1px solid rgba(255, 255, 255, 0.14); }
 .culture__card {
-  display: grid; align-content: start; gap: var(--space-3);
-  padding: var(--space-6) var(--space-5);
-  border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.06);
-  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transition: transform var(--dur-med) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+  display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-5); row-gap: 0.3rem;
+  padding-block: var(--space-5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
-.culture__card:hover { transform: translateY(-4px); border-color: rgba(255, 143, 154, 0.45); }
-.culture__icon { display: inline-flex; margin-bottom: var(--space-2); color: #fff; }
+.culture__icon { grid-row: span 2; display: inline-flex; color: #fff; }
 .culture__icon svg { width: 2.25rem; height: 2.25rem; }
 .culture__card h3 { font-size: 1.1rem; color: #fff; }
-.culture__card p { font-size: 0.95rem; line-height: 1.6; color: var(--text-on-dark-secondary); }
+.culture__card p { font-size: 0.97rem; line-height: 1.6; color: var(--text-on-dark-secondary); max-width: 34rem; }
 
-.culture__foot { margin-top: clamp(2.5rem, 4vw, 3.5rem); display: flex; justify-content: center; }
-
-@media (min-width: 640px) { .culture__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1100px) { .culture__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-@media (max-width: 639px) { .culture__foot .btn { width: 100%; } }
+@media (min-width: 1024px) {
+  .culture__inner { grid-template-columns: 0.85fr 1.15fr; column-gap: var(--space-9); }
+  .culture__head { position: sticky; top: calc(var(--header-offset) + 1rem); }
+  .culture__grid { border-top: 0; }
+  .culture__card:first-child { padding-top: 0; }
+  .culture__card:last-child { border-bottom: 0; padding-bottom: 0; }
+}
+@media (max-width: 639px) { .culture__head .btn { width: 100%; } }
 
 /* ---------------------------------------------------------------------
    3. Emergency medicine — two-column icon list and new-graduate banner
