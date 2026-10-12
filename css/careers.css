@@ -136,7 +136,7 @@
 .job-filter { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5); }
 html:not(.js) .job-filter { display: none; }
 .job-filter__btn {
-  padding: 0.55rem 1rem; border-radius: var(--radius-full);
+  padding: 0.55rem 1rem; border-radius: var(--radius-sm);
   border: 1px solid var(--color-border); background: #fff;
   font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; color: var(--color-navy);
   transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
@@ -151,13 +151,7 @@ html:not(.js) .job-filter { display: none; }
   border-radius: var(--radius-lg); background: #fff; border: 1px solid var(--color-border);
   transition: transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
-.job::before {
-  content: ""; position: absolute; left: 0; top: var(--space-6); bottom: var(--space-6); width: 3px;
-  border-radius: 0 3px 3px 0; background: var(--color-red);
-  transform: scaleY(0.35); transform-origin: top; transition: transform var(--dur-med) var(--ease-out);
-}
 .job:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); border-color: transparent; }
-.job:hover::before { transform: scaleY(1); }
 .job[hidden] { display: none; }
 
 .job__top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
