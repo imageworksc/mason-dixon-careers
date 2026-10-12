@@ -1,13 +1,12 @@
 /* =========================================================================
    Mason Dixon Animal Emergency Hospital — Careers
-   careers.css — sections specific to the careers page, built on the
-   Option A tokens and components (base / components / sections)
+   careers.css — sections specific to the careers page, in document order.
+   Built on the shared tokens and components (base / components / sections).
    ========================================================================= */
 
 /* ---------------------------------------------------------------------
    1. Hero — slim and type-led: centred copy on a pale ground with a
-   barely-there paw scatter and a soft lavender glow. No imagery, so it
-   reads as its own page rather than an echo of the home hero.
+   barely-there paw scatter and a soft lavender glow
    --------------------------------------------------------------------- */
 .chero {
   position: relative; overflow: clip; isolation: isolate;
@@ -32,6 +31,9 @@
 .chero__inner > p { margin-top: var(--space-5); max-width: 38rem; font-size: 1.1rem; line-height: 1.7; }
 .chero .btn-row { margin-top: var(--space-6); justify-content: center; }
 
+/* Explicit two-line break on desktop only; below that the heading wraps naturally */
+.chero__br { display: none; }
+
 /* Facts sit on a hairline along the bottom edge of the hero */
 .chero__facts {
   margin-top: clamp(2.5rem, 4vw, 3.5rem);
@@ -45,6 +47,8 @@
 .chero__facts li:not(:last-child)::after {
   content: ""; width: 0.3rem; height: 0.3rem; margin-inline: 1rem; border-radius: 50%; background: var(--color-red);
 }
+
+@media (min-width: 1024px) { .chero__br { display: inline; } }
 @media (max-width: 639px) {
   .chero .btn-row .btn { flex: 1 1 100%; }
   .chero__facts { gap: var(--space-2) var(--space-5); }
@@ -52,11 +56,11 @@
 }
 
 /* ---------------------------------------------------------------------
-   2. Why work here — five reasons on navy
+   2. Why work here — five reasons on navy (3 + 2 on desktop)
    --------------------------------------------------------------------- */
 .why-work { padding-block: clamp(3.5rem, 6vw, 6rem); }
 .why-work__head { max-width: 44rem; }
-.why-work__head .why-work__sub {
+.why-work__sub {
   margin-top: var(--space-3);
   font-family: var(--font-display); font-weight: 600; font-size: clamp(1.1rem, 0.8vw + 0.9rem, 1.4rem);
   letter-spacing: -0.015em; color: #ff8f9a;
@@ -86,19 +90,14 @@
 
 @media (min-width: 640px) { .reasons { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) {
-  /* 3 + 2: the last two cards share the bottom row, wider */
   .reasons { grid-template-columns: repeat(6, 1fr); }
   .reason { grid-column: span 2; }
   .reason:nth-child(4), .reason:nth-child(5) { grid-column: span 3; }
 }
 
 /* ---------------------------------------------------------------------
-   3. Culture — reuses the process timeline (.steps) from sections.css
-   --------------------------------------------------------------------- */
-.culture { background: var(--color-bg-light); }
-
-/* ---------------------------------------------------------------------
-   4. Emergency medicine — type-led head, capability grid, new-grad banner
+   3. Emergency medicine — two-column icon list and new-graduate banner
+   (the culture timeline before it uses .process / .steps from sections.css)
    --------------------------------------------------------------------- */
 .medicine__head { max-width: 46rem; margin-bottom: var(--space-7); }
 .medicine__sub {
@@ -106,16 +105,15 @@
   font-family: var(--font-display); font-weight: 600; font-size: clamp(1.1rem, 0.8vw + 0.9rem, 1.4rem);
   letter-spacing: -0.015em; color: var(--color-red);
 }
-.medicine__head p:not(.medicine__sub) { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 40rem; }
+.medicine__lede { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 40rem; }
 
-/* Icon list — one capability per row, hairline rules between */
+/* Hairline rules only between rows: none above the first or below the last */
 .caps { display: grid; column-gap: var(--space-8); }
 .cap {
   display: grid; grid-template-columns: auto 1fr; align-items: center; gap: var(--space-5);
   padding: var(--space-4) 0;
   border-bottom: 1px solid var(--color-border);
 }
-/* Rules only between rows: none above the first or below the last */
 .cap:last-child { border-bottom: 0; }
 .cap__icon {
   width: 2.75rem; height: 2.75rem; border-radius: var(--radius-sm);
@@ -153,12 +151,37 @@
 .newgrad__tag svg { width: 1rem; height: 1rem; }
 .newgrad h3 { color: #fff; font-size: clamp(1.2rem, 0.8vw + 0.95rem, 1.5rem); line-height: 1.2; }
 .newgrad p { margin-top: var(--space-2); font-size: 1rem; line-height: 1.6; max-width: 38rem; }
+
 @media (min-width: 1024px) {
   .newgrad { grid-template-columns: 1fr auto; gap: var(--space-7); padding: var(--space-6) var(--space-7); }
 }
 
 /* ---------------------------------------------------------------------
-   5. Openings — job cards
+   4. Photo band — slim variant of .why__band (sections.css): copy on
+   solid navy, photo on the right with its left edge masked into the navy
+   --------------------------------------------------------------------- */
+.why__band--slim { height: clamp(12rem, 19vw, 16.875rem); } /* ~270px on desktop */
+/* Capped at 1500px (~1.35x the 1100px source) so 4K/5K screens never blow it up */
+.why__band--slim img {
+  left: auto; right: 0; width: min(60%, 1500px);
+  object-position: 50% 40%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 45%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 45%);
+}
+.why__band--slim::after { display: none; }
+.why__band--slim .why__band-caption { top: 0; display: flex; align-items: center; padding-block: 0; }
+.why__band--slim .why__band-caption p { max-width: 36rem; font-size: clamp(1.15rem, 1.5vw, 1.5rem); }
+
+/* Phones: full-width photo, the puppy in the upper part and the copy along the bottom */
+@media (max-width: 767px) {
+  .why__band--slim { height: 17rem; }
+  .why__band--slim img { width: 100%; object-position: 70% 35%; -webkit-mask-image: none; mask-image: none; }
+  .why__band--slim::after { display: block; background: linear-gradient(to top, rgba(18, 19, 58, 0.95) 0%, rgba(18, 19, 58, 0.75) 40%, rgba(18, 19, 58, 0) 75%); }
+  .why__band--slim .why__band-caption { align-items: flex-end; padding-bottom: var(--space-5); }
+}
+
+/* ---------------------------------------------------------------------
+   5. Openings — filter chips and job cards
    --------------------------------------------------------------------- */
 .openings__head { max-width: 46rem; margin-bottom: var(--space-7); }
 .openings__head p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.65; max-width: 38rem; }
@@ -176,13 +199,13 @@ html:not(.js) .job-filter { display: none; }
 .job-filter__btn[aria-pressed="true"] { background: var(--color-navy); border-color: var(--color-navy); color: #fff; }
 
 .jobs { display: grid; gap: var(--space-4); }
+/* Same hover as the Why Work cards: lift and a red-tinted border */
 .job {
   position: relative; display: flex; flex-direction: column; gap: var(--space-3);
   padding: var(--space-6);
   border-radius: var(--radius-lg); background: #fff; border: 1px solid var(--color-border);
   transition: transform var(--dur-med) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
-/* Same hover as the Why Work cards: lift and a red-tinted border */
 .job:hover { transform: translateY(-4px); border-color: rgba(192, 29, 46, 0.35); }
 .job[hidden] { display: none; }
 
@@ -199,12 +222,12 @@ html:not(.js) .job-filter { display: none; }
   background: var(--color-lavender);
   font-family: var(--font-display); font-weight: 600; font-size: 0.75rem; color: var(--color-navy);
 }
-.job h3 { margin-top: var(--space-2); font-size: 1.3rem; }
-.job .job__pay { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; line-height: 1.35; color: var(--color-red); letter-spacing: -0.01em; }
-.job__pay small { display: block; margin-top: 0.15rem; font-size: 0.85rem; font-weight: 600; color: var(--color-slate); }
-.job p { font-size: 0.97rem; line-height: 1.6; color: var(--color-gray); }
-.job .btn { margin-top: auto; align-self: flex-start; }
 .job__body { display: grid; gap: var(--space-3); margin-bottom: var(--space-3); }
+.job h3 { margin-top: var(--space-2); font-size: 1.3rem; }
+.job p { font-size: 0.97rem; line-height: 1.6; color: var(--color-gray); }
+.job .job__pay { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; line-height: 1.35; letter-spacing: -0.01em; color: var(--color-red); }
+.job__pay small { display: block; margin-top: 0.15rem; font-size: 0.85rem; font-weight: 600; color: var(--color-slate); }
+.job .btn { margin-top: auto; align-self: flex-start; }
 
 .openings__more {
   margin-top: var(--space-5);
@@ -212,13 +235,13 @@ html:not(.js) .job-filter { display: none; }
   padding: var(--space-5) var(--space-6);
   border-radius: var(--radius-lg); border: 2px dashed rgba(36, 38, 103, 0.2); background: var(--color-bg-light);
 }
-.openings__more strong { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-navy); }
-.openings__more div > span { display: block; margin-top: 0.15rem; font-size: 0.95rem; color: var(--color-gray); }
+.openings__more strong { display: block; font-family: var(--font-display); font-size: 1.1rem; color: var(--color-navy); }
+.openings__note { margin-top: 0.15rem; font-size: 0.95rem; color: var(--color-gray); }
 
 @media (min-width: 768px) { .jobs { grid-template-columns: repeat(2, 1fr); } }
 
 /* ---------------------------------------------------------------------
-   6. Giving back — copy + donated-services stat
+   6. Giving back — copy beside the donated-services stat
    --------------------------------------------------------------------- */
 .giving { background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
 .giving__inner { display: grid; gap: var(--space-7); align-items: center; }
@@ -231,7 +254,10 @@ html:not(.js) .job-filter { display: none; }
   background: linear-gradient(150deg, var(--color-navy), var(--color-navy-900));
   color: #fff;
 }
-.stat__paw { position: absolute; right: -2rem; top: -2rem; z-index: -1; width: 11rem; height: 11rem; color: #fff; opacity: 0.06; transform: rotate(18deg); }
+.stat__paw {
+  position: absolute; right: -2rem; top: -2rem; z-index: -1;
+  width: 11rem; height: 11rem; color: #fff; opacity: 0.06; transform: rotate(18deg);
+}
 .stat__value {
   display: block; font-family: var(--font-display); font-weight: 600; line-height: 1;
   font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.035em; color: #fff;
@@ -248,48 +274,24 @@ html:not(.js) .job-filter { display: none; }
 @media (min-width: 1024px) { .giving__inner { grid-template-columns: 1.1fr 0.9fr; gap: var(--space-9); } }
 
 /* ---------------------------------------------------------------------
-   7. Final CTA additions
+   7. Final CTA — additions to the shared glass card
    --------------------------------------------------------------------- */
-.glass-card__lead { font-size: 1.1rem !important; }
-.glass-card__contact { font-size: 0.95rem; color: var(--text-on-dark-muted); }
+.glass-card .glass-card__lead { font-size: 1.1rem; }
+.glass-card .glass-card__contact { font-size: 0.95rem; color: var(--text-on-dark-muted); }
 .glass-card__contact a {
   color: #fff; font-weight: 600; text-decoration: underline; text-decoration-color: rgba(255, 143, 154, 0.7);
   text-underline-offset: 3px; transition: text-decoration-color var(--dur-fast) var(--ease-out);
 }
 .glass-card__contact a:hover { text-decoration-color: #fff; }
 
-/* FAQ — address line inside an answer */
-.accordion__body p + p { margin-top: -0.6rem; }
-.accordion__body p strong { color: var(--color-navy); }
-
 /* ---------------------------------------------------------------------
-   8. Photo band — slim variant: a short strip, copy on the left with the
-   navy fading out to the right so the photo carries the other half
+   8. FAQ — address line inside an answer
    --------------------------------------------------------------------- */
-.why__band--slim { height: clamp(12rem, 19vw, 16.875rem); } /* ~270px on desktop */
-/* Photo fills only the right side, capped (1500px, ~1.35x the 1100px source) so it is never
-   blown up on 4K/5K screens; its left edge fades into the navy via a mask,
-   so the fade holds wherever the photo starts */
-.why__band--slim img {
-  left: auto; right: 0; width: min(60%, 1500px);
-  object-position: 50% 40%;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 45%);
-          mask-image: linear-gradient(to right, transparent 0%, #000 45%);
-}
-.why__band--slim::after { display: none; }
-.why__band--slim .why__band-caption { top: 0; display: flex; align-items: center; padding-block: 0; }
-.why__band--slim .why__band-caption p { max-width: 36rem; font-size: clamp(1.15rem, 1.5vw, 1.5rem); }
-@media (max-width: 767px) {
-  /* Phones: the puppy sits in the upper part, the copy along the bottom */
-  .why__band--slim { height: 17rem; }
-  .why__band--slim img { width: 100%; object-position: 70% 35%; -webkit-mask-image: none; mask-image: none; }
-  .why__band--slim::after { display: block; background: linear-gradient(to top, rgba(18, 19, 58, 0.95) 0%, rgba(18, 19, 58, 0.75) 40%, rgba(18, 19, 58, 0) 75%); }
-  .why__band--slim .why__band-caption { align-items: flex-end; padding-bottom: var(--space-5); }
-}
+.accordion__body strong { color: var(--color-navy); }
 
 /* ---------------------------------------------------------------------
-   9. Phones — tighter cards, full-width button pairs, readable CTA meta,
-   and room at the end of the page for the sticky Apply bar
+   9. Small screens — tighter cards, full-width button pairs, readable
+   CTA meta, and room at the end of the page for the sticky Apply bar
    --------------------------------------------------------------------- */
 @media (max-width: 639px) {
   .job { padding: var(--space-5); }

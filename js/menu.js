@@ -3,7 +3,7 @@
  * Brought in from imageworksc/menu-mason-dixon; one init per feature.
  */
 
-/* Must stay in sync with the drawer breakpoint in components.css. */
+/* Must stay in sync with the drawer breakpoint in menu.css. */
 const drawer = window.matchMedia("(max-width: 1120px)");
 
 const items = [...document.querySelectorAll("[data-nav-item]")];
