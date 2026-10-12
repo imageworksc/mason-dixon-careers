@@ -65,12 +65,15 @@
 .why-work__intro h2 em { font-style: normal; color: var(--color-red); }
 .why-work__sub { margin-top: var(--space-3); font-size: 1.05rem; line-height: 1.7; }
 
-.reasons { margin-top: var(--space-6); display: grid; border-top: 1px solid var(--color-border); }
+.reasons { margin-top: var(--space-5); display: grid; }
 .reason {
   display: grid; grid-template-columns: 1.75rem 1fr; gap: var(--space-3);
   padding-block: var(--space-4);
   border-bottom: 1px solid var(--color-border);
 }
+/* Rules only between rows: none above the first row or below the last */
+.reason:first-child { padding-top: 0; }
+.reason:last-child { border-bottom: 0; padding-bottom: 0; }
 .reason__num {
   font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; line-height: 1.35; color: var(--color-red);
 }
@@ -81,9 +84,12 @@
 /* Tablet up: reasons in two columns; desktop: three, so the block stays short */
 @media (min-width: 768px) {
   .reasons { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-7); }
+  .reason:nth-child(2) { padding-top: 0; }
 }
 @media (min-width: 1100px) {
   .reasons { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .reason:nth-child(3) { padding-top: 0; }
+  .reason:nth-child(n+4) { border-bottom: 0; padding-bottom: 0; }
 }
 @media (max-width: 639px) {
   .why-work__inner > .btn { width: 100%; }
