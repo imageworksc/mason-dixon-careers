@@ -99,21 +99,23 @@
 /* ---------------------------------------------------------------------
    4. Emergency medicine — type-led head, capability grid, new-grad banner
    --------------------------------------------------------------------- */
-.medicine__inner { display: grid; gap: var(--space-7); align-items: start; }
+.medicine__head { max-width: 46rem; margin-bottom: var(--space-7); }
 .medicine__sub {
   margin-top: var(--space-3);
   font-family: var(--font-display); font-weight: 600; font-size: clamp(1.1rem, 0.8vw + 0.9rem, 1.4rem);
   letter-spacing: -0.015em; color: var(--color-red);
 }
-.medicine__head p:not(.medicine__sub) { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 30rem; }
+.medicine__head p:not(.medicine__sub) { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 40rem; }
 
 /* Icon list — one capability per row, hairline rules between */
-.caps { border-top: 1px solid var(--color-border); }
+.caps { display: grid; column-gap: var(--space-8); }
 .cap {
   display: grid; grid-template-columns: auto 1fr; align-items: center; gap: var(--space-5);
   padding: var(--space-4) 0;
   border-bottom: 1px solid var(--color-border);
 }
+/* Rule above the first row of each column */
+.cap:first-child { border-top: 1px solid var(--color-border); }
 .cap__icon {
   width: 2.75rem; height: 2.75rem; border-radius: var(--radius-sm);
   display: inline-flex; align-items: center; justify-content: center;
@@ -125,9 +127,9 @@
 .cap h3 { font-size: 1.05rem; }
 .cap p { margin-top: 0.2rem; font-size: 0.95rem; line-height: 1.55; color: var(--color-gray); }
 
-@media (min-width: 1024px) {
-  .medicine__inner { grid-template-columns: 0.8fr 1.2fr; gap: var(--space-9); }
-  .medicine__head { position: sticky; top: calc(var(--header-offset) + 1rem); }
+@media (min-width: 768px) {
+  .caps { grid-template-columns: repeat(2, 1fr); }
+  .cap:nth-child(2) { border-top: 1px solid var(--color-border); }
 }
 
 .newgrad {
