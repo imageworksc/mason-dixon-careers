@@ -248,3 +248,18 @@ html:not(.js) .job-filter { display: none; }
 /* FAQ — address line inside an answer */
 .accordion__body p + p { margin-top: -0.6rem; }
 .accordion__body p strong { color: var(--color-navy); }
+
+/* ---------------------------------------------------------------------
+   8. Photo band — slim variant: a short strip, copy on the left with the
+   navy fading out to the right so the photo carries the other half
+   --------------------------------------------------------------------- */
+.why__band--slim { height: clamp(13rem, 22vw, 19rem); }
+.why__band--slim img { object-position: 50% 42%; }
+.why__band--slim::after {
+  background: linear-gradient(to right, rgba(18, 19, 58, 0.92) 0%, rgba(18, 19, 58, 0.78) 38%, rgba(18, 19, 58, 0.15) 75%, rgba(18, 19, 58, 0) 100%);
+}
+.why__band--slim .why__band-caption { top: 0; display: flex; align-items: center; padding-block: 0; }
+.why__band--slim .why__band-caption p { max-width: 36rem; font-size: clamp(1.15rem, 1.5vw, 1.5rem); }
+@media (max-width: 767px) {
+  .why__band--slim::after { background: linear-gradient(to right, rgba(18, 19, 58, 0.9), rgba(18, 19, 58, 0.55)); }
+}
