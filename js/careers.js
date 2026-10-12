@@ -6,6 +6,47 @@
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------------------------------------------------------------
+   Openings tabs — WAI-ARIA tabs: click or arrow keys to switch,
+   Home/End jump to the ends. Without JS every panel shows.
+   --------------------------------------------------------------- */
+const initTabs = () => {
+  const root = document.querySelector("[data-tabs]");
+  if (!root) return;
+  const tabs = [...root.querySelectorAll('[role="tab"]')];
+  const panels = tabs.map((tab) => document.getElementById(tab.getAttribute("aria-controls")));
+
+  const select = (index, focus = false) => {
+    tabs.forEach((tab, i) => {
+      const on = i === index;
+      tab.setAttribute("aria-selected", String(on));
+      tab.tabIndex = on ? 0 : -1;
+      panels[i].hidden = !on;
+    });
+    if (focus) tabs[index].focus();
+  };
+
+  tabs.forEach((tab, i) => tab.addEventListener("click", () => select(i)));
+  root.querySelector('[role="tablist"]').addEventListener("keydown", (event) => {
+    const current = tabs.indexOf(document.activeElement);
+    if (current < 0) return;
+    const last = tabs.length - 1;
+    const next = {
+      ArrowRight: current === last ? 0 : current + 1,
+      ArrowDown: current === last ? 0 : current + 1,
+      ArrowLeft: current === 0 ? last : current - 1,
+      ArrowUp: current === 0 ? last : current - 1,
+      Home: 0,
+      End: last,
+    }[event.key];
+    if (next === undefined) return;
+    event.preventDefault();
+    select(next, true);
+  });
+
+  select(0);
+};
+
+/* ---------------------------------------------------------------
    Donated-services stat — counts up once when it scrolls into view
    --------------------------------------------------------------- */
 const initCountUp = () => {
@@ -34,4 +75,5 @@ const initCountUp = () => {
   observer.observe(el);
 };
 
+initTabs();
 initCountUp();

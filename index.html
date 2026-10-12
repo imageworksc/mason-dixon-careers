@@ -13,13 +13,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
-  <script src="js/head.js?v=202610121215"></script>
-  <link rel="stylesheet" href="css/base.css?v=202610121215" />
-  <link rel="stylesheet" href="css/components.css?v=202610121215" />
-  <link rel="stylesheet" href="css/sections.css?v=202610121215" />
-  <link rel="stylesheet" href="css/motion.css?v=202610121215" />
-  <link rel="stylesheet" href="css/menu.css?v=202610121215" />
-  <link rel="stylesheet" href="css/careers.css?v=202610121215" />
+  <script src="js/head.js?v=202610121530"></script>
+  <link rel="stylesheet" href="css/base.css?v=202610121530" />
+  <link rel="stylesheet" href="css/components.css?v=202610121530" />
+  <link rel="stylesheet" href="css/sections.css?v=202610121530" />
+  <link rel="stylesheet" href="css/motion.css?v=202610121530" />
+  <link rel="stylesheet" href="css/menu.css?v=202610121530" />
+  <link rel="stylesheet" href="css/careers.css?v=202610121530" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -649,56 +649,51 @@
           <h2 id="openings-heading">Find Your Place at Mason Dixon.</h2>
         </div>
 
-        <ul class="jobs" data-reveal-stagger>
-          <li class="job">
-            <div class="job__top">
-              <span class="job__icon"><svg aria-hidden="true"><use href="#icon-role-vet"/></svg></span>
-              <span class="job__tags"><span class="job__tag">Full-Time</span><span class="job__tag">Part-Time</span></span>
-            </div>
-            <div class="job__body">
-              <h3>Emergency Veterinarian</h3>
-              <p class="job__pay">Up to $220,000/year</p>
-              <p>Practice emergency medicine with a straight salary, no production targets and one-on-one mentorship available for new graduates.</p>
-            </div>
+        <div class="jobs" data-tabs data-reveal>
+          <div class="jobs__tabs" role="tablist" aria-label="Current openings">
+            <button type="button" class="jobs__tab" role="tab" id="tab-vet" aria-controls="job-vet" aria-selected="true">
+              <svg class="jobs__tab-icon" aria-hidden="true"><use href="#icon-role-vet"/></svg>
+              <span class="jobs__tab-text"><span class="jobs__tab-title">Emergency Veterinarian</span><span class="jobs__tab-pay">Up to $220,000/year</span></span>
+            </button>
+            <button type="button" class="jobs__tab" role="tab" id="tab-lead" aria-controls="job-lead" aria-selected="false" tabindex="-1">
+              <svg class="jobs__tab-icon" aria-hidden="true"><use href="#icon-role-lead"/></svg>
+              <span class="jobs__tab-text"><span class="jobs__tab-title">Veterinary Technician Shift Lead</span><span class="jobs__tab-pay">Up to $30/hour</span></span>
+            </button>
+            <button type="button" class="jobs__tab" role="tab" id="tab-tech" aria-controls="job-tech" aria-selected="false" tabindex="-1">
+              <svg class="jobs__tab-icon" aria-hidden="true"><use href="#icon-role-tech"/></svg>
+              <span class="jobs__tab-text"><span class="jobs__tab-title">Emergency Veterinary Technician</span><span class="jobs__tab-pay">Starting at $19.55/hour</span></span>
+            </button>
+            <button type="button" class="jobs__tab" role="tab" id="tab-reception" aria-controls="job-reception" aria-selected="false" tabindex="-1">
+              <svg class="jobs__tab-icon" aria-hidden="true"><use href="#icon-role-reception"/></svg>
+              <span class="jobs__tab-text"><span class="jobs__tab-title">Emergency Hospital Receptionist</span><span class="jobs__tab-pay">Starting at $15.50/hour</span></span>
+            </button>
+          </div>
+
+          <article class="job" role="tabpanel" id="job-vet" aria-labelledby="tab-vet" tabindex="0">
+            <h3>Emergency Veterinarian</h3>
+            <p class="job__meta"><span class="job__pay">Up to $220,000/year</span> · Full-Time or Part-Time</p>
+            <p>Practice emergency medicine with a straight salary, no production targets and one-on-one mentorship available for new graduates.</p>
             <a class="job__link" href="https://www.masondixonveter.com/careers"><span>View Veterinarian Position</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-          </li>
-          <li class="job">
-            <div class="job__top">
-              <span class="job__icon"><svg aria-hidden="true"><use href="#icon-role-lead"/></svg></span>
-              <span class="job__tags"><span class="job__tag">Full-Time</span></span>
-            </div>
-            <div class="job__body">
-              <h3>Veterinary Technician Shift Lead</h3>
-              <p class="job__pay">Up to $30/hour <small>+ Up to $5,000/year Leadership Stipend</small></p>
-              <p>Lead your shift, mentor other technicians and stay hands-on with emergency and critical care.</p>
-            </div>
+          </article>
+          <article class="job" role="tabpanel" id="job-lead" aria-labelledby="tab-lead" tabindex="0">
+            <h3>Veterinary Technician Shift Lead</h3>
+            <p class="job__meta"><span class="job__pay">Up to $30/hour + Up to $5,000/year Leadership Stipend</span> · Full-Time</p>
+            <p>Lead your shift, mentor other technicians and stay hands-on with emergency and critical care.</p>
             <a class="job__link" href="https://www.masondixonveter.com/careers"><span>View Shift Lead Position</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-          </li>
-          <li class="job">
-            <div class="job__top">
-              <span class="job__icon"><svg aria-hidden="true"><use href="#icon-role-tech"/></svg></span>
-              <span class="job__tags"><span class="job__tag">Full-Time</span><span class="job__tag">Part-Time</span></span>
-            </div>
-            <div class="job__body">
-              <h3>Emergency Veterinary Technician</h3>
-              <p class="job__pay">Starting at $19.55/hour</p>
-              <p>Build your emergency skills in a fast-paced hospital with room to take on more as your experience grows.</p>
-            </div>
+          </article>
+          <article class="job" role="tabpanel" id="job-tech" aria-labelledby="tab-tech" tabindex="0">
+            <h3>Emergency Veterinary Technician</h3>
+            <p class="job__meta"><span class="job__pay">Starting at $19.55/hour</span> · Full-Time or Part-Time</p>
+            <p>Build your emergency skills in a fast-paced hospital with room to take on more as your experience grows.</p>
             <a class="job__link" href="https://www.masondixonveter.com/careers"><span>View Vet Tech Position</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-          </li>
-          <li class="job">
-            <div class="job__top">
-              <span class="job__icon"><svg aria-hidden="true"><use href="#icon-role-reception"/></svg></span>
-              <span class="job__tags"><span class="job__tag">Part-Time</span></span>
-            </div>
-            <div class="job__body">
-              <h3>Emergency Hospital Receptionist</h3>
-              <p class="job__pay">Starting at $15.50/hour</p>
-              <p>Be the calm, capable first person pet owners hear when something is wrong—and an essential part of the emergency team.</p>
-            </div>
+          </article>
+          <article class="job" role="tabpanel" id="job-reception" aria-labelledby="tab-reception" tabindex="0">
+            <h3>Emergency Hospital Receptionist</h3>
+            <p class="job__meta"><span class="job__pay">Starting at $15.50/hour</span> · Part-Time</p>
+            <p>Be the calm, capable first person pet owners hear when something is wrong—and an essential part of the emergency team.</p>
             <a class="job__link" href="https://www.masondixonveter.com/careers"><span>View Receptionist Position</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-          </li>
-        </ul>
+          </article>
+        </div>
 
         <div class="openings__more" data-reveal>
           <div>
@@ -873,8 +868,8 @@
     </a>
   </div>
 
-  <script type="module" src="js/main.js?v=202610121215"></script>
-  <script type="module" src="js/menu.js?v=202610121215"></script>
-  <script type="module" src="js/careers.js?v=202610121215"></script>
+  <script type="module" src="js/main.js?v=202610121530"></script>
+  <script type="module" src="js/menu.js?v=202610121530"></script>
+  <script type="module" src="js/careers.js?v=202610121530"></script>
 </body>
 </html>

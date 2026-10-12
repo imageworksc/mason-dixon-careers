@@ -200,36 +200,54 @@
 }
 
 /* ---------------------------------------------------------------------
-   5. Openings — job cards
+   5. Openings — tabbed roles: a list of roles beside one readable,
+   document-style panel. Without JS every panel simply stacks.
    --------------------------------------------------------------------- */
 .openings__head { max-width: 46rem; margin-bottom: var(--space-7); }
 
-.jobs { display: grid; gap: var(--space-4); }
-/* Same hover as the Why Work cards: lift and a red-tinted border */
-.job {
-  position: relative; display: flex; flex-direction: column; gap: var(--space-3);
-  padding: var(--space-6);
-  border-radius: var(--radius-lg); background: #fff; border: 1px solid var(--color-border);
-  transition: transform var(--dur-med) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+.jobs {
+  display: grid; gap: 0;
+  border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+  background: #fff; overflow: hidden;
 }
-.job:hover { transform: translateY(-4px); border-color: rgba(192, 29, 46, 0.35); }
+html:not(.js) .jobs__tabs { display: none; }
 
-.job__top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
-.job__icon { display: inline-flex; flex-shrink: 0; color: var(--color-red); }
-.job__icon svg { width: 1.375rem; height: 1.375rem; }
-.job__tags { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.4rem; }
-.job__tag {
-  padding: 0.3rem 0.65rem; border-radius: var(--radius-sm);
-  background: var(--color-lavender);
-  font-family: var(--font-display); font-weight: 600; font-size: 0.75rem; color: var(--color-navy);
+/* Tab list: a 2 × 2 grid on phones and tablets, a column of roles on desktop */
+.jobs__tabs {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px;
+  border-bottom: 1px solid var(--color-border); background: var(--color-border);
 }
-.job__body { display: grid; gap: var(--space-3); margin-bottom: var(--space-3); }
-.job h3 { margin-top: var(--space-2); font-size: 1.3rem; }
-.job p { font-size: 0.97rem; line-height: 1.6; color: var(--color-gray); }
-.job .job__pay { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; line-height: 1.35; letter-spacing: -0.01em; color: var(--color-red); }
-.job__pay small { display: block; margin-top: 0.15rem; font-size: 0.85rem; font-weight: 600; color: var(--color-slate); }
+.jobs__tab {
+  position: relative;
+  display: flex; align-items: flex-start; gap: var(--space-3);
+  padding: var(--space-4); text-align: left;
+  background: var(--color-bg-light); color: var(--color-navy);
+  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.jobs__tab::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: var(--color-red); transform: scaleX(0); transition: transform var(--dur-med) var(--ease-out);
+}
+.jobs__tab:hover { background: #fff; }
+.jobs__tab[aria-selected="true"] { background: #fff; }
+.jobs__tab[aria-selected="true"]::after { transform: none; }
+.jobs__tab:focus-visible { outline-offset: -3px; }
+.jobs__tab-icon { width: 1.375rem; height: 1.375rem; flex-shrink: 0; margin-top: 0.1rem; color: var(--color-red); }
+.jobs__tab-text { display: grid; gap: 0.1rem; }
+.jobs__tab-title { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; line-height: 1.3; }
+.jobs__tab-pay { font-size: 0.82rem; color: var(--color-gray); }
+
+/* Panel: a short document — title, pay line, description, link */
+.job { padding: clamp(1.75rem, 4vw, 3rem); max-width: 44rem; }
+.js .job[hidden] { display: none; }
+.job:focus-visible { outline-offset: -3px; }
+html:not(.js) .job + .job { border-top: 1px solid var(--color-border); }
+.job h3 { font-size: clamp(1.4rem, 1vw + 1.1rem, 1.85rem); }
+.job__meta { margin-top: var(--space-3); font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--color-slate); }
+.job__pay { color: var(--color-red); font-weight: 700; }
+.job p:not(.job__meta) { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.75; color: var(--color-slate); max-width: 38rem; }
 .job__link {
-  margin-top: auto; align-self: flex-start;
+  margin-top: var(--space-6);
   display: inline-flex; align-items: center; gap: 0.5rem;
   font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--color-navy);
   transition: color var(--dur-fast) var(--ease-out);
@@ -244,6 +262,18 @@
 .job__link:hover span { text-decoration-color: currentColor; }
 .job__link:hover svg { transform: translateX(4px); }
 
+@media (min-width: 900px) {
+  .jobs { grid-template-columns: minmax(17rem, 0.42fr) 1fr; }
+  .jobs__tabs { grid-template-columns: 1fr; align-content: start; border-bottom: 0; border-right: 1px solid var(--color-border); }
+  .jobs__tab { align-items: center; padding: var(--space-5) var(--space-6); }
+  .jobs__tab::after { left: auto; top: 0; right: 0; width: 3px; height: auto; transform: scaleY(0); }
+  .job { align-self: center; }
+}
+@media (max-width: 479px) {
+  .jobs__tab { flex-direction: column; gap: var(--space-2); padding: var(--space-3) var(--space-4); }
+  .jobs__tab-title { font-size: 0.88rem; }
+}
+
 .openings__more {
   margin-top: var(--space-5);
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4);
@@ -253,7 +283,6 @@
 .openings__more strong { display: block; font-family: var(--font-display); font-size: 1.1rem; color: var(--color-navy); }
 .openings__note { margin-top: 0.15rem; font-size: 0.95rem; color: var(--color-gray); }
 
-@media (min-width: 768px) { .jobs { grid-template-columns: repeat(2, 1fr); } }
 
 /* ---------------------------------------------------------------------
    6. Giving back — copy beside the donated-services stat
@@ -303,7 +332,6 @@
    and room at the end of the page for the sticky Apply bar
    --------------------------------------------------------------------- */
 @media (max-width: 639px) {
-  .job { padding: var(--space-5); }
   .openings__more { padding: var(--space-5); }
   .newgrad .btn-row .btn, .glass-card .btn-row .btn, .openings__more .btn { flex: 1 1 100%; }
   .glass-card .btn-row { align-self: stretch; }
