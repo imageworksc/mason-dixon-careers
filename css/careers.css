@@ -12,10 +12,10 @@
   position: relative; overflow: clip;
   background: var(--color-bg-light);
   border-bottom: 1px solid var(--color-border);
-  padding-block: clamp(3rem, 6vw, 5.5rem) 0;
+  padding-block: clamp(3rem, 6vw, 5.5rem);
 }
-.chero__inner { display: grid; gap: var(--space-6); align-items: end; }
-.chero__copy { padding-bottom: clamp(3rem, 6vw, 5.5rem); max-width: 40rem; }
+.chero__inner { display: grid; gap: var(--space-6); align-items: center; }
+.chero__copy { max-width: 40rem; }
 
 .chero__eyebrow {
   display: inline-flex; align-items: center; gap: 0.6rem; margin-bottom: var(--space-5);
@@ -35,30 +35,16 @@
 }
 .chero__facts li:not(:last-child)::after { content: "·"; margin-inline: 0.6rem; color: var(--color-red); }
 
-/* The dog sits on the section's bottom edge, in front of a lavender disc */
-.chero__media {
-  position: relative; justify-self: center; align-self: end;
-  width: min(100%, 26rem);
-}
-.chero__disc {
-  position: absolute; left: 50%; bottom: 8%; z-index: 0;
-  width: 92%; aspect-ratio: 1; border-radius: 50%;
-  background: var(--color-lavender);
-  transform: translateX(-50%);
-}
-.chero__paw {
-  position: absolute; z-index: 0; right: 0; top: 4%;
-  width: 4.5rem; height: 4.5rem; color: var(--color-red); opacity: 0.12; transform: rotate(16deg);
-}
-.chero__media img { position: relative; z-index: 1; width: 100%; height: auto; }
+/* The kittens sit beside the copy, vertically centred, no frame */
+.chero__media { justify-self: center; width: min(100%, 34rem); }
+.chero__media img { width: 100%; height: auto; }
 
 @media (min-width: 900px) {
-  .chero__inner { grid-template-columns: 1.15fr 0.85fr; gap: var(--space-8); }
-  .chero__media { width: min(100%, 30rem); justify-self: end; }
+  .chero__inner { grid-template-columns: 1.15fr 0.85fr; gap: var(--space-7); }
+  .chero__media { justify-self: end; width: min(100%, 38rem); }
 }
 @media (max-width: 899px) {
-  .chero__copy { padding-bottom: 0; }
-  .chero__media { width: min(80%, 22rem); }
+  .chero__media { width: min(90%, 28rem); }
 }
 
 /* ---------------------------------------------------------------------
