@@ -81,7 +81,7 @@
   width: 16rem; height: 16rem; color: #fff; opacity: 0.06; transform: rotate(-14deg);
 }
 .why-work__panel h2 { font-size: clamp(1.9rem, 2vw + 1rem, 2.9rem); color: #fff; }
-.why-work__panel h2 em { font-style: normal; color: var(--color-red); }
+.why-work__panel h2 em { font-style: normal; color: #e3233a; } /* brand red, a touch brighter so it holds on navy */
 .why-work__sub { margin-top: var(--space-3); font-size: 1.1rem; line-height: 1.6; }
 .why-work__panel .btn { justify-self: start; }
 
