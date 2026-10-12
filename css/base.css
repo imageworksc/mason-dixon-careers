@@ -126,7 +126,7 @@ p { text-wrap: pretty; }
 :focus-visible { outline: 3px solid #6c8cff; outline-offset: 3px; border-radius: var(--radius-sm); }
 
 ::selection { background: rgba(192, 29, 46, 0.2); color: var(--color-navy); }
-.why-work ::selection, .cta-glass ::selection, .site-footer ::selection { background: rgba(255, 143, 154, 0.35); color: #fff; }
+.cta-glass ::selection, .site-footer ::selection { background: rgba(255, 143, 154, 0.35); color: #fff; }
 
 /* ---------------------------------------------------------------------
    3. Layout utilities
