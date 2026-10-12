@@ -195,7 +195,7 @@
 }
 .why__band--slim::after { display: none; }
 .why__band--slim .why__band-caption { top: 0; display: flex; align-items: center; padding-block: 0; }
-.why__band--slim .why__band-caption p { max-width: 36rem; font-size: clamp(1.15rem, 1.5vw, 1.5rem); }
+.why__band--slim .why__band-caption p { max-width: 36rem; font-size: clamp(1.15rem, 1.5vw, 1.5rem); font-weight: 600; }
 
 /* Phones: full-width photo, the copy along the bottom */
 @media (max-width: 767px) {
