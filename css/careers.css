@@ -207,7 +207,7 @@
 .openings__head { max-width: 46rem; margin-bottom: var(--space-7); }
 
 .jobs {
-  display: grid;
+  display: grid; grid-template-columns: minmax(0, 1fr); /* never wider than the container */
   border: 1px solid var(--color-border); border-radius: var(--radius-lg);
   background: #fff;
 }
@@ -245,7 +245,7 @@ html:not(.js) .job__toggle { display: none; }
 .job h3 { font-size: clamp(1.4rem, 1vw + 1.1rem, 1.85rem); }
 .job__meta { margin-top: var(--space-3); font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--color-slate); }
 .job__pay { color: var(--color-red); font-weight: 700; }
-.job p:not(.job__meta) { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.75; color: var(--color-slate); max-width: 38rem; }
+.job > p:not(.job__meta) { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.75; color: var(--color-slate); max-width: 38rem; }
 /* Full postings: section headings and bulleted lists */
 .job h4 {
   margin-top: var(--space-6);
@@ -316,24 +316,20 @@ html:not(.js) .job__toggle { display: none; }
 
 
 /* ---------------------------------------------------------------------
-   7. Application form — part of the openings section, under "Don't see
-   your role?", with the original careers form's fields; a posting's
-   "Apply Now" scrolls here
+   7. Application form — one inside each posting, under its description,
+   with the original careers form's fields. "Apply Now" opens it; without
+   JS it is simply shown.
    --------------------------------------------------------------------- */
-.apply { margin-top: clamp(3rem, 5vw, 4rem); }
-/* Jumps land with the heading just under the sticky header */
-.apply, .apply__role { scroll-margin-top: calc(var(--header-offset) + 2rem); }
-.apply__head { margin-bottom: var(--space-5); }
-.apply__head h3 { font-size: clamp(1.6rem, 1.2vw + 1.1rem, 2.1rem); }
-.apply__role { margin-top: var(--space-2); font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--color-red); }
-.apply__role:empty { display: none; }
+.apply { margin-top: var(--space-6); scroll-margin-top: calc(var(--header-offset) + 1.5rem); }
+.js .apply[hidden] { display: none; }
+.job__link[aria-expanded="true"] svg { transform: rotate(90deg); }
 .apply__form {
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: #fff;
+  margin-top: 0; padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-bg-light);
 }
 
 .apply__fields { display: grid; gap: var(--space-4) var(--space-5); }
-.field { display: grid; gap: var(--space-2); align-content: start; }
+.field { display: grid; gap: var(--space-2); align-content: start; min-width: 0; }
 .field[hidden] { display: none; }
 .field label { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--color-navy); }
 .field__req { color: var(--color-red); }
@@ -344,7 +340,7 @@ html:not(.js) .job__toggle { display: none; }
   transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
 }
 .field textarea { resize: vertical; min-height: 7rem; }
-.field input[type="file"] { padding: 0.6rem; background: var(--color-bg-light); }
+.field input[type="file"] { min-width: 0; padding: 0.6rem; background: #fff; }
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none; border-color: var(--color-navy); box-shadow: 0 0 0 3px rgba(36, 38, 103, 0.15);
 }
@@ -353,7 +349,7 @@ html:not(.js) .job__toggle { display: none; }
 
 .apply__trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
-.apply__captcha { margin: var(--space-5) 0 0; padding: 0; border: 0; min-height: 78px; }
+.apply__captcha { margin: var(--space-5) 0 0; padding: 0; border: 0; min-width: 0; min-height: 78px; }
 .apply__captcha legend { margin-bottom: var(--space-2); font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--color-navy); }
 
 .apply__status { margin-top: var(--space-5); font-size: 0.95rem; color: var(--color-navy); }
@@ -367,6 +363,17 @@ html:not(.js) .job__toggle { display: none; }
 }
 @media (max-width: 639px) {
   .apply__actions .btn { width: 100%; }
+}
+/* Google's widget is a fixed 304px; on narrow phones scale it to fit the form */
+@media (max-width: 419px) {
+  .apply__form { padding: var(--space-4); }
+  .apply__captcha [data-apply-captcha] { width: 304px; transform: scale(0.84); transform-origin: 0 0; height: 66px; }
+}
+@media (max-width: 379px) {
+  .apply__captcha [data-apply-captcha] { transform: scale(0.76); height: 60px; }
+}
+@media (max-width: 339px) {
+  .apply__captcha [data-apply-captcha] { transform: scale(0.62); height: 49px; }
 }
 
 /* ---------------------------------------------------------------------

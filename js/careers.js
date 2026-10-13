@@ -65,83 +65,53 @@ const initJobs = () => {
 };
 
 /* ---------------------------------------------------------------
-   Application form — sits inline below the openings. A posting's
-   "Apply Now" scrolls to it and fills in the position; without JS the
-   link is a plain anchor to the form.
-   reCAPTCHA v2 (the current form's site key) loads once the form is
-   near the viewport, and must be ticked before submitting.
+   Application forms — one inside each posting. "Apply Now" opens (and
+   closes) that posting's form; without JS the forms are simply shown.
+   Each form's reCAPTCHA v2 (the current careers form's site key) is
+   rendered the first time it opens, and must be ticked to submit.
    Submission posts to data-endpoint on the form; until one is set the
    form validates but does not send, and says so.
    --------------------------------------------------------------- */
-const initApply = () => {
-  const section = document.querySelector("#apply-form");
-  const form = section?.querySelector("[data-apply-form]");
-  if (!form) return;
-  const role = section.querySelector("[data-apply-role]");
-  const position = form.querySelector("[data-apply-position]");
+const CAPTCHA_SRC = "https://www.google.com/recaptcha/api.js?hl=en&render=explicit&onload=masonDixonCaptchaReady";
+const MAX_RESUME_BYTES = 8 * 1024 * 1024;
+
+// Google's script loads once; widgets requested before it is ready wait in a queue
+const captchaQueue = [];
+const whenCaptchaReady = (callback) => {
+  if (window.grecaptcha?.render) { callback(); return; }
+  captchaQueue.push(callback);
+  if (document.querySelector(`script[src="${CAPTCHA_SRC}"]`)) return;
+  window.masonDixonCaptchaReady = () => captchaQueue.splice(0).forEach((fn) => fn());
+  const script = document.createElement("script");
+  script.src = CAPTCHA_SRC;
+  script.async = true;
+  document.head.append(script);
+};
+
+const initApplyForm = (form) => {
   const heard = form.querySelector("[data-apply-heard]");
   const other = form.querySelector("[data-apply-other]");
   const file = form.querySelector("[data-apply-file]");
   const status = form.querySelector("[data-apply-status]");
   const captcha = form.querySelector("[data-apply-captcha]");
-  const MAX_BYTES = 8 * 1024 * 1024;
   let captchaId = null;
-
-  // Load Google's script once, on first open, and render the checkbox into the form
-  const loadCaptcha = () => {
-    if (!captcha || captcha.dataset.loaded) return;
-    captcha.dataset.loaded = "true";
-    window.masonDixonCaptchaReady = () => {
-      captchaId = window.grecaptcha.render(captcha, { sitekey: captcha.dataset.sitekey, theme: "light" });
-    };
-    const script = document.createElement("script");
-    script.src = "https://www.google.com/recaptcha/api.js?hl=en&render=explicit&onload=masonDixonCaptchaReady";
-    script.async = true;
-    document.head.append(script);
-  };
-  const captchaDone = () => captchaId === null || Boolean(window.grecaptcha?.getResponse(captchaId));
 
   const setStatus = (text, isError = false) => {
     status.textContent = text;
     status.classList.toggle("is-error", isError);
   };
 
-  document.querySelectorAll("[data-apply]").forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      // Postings fill in the position; the general "Send Us Your Resume" leaves it open
-      role.textContent = link.dataset.apply;
-      position.value = link.dataset.apply;
-      setStatus("");
-      loadCaptcha();
-      role.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
-      form.querySelector("input:not([type=hidden])").focus({ preventScroll: true });
-    });
-  });
-
-  // Load the CAPTCHA as the form approaches, so it is ready when reached
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      observer.disconnect();
-      loadCaptcha();
-    }, { rootMargin: "400px 0px" });
-    observer.observe(section);
-  } else {
-    loadCaptcha();
-  }
-
   heard.addEventListener("change", () => { other.hidden = heard.value !== "_other_"; });
 
   file.addEventListener("change", () => {
-    const tooBig = file.files[0] && file.files[0].size > MAX_BYTES;
+    const tooBig = file.files[0] && file.files[0].size > MAX_RESUME_BYTES;
     file.setCustomValidity(tooBig ? "Please choose a file of 8 MB or less." : "");
   });
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
-    if (!captchaDone()) {
+    if (captchaId !== null && !window.grecaptcha.getResponse(captchaId)) {
       setStatus("Please complete the CAPTCHA.", true);
       return;
     }
@@ -164,6 +134,36 @@ const initApply = () => {
     } finally {
       button.disabled = false;
     }
+  });
+
+  // Called when the form is first opened
+  return () => {
+    if (!captcha || captcha.dataset.loaded) return;
+    captcha.dataset.loaded = "true";
+    whenCaptchaReady(() => {
+      captchaId = window.grecaptcha.render(captcha, { sitekey: captcha.dataset.sitekey, theme: "light" });
+    });
+  };
+};
+
+const initApply = () => {
+  document.querySelectorAll("[data-apply-open]").forEach((link) => {
+    const wrap = document.getElementById(link.getAttribute("aria-controls"));
+    const form = wrap?.querySelector("[data-apply-form]");
+    if (!form) return;
+    const onFirstOpen = initApplyForm(form);
+    wrap.hidden = true;
+
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const open = wrap.hidden;
+      wrap.hidden = !open;
+      link.setAttribute("aria-expanded", String(open));
+      if (!open) return;
+      onFirstOpen();
+      wrap.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      form.querySelector("input:not([type=hidden])").focus({ preventScroll: true });
+    });
   });
 };
 
