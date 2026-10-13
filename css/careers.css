@@ -344,6 +344,13 @@ html:not(.js) .job__toggle { display: none; }
   transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
 }
 .field textarea { resize: vertical; min-height: 5rem; }
+/* Dropdowns: own chevron, inset from the edge like the field's padding */
+.field select {
+  -webkit-appearance: none; appearance: none;
+  padding-right: 2.75rem;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23242667' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 1rem center / 1rem 1rem;
+  cursor: pointer;
+}
 .field input[type="file"] { min-width: 0; padding: 0.6rem; background: #fff; }
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none; border-color: var(--color-navy); box-shadow: 0 0 0 3px rgba(36, 38, 103, 0.15);
