@@ -321,7 +321,7 @@ html:not(.js) .job__toggle { display: none; }
    --------------------------------------------------------------------- */
 .apply {
   width: min(44rem, calc(100% - 2rem)); max-height: calc(100dvh - 2rem);
-  margin: auto; padding: 0; border: 0; border-radius: var(--radius-xl);
+  margin: auto; padding: 0; border: 0; border-radius: var(--radius-sm); /* same 4px corners as the buttons */
   background: #fff; color: var(--color-slate);
   box-shadow: var(--shadow-float);
 }
