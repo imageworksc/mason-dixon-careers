@@ -239,7 +239,7 @@
 .job__toggle[aria-expanded="true"] .job__chevron { transform: rotate(180deg); background: var(--color-red); color: #fff; }
 html:not(.js) .job__toggle { display: none; }
 
-/* Panel: a short document — title, pay line, description, link */
+/* Panel: a document — title, pay and schedule, description, then Apply Now */
 .job { padding: var(--space-2) var(--space-5) var(--space-6); max-width: 44rem; }
 .js .job[hidden] { display: none; }
 .job:focus-visible { outline-offset: -3px; }
@@ -319,7 +319,6 @@ html:not(.js) .job__toggle { display: none; }
 }
 .openings__more strong { display: block; font-family: var(--font-display); font-size: 1.1rem; color: var(--color-navy); }
 .openings__note { margin-top: 0.15rem; font-size: 0.95rem; color: var(--color-gray); }
-
 
 /* ---------------------------------------------------------------------
    7. Application form — one inside each posting, under its description,
