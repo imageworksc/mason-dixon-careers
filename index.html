@@ -13,13 +13,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
-  <script src="js/head.js?v=202610131018"></script>
-  <link rel="stylesheet" href="css/base.css?v=202610131018" />
-  <link rel="stylesheet" href="css/components.css?v=202610131018" />
-  <link rel="stylesheet" href="css/sections.css?v=202610131018" />
-  <link rel="stylesheet" href="css/motion.css?v=202610131018" />
-  <link rel="stylesheet" href="css/menu.css?v=202610131018" />
-  <link rel="stylesheet" href="css/careers.css?v=202610131018" />
+  <script src="js/head.js?v=202610131028"></script>
+  <link rel="stylesheet" href="css/base.css?v=202610131028" />
+  <link rel="stylesheet" href="css/components.css?v=202610131028" />
+  <link rel="stylesheet" href="css/sections.css?v=202610131028" />
+  <link rel="stylesheet" href="css/motion.css?v=202610131028" />
+  <link rel="stylesheet" href="css/menu.css?v=202610131028" />
+  <link rel="stylesheet" href="css/careers.css?v=202610131028" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -794,83 +794,81 @@
             <strong>Don’t see your role?</strong>
             <p class="openings__note">Good people are always worth meeting.</p>
           </div>
-          <a class="btn btn--primary" href="https://www.masondixonveter.com/contact-us"><svg class="btn__icon" aria-hidden="true"><use href="#icon-mail"/></svg><span>Send Us Your Resume</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ Application form ============================ -->
-    <section class="section apply" id="apply-form" aria-labelledby="apply-title">
-      <div class="container apply__inner">
-        <div class="apply__head" data-reveal>
-          <h2 id="apply-title">Apply Now</h2>
-          <p class="apply__role" data-apply-role></p>
+          <a class="btn btn--primary" href="#apply-form" data-apply=""><svg class="btn__icon" aria-hidden="true"><use href="#icon-mail"/></svg><span>Send Us Your Resume</span></a>
         </div>
 
-        <form class="apply__form" data-reveal aria-labelledby="apply-title" method="post" enctype="multipart/form-data" data-apply-form data-endpoint="">
-          <div class="apply__fields">
-            <div class="field">
-              <label for="apply-first">First Name <span class="field__req" aria-hidden="true">*</span></label>
-              <input id="apply-first" name="name" type="text" autocomplete="given-name" required />
-            </div>
-            <div class="field">
-              <label for="apply-last">Last Name <span class="field__req" aria-hidden="true">*</span></label>
-              <input id="apply-last" name="last_name" type="text" autocomplete="family-name" required />
-            </div>
-            <div class="field">
-              <label for="apply-email">Email Address <span class="field__req" aria-hidden="true">*</span></label>
-              <input id="apply-email" name="email" type="email" autocomplete="email" required />
-            </div>
-            <div class="field">
-              <label for="apply-phone">Phone Number <span class="field__req" aria-hidden="true">*</span></label>
-              <input id="apply-phone" name="phone" type="tel" autocomplete="tel" required />
-            </div>
-            <div class="field field--full">
-              <label for="apply-position">Position</label>
-              <input id="apply-position" name="position" type="text" data-apply-position />
-            </div>
-            <div class="field field--full">
-              <label for="apply-cover">Cover Letter</label>
-              <textarea id="apply-cover" name="cover_letter" rows="5"></textarea>
-            </div>
-            <div class="field field--full">
-              <label for="apply-resume">Upload Résumé</label>
-              <input id="apply-resume" name="upload_resume" type="file" accept=".txt,.rtf,.pdf,.doc,.docx,.zip" aria-describedby="apply-resume-help" data-apply-file />
-              <p class="field__help" id="apply-resume-help">One file only. 8 MB limit. Allowed types: txt, rtf, pdf, doc, docx, zip.</p>
-            </div>
-            <div class="field">
-              <label for="apply-heard">How did you hear about us?</label>
-              <select id="apply-heard" name="how_did_you_hear_about_us" data-apply-heard>
-                <option value="">- None -</option>
-                <option value="Recruiter">Recruiter</option>
-                <option value="Job board">Job board</option>
-                <option value="Social media">Social media</option>
-                <option value="_other_">Other…</option>
-              </select>
-            </div>
-            <div class="field" data-apply-other hidden>
-              <label for="apply-heard-other">Enter other…</label>
-              <input id="apply-heard-other" name="how_did_you_hear_about_us_other" type="text" placeholder="Enter other…" />
-            </div>
-            <!-- Spam trap, as on the original form: people never see or fill it -->
-            <div class="apply__trap" aria-hidden="true">
-              <label for="apply-website">Leave this field blank</label>
-              <input id="apply-website" name="webisteurl" type="text" tabindex="-1" autocomplete="off" />
-            </div>
+        <!-- Application form -->
+        <div class="apply" id="apply-form">
+          <div class="apply__head" data-reveal>
+            <h3 id="apply-title">Apply Now</h3>
+            <p class="apply__role" data-apply-role></p>
           </div>
 
-          <fieldset class="apply__captcha">
-            <legend>CAPTCHA</legend>
-            <!-- Same reCAPTCHA v2 site key as the current careers form; rendered as the form scrolls near -->
-            <div data-apply-captcha data-sitekey="6LdbR_8UAAAAAFJ3jTJLOX1xG-ioVYtCFUnexYVC"></div>
-          </fieldset>
+          <form class="apply__form" data-reveal aria-labelledby="apply-title" method="post" enctype="multipart/form-data" data-apply-form data-endpoint="">
+            <div class="apply__fields">
+              <div class="field">
+                <label for="apply-first">First Name <span class="field__req" aria-hidden="true">*</span></label>
+                <input id="apply-first" name="name" type="text" autocomplete="given-name" required />
+              </div>
+              <div class="field">
+                <label for="apply-last">Last Name <span class="field__req" aria-hidden="true">*</span></label>
+                <input id="apply-last" name="last_name" type="text" autocomplete="family-name" required />
+              </div>
+              <div class="field">
+                <label for="apply-email">Email Address <span class="field__req" aria-hidden="true">*</span></label>
+                <input id="apply-email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="apply-phone">Phone Number <span class="field__req" aria-hidden="true">*</span></label>
+                <input id="apply-phone" name="phone" type="tel" autocomplete="tel" required />
+              </div>
+              <div class="field field--full">
+                <label for="apply-position">Position</label>
+                <input id="apply-position" name="position" type="text" data-apply-position />
+              </div>
+              <div class="field field--full">
+                <label for="apply-cover">Cover Letter</label>
+                <textarea id="apply-cover" name="cover_letter" rows="5"></textarea>
+              </div>
+              <div class="field field--full">
+                <label for="apply-resume">Upload Résumé</label>
+                <input id="apply-resume" name="upload_resume" type="file" accept=".txt,.rtf,.pdf,.doc,.docx,.zip" aria-describedby="apply-resume-help" data-apply-file />
+                <p class="field__help" id="apply-resume-help">One file only. 8 MB limit. Allowed types: txt, rtf, pdf, doc, docx, zip.</p>
+              </div>
+              <div class="field">
+                <label for="apply-heard">How did you hear about us?</label>
+                <select id="apply-heard" name="how_did_you_hear_about_us" data-apply-heard>
+                  <option value="">- None -</option>
+                  <option value="Recruiter">Recruiter</option>
+                  <option value="Job board">Job board</option>
+                  <option value="Social media">Social media</option>
+                  <option value="_other_">Other…</option>
+                </select>
+              </div>
+              <div class="field" data-apply-other hidden>
+                <label for="apply-heard-other">Enter other…</label>
+                <input id="apply-heard-other" name="how_did_you_hear_about_us_other" type="text" placeholder="Enter other…" />
+              </div>
+              <!-- Spam trap, as on the original form: people never see or fill it -->
+              <div class="apply__trap" aria-hidden="true">
+                <label for="apply-website">Leave this field blank</label>
+                <input id="apply-website" name="webisteurl" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+            </div>
 
-          <p class="apply__status" role="status" data-apply-status></p>
+            <fieldset class="apply__captcha">
+              <legend>CAPTCHA</legend>
+              <!-- Same reCAPTCHA v2 site key as the current careers form; rendered as the form scrolls near -->
+              <div data-apply-captcha data-sitekey="6LdbR_8UAAAAAFJ3jTJLOX1xG-ioVYtCFUnexYVC"></div>
+            </fieldset>
 
-          <div class="apply__actions">
-            <button type="submit" class="btn btn--primary btn--lg"><span>Submit</span></button>
-          </div>
-        </form>
+            <p class="apply__status" role="status" data-apply-status></p>
+
+            <div class="apply__actions">
+              <button type="submit" class="btn btn--primary btn--lg"><span>Submit</span></button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -1037,8 +1035,8 @@
     </a>
   </div>
 
-  <script type="module" src="js/main.js?v=202610131018"></script>
-  <script type="module" src="js/menu.js?v=202610131018"></script>
-  <script type="module" src="js/careers.js?v=202610131018"></script>
+  <script type="module" src="js/main.js?v=202610131028"></script>
+  <script type="module" src="js/menu.js?v=202610131028"></script>
+  <script type="module" src="js/careers.js?v=202610131028"></script>
 </body>
 </html>

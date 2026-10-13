@@ -109,6 +109,7 @@ const initApply = () => {
   document.querySelectorAll("[data-apply]").forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
+      // Postings fill in the position; the general "Send Us Your Resume" leaves it open
       role.textContent = link.dataset.apply;
       position.value = link.dataset.apply;
       setStatus("");
