@@ -13,13 +13,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
-  <script src="js/head.js?v=202610121746"></script>
-  <link rel="stylesheet" href="css/base.css?v=202610121746" />
-  <link rel="stylesheet" href="css/components.css?v=202610121746" />
-  <link rel="stylesheet" href="css/sections.css?v=202610121746" />
-  <link rel="stylesheet" href="css/motion.css?v=202610121746" />
-  <link rel="stylesheet" href="css/menu.css?v=202610121746" />
-  <link rel="stylesheet" href="css/careers.css?v=202610121746" />
+  <script src="js/head.js?v=202610130820"></script>
+  <link rel="stylesheet" href="css/base.css?v=202610130820" />
+  <link rel="stylesheet" href="css/components.css?v=202610130820" />
+  <link rel="stylesheet" href="css/sections.css?v=202610130820" />
+  <link rel="stylesheet" href="css/motion.css?v=202610130820" />
+  <link rel="stylesheet" href="css/menu.css?v=202610130820" />
+  <link rel="stylesheet" href="css/careers.css?v=202610130820" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -730,7 +730,7 @@
                 <li>Hands-on emergency veterinary experience</li>
                 <li>Opportunity for future advancement into veterinary technician training paths</li>
               </ul>
-              <a class="job__link" href="https://www.masondixonveter.com/careers"><span>View Veterinary Assistant Position</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
+              <a class="job__link" href="https://www.masondixonveter.com/careers" data-apply="Veterinary Assistant (Entry-Level)"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
             </article>
           </div>
 
@@ -744,7 +744,7 @@
               <h3>Emergency Veterinarian</h3>
               <p class="job__meta"><span class="job__pay">Up to $220,000/year</span> · Full-Time or Part-Time</p>
               <p>Practice emergency medicine with a straight salary, no production targets and one-on-one mentorship available for new graduates.</p>
-              <a class="job__link" href="https://www.masondixonveter.com/careers"><span>View Veterinarian Position</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
+              <a class="job__link" href="https://www.masondixonveter.com/careers" data-apply="Emergency Veterinarian"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
             </article>
           </div>
           <div class="job-item">
@@ -757,7 +757,7 @@
               <h3>Veterinary Technician Shift Lead</h3>
               <p class="job__meta"><span class="job__pay">Up to $30/hour + Up to $5,000/year Leadership Stipend</span> · Full-Time</p>
               <p>Lead your shift, mentor other technicians and stay hands-on with emergency and critical care.</p>
-              <a class="job__link" href="https://www.masondixonveter.com/careers"><span>View Shift Lead Position</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
+              <a class="job__link" href="https://www.masondixonveter.com/careers" data-apply="Veterinary Technician Shift Lead"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
             </article>
           </div>
           <div class="job-item">
@@ -770,7 +770,7 @@
               <h3>Emergency Veterinary Technician</h3>
               <p class="job__meta"><span class="job__pay">Starting at $19.55/hour</span> · Full-Time or Part-Time</p>
               <p>Build your emergency skills in a fast-paced hospital with room to take on more as your experience grows.</p>
-              <a class="job__link" href="https://www.masondixonveter.com/careers"><span>View Vet Tech Position</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
+              <a class="job__link" href="https://www.masondixonveter.com/careers" data-apply="Emergency Veterinary Technician"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
             </article>
           </div>
           <div class="job-item">
@@ -783,7 +783,7 @@
               <h3>Emergency Hospital Receptionist</h3>
               <p class="job__meta"><span class="job__pay">Starting at $15.50/hour</span> · Part-Time</p>
               <p>Be the calm, capable first person pet owners hear when something is wrong—and an essential part of the emergency team.</p>
-              <a class="job__link" href="https://www.masondixonveter.com/careers"><span>View Receptionist Position</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
+              <a class="job__link" href="https://www.masondixonveter.com/careers" data-apply="Emergency Hospital Receptionist"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
             </article>
           </div>
 
@@ -951,6 +951,78 @@
     </div>
   </footer>
 
+  <!-- ============================ Application form — popup ============================ -->
+  <dialog class="apply" aria-labelledby="apply-title" data-apply-dialog>
+    <form class="apply__form" method="post" enctype="multipart/form-data" data-apply-form data-endpoint="">
+      <header class="apply__head">
+        <div>
+          <h2 id="apply-title">Apply Now</h2>
+          <p class="apply__role" data-apply-role></p>
+        </div>
+        <button type="button" class="apply__close" aria-label="Close" data-apply-close>
+          <svg aria-hidden="true"><use href="#icon-close"/></svg>
+        </button>
+      </header>
+
+      <div class="apply__fields">
+        <div class="field">
+          <label for="apply-first">First Name <span class="field__req" aria-hidden="true">*</span></label>
+          <input id="apply-first" name="name" type="text" autocomplete="given-name" required autofocus />
+        </div>
+        <div class="field">
+          <label for="apply-last">Last Name <span class="field__req" aria-hidden="true">*</span></label>
+          <input id="apply-last" name="last_name" type="text" autocomplete="family-name" required />
+        </div>
+        <div class="field">
+          <label for="apply-email">Email Address <span class="field__req" aria-hidden="true">*</span></label>
+          <input id="apply-email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="apply-phone">Phone Number <span class="field__req" aria-hidden="true">*</span></label>
+          <input id="apply-phone" name="phone" type="tel" autocomplete="tel" required />
+        </div>
+        <div class="field field--full">
+          <label for="apply-position">Position</label>
+          <input id="apply-position" name="position" type="text" data-apply-position />
+        </div>
+        <div class="field field--full">
+          <label for="apply-cover">Cover Letter</label>
+          <textarea id="apply-cover" name="cover_letter" rows="5"></textarea>
+        </div>
+        <div class="field field--full">
+          <label for="apply-resume">Upload Résumé</label>
+          <input id="apply-resume" name="upload_resume" type="file" accept=".txt,.rtf,.pdf,.doc,.docx,.zip" aria-describedby="apply-resume-help" data-apply-file />
+          <p class="field__help" id="apply-resume-help">One file only. 8 MB limit. Allowed types: txt, rtf, pdf, doc, docx, zip.</p>
+        </div>
+        <div class="field">
+          <label for="apply-heard">How did you hear about us?</label>
+          <select id="apply-heard" name="how_did_you_hear_about_us" data-apply-heard>
+            <option value="">- None -</option>
+            <option value="Recruiter">Recruiter</option>
+            <option value="Job board">Job board</option>
+            <option value="Social media">Social media</option>
+            <option value="_other_">Other…</option>
+          </select>
+        </div>
+        <div class="field" data-apply-other hidden>
+          <label for="apply-heard-other">Enter other…</label>
+          <input id="apply-heard-other" name="how_did_you_hear_about_us_other" type="text" placeholder="Enter other…" />
+        </div>
+        <!-- Spam trap, as on the original form: people never see or fill it -->
+        <div class="apply__trap" aria-hidden="true">
+          <label for="apply-website">Leave this field blank</label>
+          <input id="apply-website" name="webisteurl" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+      </div>
+
+      <p class="apply__status" role="status" data-apply-status></p>
+
+      <div class="apply__actions">
+        <button type="submit" class="btn btn--primary btn--lg"><span>Submit</span></button>
+      </div>
+    </form>
+  </dialog>
+
   <!-- Sticky apply bar (mobile / tablet) -->
   <div class="call-bar" data-call-bar>
     <a class="call-bar__btn" href="#openings">
@@ -962,8 +1034,8 @@
     </a>
   </div>
 
-  <script type="module" src="js/main.js?v=202610121746"></script>
-  <script type="module" src="js/menu.js?v=202610121746"></script>
-  <script type="module" src="js/careers.js?v=202610121746"></script>
+  <script type="module" src="js/main.js?v=202610130820"></script>
+  <script type="module" src="js/menu.js?v=202610130820"></script>
+  <script type="module" src="js/careers.js?v=202610130820"></script>
 </body>
 </html>

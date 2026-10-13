@@ -316,7 +316,69 @@ html:not(.js) .job__toggle { display: none; }
 
 
 /* ---------------------------------------------------------------------
-   7. Giving back — copy beside the donated-services stat
+   7. Application form — a native <dialog> popup with the original
+   careers form's fields
+   --------------------------------------------------------------------- */
+.apply {
+  width: min(44rem, calc(100% - 2rem)); max-height: calc(100dvh - 2rem);
+  margin: auto; padding: 0; border: 0; border-radius: var(--radius-xl);
+  background: #fff; color: var(--color-slate);
+  box-shadow: var(--shadow-float);
+}
+.apply::backdrop { background: rgba(18, 19, 58, 0.6); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.apply[open] { animation: apply-in var(--dur-med) var(--ease-out); }
+@keyframes apply-in { from { opacity: 0; transform: translateY(1rem); } to { opacity: 1; transform: none; } }
+
+.apply__form { padding: clamp(1.5rem, 4vw, 2.5rem); }
+.apply__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-6); }
+.apply__head h2 { font-size: clamp(1.6rem, 1.2vw + 1.1rem, 2.1rem); }
+.apply__role { margin-top: var(--space-1); font-family: var(--font-display); font-weight: 600; color: var(--color-red); }
+.apply__role:empty { display: none; }
+.apply__close {
+  flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-lavender); color: var(--color-navy);
+  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.apply__close:hover { background: var(--color-navy); color: #fff; }
+.apply__close svg { width: 1.1rem; height: 1.1rem; }
+
+.apply__fields { display: grid; gap: var(--space-4) var(--space-5); }
+.field { display: grid; gap: var(--space-2); align-content: start; }
+.field[hidden] { display: none; }
+.field label { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--color-navy); }
+.field__req { color: var(--color-red); }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 0.75rem 0.9rem;
+  border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+  background: #fff; color: var(--color-navy); font: inherit; font-size: 0.97rem;
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.field textarea { resize: vertical; min-height: 7rem; }
+.field input[type="file"] { padding: 0.6rem; background: var(--color-bg-light); }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--color-navy); box-shadow: 0 0 0 3px rgba(36, 38, 103, 0.15);
+}
+.field input:user-invalid, .field textarea:user-invalid { border-color: var(--color-red); }
+.field__help { font-size: 0.82rem; color: var(--color-gray); }
+
+.apply__trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.apply__status { margin-top: var(--space-5); font-size: 0.95rem; color: var(--color-navy); }
+.apply__status:empty { display: none; }
+.apply__status.is-error { color: var(--color-red); }
+.apply__actions { margin-top: var(--space-6); display: flex; justify-content: flex-end; }
+
+@media (min-width: 640px) {
+  .apply__fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .field--full { grid-column: 1 / -1; }
+}
+@media (max-width: 639px) {
+  .apply__actions .btn { width: 100%; }
+}
+
+/* ---------------------------------------------------------------------
+   8. Giving back — copy beside the donated-services stat
    --------------------------------------------------------------------- */
 .giving { background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
 .giving__inner { display: grid; gap: var(--space-7); align-items: center; }
@@ -343,7 +405,7 @@ html:not(.js) .job__toggle { display: none; }
 @media (min-width: 1024px) { .giving__inner { grid-template-columns: 1.1fr 0.9fr; gap: var(--space-9); } }
 
 /* ---------------------------------------------------------------------
-   8. Final CTA — additions to the shared glass card
+   9. Final CTA — additions to the shared glass card
    --------------------------------------------------------------------- */
 .glass-card .glass-card__lead { font-size: 1.1rem; }
 .glass-card .glass-card__contact { font-size: 0.95rem; color: var(--text-on-dark-muted); }
@@ -354,12 +416,12 @@ html:not(.js) .job__toggle { display: none; }
 .glass-card__contact a:hover { text-decoration-color: #fff; }
 
 /* ---------------------------------------------------------------------
-   9. FAQ — address line inside an answer
+   10. FAQ — address line inside an answer
    --------------------------------------------------------------------- */
 .accordion__body strong { color: var(--color-navy); }
 
 /* ---------------------------------------------------------------------
-   10. Small screens — full-width button pairs, and room at the end of
+   11. Small screens — full-width button pairs, and room at the end of
    the page for the sticky Apply bar
    --------------------------------------------------------------------- */
 @media (max-width: 639px) {

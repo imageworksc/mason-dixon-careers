@@ -65,6 +65,75 @@ const initJobs = () => {
 };
 
 /* ---------------------------------------------------------------
+   Application form — each posting's "Apply Now" opens the popup with
+   the position filled in. Without JS (or <dialog>) the link still goes
+   to the current careers page and its form.
+   Submission posts to data-endpoint on the form; until one is set the
+   form validates but does not send, and says so.
+   --------------------------------------------------------------- */
+const initApply = () => {
+  const dialog = document.querySelector("[data-apply-dialog]");
+  if (!dialog || typeof dialog.showModal !== "function") return;
+  const form = dialog.querySelector("[data-apply-form]");
+  const role = dialog.querySelector("[data-apply-role]");
+  const position = dialog.querySelector("[data-apply-position]");
+  const heard = dialog.querySelector("[data-apply-heard]");
+  const other = dialog.querySelector("[data-apply-other]");
+  const file = dialog.querySelector("[data-apply-file]");
+  const status = dialog.querySelector("[data-apply-status]");
+  const MAX_BYTES = 8 * 1024 * 1024;
+
+  const setStatus = (text, isError = false) => {
+    status.textContent = text;
+    status.classList.toggle("is-error", isError);
+  };
+
+  document.querySelectorAll("[data-apply]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      role.textContent = link.dataset.apply;
+      position.value = link.dataset.apply;
+      setStatus("");
+      dialog.showModal();
+    });
+  });
+
+  dialog.querySelector("[data-apply-close]").addEventListener("click", () => dialog.close());
+  // A click on the backdrop lands on the dialog element itself
+  dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+
+  heard.addEventListener("change", () => { other.hidden = heard.value !== "_other_"; });
+
+  file.addEventListener("change", () => {
+    const tooBig = file.files[0] && file.files[0].size > MAX_BYTES;
+    file.setCustomValidity(tooBig ? "Please choose a file of 8 MB or less." : "");
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const endpoint = form.dataset.endpoint;
+    if (!endpoint) {
+      setStatus("This form is not connected yet, so the application was not sent.", true);
+      return;
+    }
+    const button = form.querySelector('[type="submit"]');
+    button.disabled = true;
+    try {
+      const response = await fetch(endpoint, { method: "POST", body: new FormData(form) });
+      if (!response.ok) throw new Error(response.statusText);
+      form.reset();
+      other.hidden = true;
+      setStatus("Thank you! Your application has been sent.");
+    } catch {
+      setStatus("Something went wrong. Please try again or call (717) 432-6030.", true);
+    } finally {
+      button.disabled = false;
+    }
+  });
+};
+
+/* ---------------------------------------------------------------
    Donated-services stat — counts up once when it scrolls into view
    --------------------------------------------------------------- */
 const initCountUp = () => {
@@ -94,4 +163,5 @@ const initCountUp = () => {
 };
 
 initJobs();
+initApply();
 initCountUp();
