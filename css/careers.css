@@ -340,6 +340,9 @@ html:not(.js) .job__toggle { display: none; }
   transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
 }
 .field textarea { resize: vertical; min-height: 7rem; }
+/* Position is filled in by the posting and locked */
+.field input[readonly] { background: var(--color-lavender); border-color: transparent; color: var(--color-navy); font-weight: 600; cursor: default; }
+.field input[readonly]:focus { box-shadow: none; border-color: transparent; }
 .field input[type="file"] { min-width: 0; padding: 0.6rem; background: #fff; }
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none; border-color: var(--color-navy); box-shadow: 0 0 0 3px rgba(36, 38, 103, 0.15);
