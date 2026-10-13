@@ -13,13 +13,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
-  <script src="js/head.js?v=202610131401"></script>
-  <link rel="stylesheet" href="css/base.css?v=202610131401" />
-  <link rel="stylesheet" href="css/components.css?v=202610131401" />
-  <link rel="stylesheet" href="css/sections.css?v=202610131401" />
-  <link rel="stylesheet" href="css/motion.css?v=202610131401" />
-  <link rel="stylesheet" href="css/menu.css?v=202610131401" />
-  <link rel="stylesheet" href="css/careers.css?v=202610131401" />
+  <script src="js/head.js?v=202610131701"></script>
+  <link rel="stylesheet" href="css/base.css?v=202610131701" />
+  <link rel="stylesheet" href="css/components.css?v=202610131701" />
+  <link rel="stylesheet" href="css/sections.css?v=202610131701" />
+  <link rel="stylesheet" href="css/motion.css?v=202610131701" />
+  <link rel="stylesheet" href="css/menu.css?v=202610131701" />
+  <link rel="stylesheet" href="css/careers.css?v=202610131701" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -74,7 +74,7 @@
         </p>
 
         <nav class="util__links" aria-label="Quick links">
-          <a class="util__job is-hiring" href="#openings">
+          <a class="util__job is-hiring" href="#apply-form">
             <svg aria-hidden="true"><use href="#icon-briefcase"/></svg>
             <span class="sr-only">Now Hiring — Apply Here</span><span class="job-flip" aria-hidden="true"><span class="job-flip__track"><span>Now Hiring</span><span>Apply Here<span class="job-flip__arrow">→</span></span></span></span>
           </a>
@@ -481,7 +481,7 @@
           </ul>
 
           <div class="nav__util">
-            <a class="is-hiring" href="#openings">
+            <a class="is-hiring" href="#apply-form">
               <svg aria-hidden="true"><use href="#icon-briefcase"/></svg>
               <span class="sr-only">Now Hiring — Apply Here</span><span class="job-flip" aria-hidden="true"><span class="job-flip__track"><span>Now Hiring</span><span>Apply Here<span class="job-flip__arrow">→</span></span></span></span>
             </a>
@@ -531,7 +531,7 @@
               <span>Explore Careers</span>
               <svg class="btn__icon btn__icon--trail" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
             </a>
-            <a class="btn btn--outline" href="#openings"><span>Apply Now</span></a>
+            <a class="btn btn--outline" href="#apply-form" data-apply=""><span>Apply Now</span></a>
           </div>
         </div>
       </div>
@@ -730,73 +730,7 @@
                 <li>Hands-on emergency veterinary experience</li>
                 <li>Opportunity for future advancement into veterinary technician training paths</li>
               </ul>
-              <a class="job__link" href="#apply-assistant-wrap" data-apply-open aria-controls="apply-assistant-wrap" aria-expanded="false"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-              <div class="apply" id="apply-assistant-wrap">
-                <form class="apply__form" id="apply-assistant" aria-label="Apply for Veterinary Assistant (Entry-Level)" method="post" enctype="multipart/form-data" data-apply-form data-endpoint="">
-                  <div class="apply__fields">
-                    <div class="field">
-                      <label for="apply-assistant-first">First Name <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-assistant-first" name="name" type="text" autocomplete="given-name" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-assistant-last">Last Name <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-assistant-last" name="last_name" type="text" autocomplete="family-name" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-assistant-email">Email Address <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-assistant-email" name="email" type="email" autocomplete="email" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-assistant-phone">Phone Number <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-assistant-phone" name="phone" type="tel" autocomplete="tel" required />
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-assistant-position">Position</label>
-                      <input id="apply-assistant-position" name="position" type="text" value="Veterinary Assistant (Entry-Level)" readonly />
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-assistant-cover">Cover Letter</label>
-                      <textarea id="apply-assistant-cover" name="cover_letter" rows="5"></textarea>
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-assistant-resume">Upload Résumé</label>
-                      <input id="apply-assistant-resume" name="upload_resume" type="file" accept=".txt,.rtf,.pdf,.doc,.docx,.zip" aria-describedby="apply-assistant-resume-help" data-apply-file />
-                      <p class="field__help" id="apply-assistant-resume-help">One file only. 8 MB limit. Allowed types: txt, rtf, pdf, doc, docx, zip.</p>
-                    </div>
-                    <div class="field">
-                      <label for="apply-assistant-heard">How did you hear about us?</label>
-                      <select id="apply-assistant-heard" name="how_did_you_hear_about_us" data-apply-heard>
-                        <option value="">- None -</option>
-                        <option value="Recruiter">Recruiter</option>
-                        <option value="Job board">Job board</option>
-                        <option value="Social media">Social media</option>
-                        <option value="_other_">Other…</option>
-                      </select>
-                    </div>
-                    <div class="field" data-apply-other hidden>
-                      <label for="apply-assistant-heard-other">Enter other…</label>
-                      <input id="apply-assistant-heard-other" name="how_did_you_hear_about_us_other" type="text" placeholder="Enter other…" />
-                    </div>
-                    <!-- Spam trap, as on the original form: people never see or fill it -->
-                    <div class="apply__trap" aria-hidden="true">
-                      <label for="apply-assistant-website">Leave this field blank</label>
-                      <input id="apply-assistant-website" name="webisteurl" type="text" tabindex="-1" autocomplete="off" />
-                    </div>
-                  </div>
-
-                  <fieldset class="apply__captcha">
-                    <legend>CAPTCHA</legend>
-                    <!-- Same reCAPTCHA v2 site key as the current careers form; rendered when the form first opens -->
-                    <div data-apply-captcha data-sitekey="6LdbR_8UAAAAAFJ3jTJLOX1xG-ioVYtCFUnexYVC"></div>
-                  </fieldset>
-
-                  <p class="apply__status" role="status" data-apply-status></p>
-
-                  <div class="apply__actions">
-                    <button type="submit" class="btn btn--primary btn--lg"><span>Submit</span></button>
-                  </div>
-                </form>
-              </div>
+              <a class="job__link" href="#apply-form" data-apply="Veterinary Assistant (Entry-Level)"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
             </article>
           </div>
 
@@ -853,73 +787,7 @@
                 <li>Leadership training, well-being support, and more!</li>
               </ul>
               <p>If you’re ready to lead with integrity, grow your career, and make a difference in emergency veterinary medicine, we invite you to apply today. Join a team where your voice matters, your skills are valued, and your impact is lasting. To apply, please submit your resume and a brief cover letter describing your leadership experience and interest in emergency care.</p>
-              <a class="job__link" href="#apply-vet-wrap" data-apply-open aria-controls="apply-vet-wrap" aria-expanded="false"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-              <div class="apply" id="apply-vet-wrap">
-                <form class="apply__form" id="apply-vet" aria-label="Apply for Veterinarian" method="post" enctype="multipart/form-data" data-apply-form data-endpoint="">
-                  <div class="apply__fields">
-                    <div class="field">
-                      <label for="apply-vet-first">First Name <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-vet-first" name="name" type="text" autocomplete="given-name" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-vet-last">Last Name <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-vet-last" name="last_name" type="text" autocomplete="family-name" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-vet-email">Email Address <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-vet-email" name="email" type="email" autocomplete="email" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-vet-phone">Phone Number <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-vet-phone" name="phone" type="tel" autocomplete="tel" required />
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-vet-position">Position</label>
-                      <input id="apply-vet-position" name="position" type="text" value="Veterinarian" readonly />
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-vet-cover">Cover Letter</label>
-                      <textarea id="apply-vet-cover" name="cover_letter" rows="5"></textarea>
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-vet-resume">Upload Résumé</label>
-                      <input id="apply-vet-resume" name="upload_resume" type="file" accept=".txt,.rtf,.pdf,.doc,.docx,.zip" aria-describedby="apply-vet-resume-help" data-apply-file />
-                      <p class="field__help" id="apply-vet-resume-help">One file only. 8 MB limit. Allowed types: txt, rtf, pdf, doc, docx, zip.</p>
-                    </div>
-                    <div class="field">
-                      <label for="apply-vet-heard">How did you hear about us?</label>
-                      <select id="apply-vet-heard" name="how_did_you_hear_about_us" data-apply-heard>
-                        <option value="">- None -</option>
-                        <option value="Recruiter">Recruiter</option>
-                        <option value="Job board">Job board</option>
-                        <option value="Social media">Social media</option>
-                        <option value="_other_">Other…</option>
-                      </select>
-                    </div>
-                    <div class="field" data-apply-other hidden>
-                      <label for="apply-vet-heard-other">Enter other…</label>
-                      <input id="apply-vet-heard-other" name="how_did_you_hear_about_us_other" type="text" placeholder="Enter other…" />
-                    </div>
-                    <!-- Spam trap, as on the original form: people never see or fill it -->
-                    <div class="apply__trap" aria-hidden="true">
-                      <label for="apply-vet-website">Leave this field blank</label>
-                      <input id="apply-vet-website" name="webisteurl" type="text" tabindex="-1" autocomplete="off" />
-                    </div>
-                  </div>
-
-                  <fieldset class="apply__captcha">
-                    <legend>CAPTCHA</legend>
-                    <!-- Same reCAPTCHA v2 site key as the current careers form; rendered when the form first opens -->
-                    <div data-apply-captcha data-sitekey="6LdbR_8UAAAAAFJ3jTJLOX1xG-ioVYtCFUnexYVC"></div>
-                  </fieldset>
-
-                  <p class="apply__status" role="status" data-apply-status></p>
-
-                  <div class="apply__actions">
-                    <button type="submit" class="btn btn--primary btn--lg"><span>Submit</span></button>
-                  </div>
-                </form>
-              </div>
+              <a class="job__link" href="#apply-form" data-apply="Veterinarian"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
             </article>
           </div>
           <div class="job-item">
@@ -991,73 +859,7 @@
                 <li>Employee Discounts on Veterinary Services</li>
               </ul>
               <p>If you're ready to lead with heart, grow with intention, and make a difference in emergency veterinary care, we invite you to apply. Bring your experience. Bring your passion. Bring your grit. Let’s build something better, together. To apply, please submit your resume and a brief cover letter describing your leadership experience and interest in emergency care.</p>
-              <a class="job__link" href="#apply-lead-wrap" data-apply-open aria-controls="apply-lead-wrap" aria-expanded="false"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-              <div class="apply" id="apply-lead-wrap">
-                <form class="apply__form" id="apply-lead" aria-label="Apply for Veterinary Technician Shift Lead – Emergency Medicine" method="post" enctype="multipart/form-data" data-apply-form data-endpoint="">
-                  <div class="apply__fields">
-                    <div class="field">
-                      <label for="apply-lead-first">First Name <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-lead-first" name="name" type="text" autocomplete="given-name" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-lead-last">Last Name <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-lead-last" name="last_name" type="text" autocomplete="family-name" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-lead-email">Email Address <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-lead-email" name="email" type="email" autocomplete="email" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-lead-phone">Phone Number <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-lead-phone" name="phone" type="tel" autocomplete="tel" required />
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-lead-position">Position</label>
-                      <input id="apply-lead-position" name="position" type="text" value="Veterinary Technician Shift Lead – Emergency Medicine" readonly />
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-lead-cover">Cover Letter</label>
-                      <textarea id="apply-lead-cover" name="cover_letter" rows="5"></textarea>
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-lead-resume">Upload Résumé</label>
-                      <input id="apply-lead-resume" name="upload_resume" type="file" accept=".txt,.rtf,.pdf,.doc,.docx,.zip" aria-describedby="apply-lead-resume-help" data-apply-file />
-                      <p class="field__help" id="apply-lead-resume-help">One file only. 8 MB limit. Allowed types: txt, rtf, pdf, doc, docx, zip.</p>
-                    </div>
-                    <div class="field">
-                      <label for="apply-lead-heard">How did you hear about us?</label>
-                      <select id="apply-lead-heard" name="how_did_you_hear_about_us" data-apply-heard>
-                        <option value="">- None -</option>
-                        <option value="Recruiter">Recruiter</option>
-                        <option value="Job board">Job board</option>
-                        <option value="Social media">Social media</option>
-                        <option value="_other_">Other…</option>
-                      </select>
-                    </div>
-                    <div class="field" data-apply-other hidden>
-                      <label for="apply-lead-heard-other">Enter other…</label>
-                      <input id="apply-lead-heard-other" name="how_did_you_hear_about_us_other" type="text" placeholder="Enter other…" />
-                    </div>
-                    <!-- Spam trap, as on the original form: people never see or fill it -->
-                    <div class="apply__trap" aria-hidden="true">
-                      <label for="apply-lead-website">Leave this field blank</label>
-                      <input id="apply-lead-website" name="webisteurl" type="text" tabindex="-1" autocomplete="off" />
-                    </div>
-                  </div>
-
-                  <fieldset class="apply__captcha">
-                    <legend>CAPTCHA</legend>
-                    <!-- Same reCAPTCHA v2 site key as the current careers form; rendered when the form first opens -->
-                    <div data-apply-captcha data-sitekey="6LdbR_8UAAAAAFJ3jTJLOX1xG-ioVYtCFUnexYVC"></div>
-                  </fieldset>
-
-                  <p class="apply__status" role="status" data-apply-status></p>
-
-                  <div class="apply__actions">
-                    <button type="submit" class="btn btn--primary btn--lg"><span>Submit</span></button>
-                  </div>
-                </form>
-              </div>
+              <a class="job__link" href="#apply-form" data-apply="Veterinary Technician Shift Lead – Emergency Medicine"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
             </article>
           </div>
           <div class="job-item">
@@ -1115,73 +917,7 @@
                 <li>Employee discounts on veterinary care</li>
               </ul>
               <p>If you’re ready to lead with integrity, grow your career, and make a difference in emergency veterinary medicine, we invite you to apply today. Join a team where your voice matters, your skills are valued, and your impact is lasting. To apply, please submit your resume and a brief cover letter describing your leadership experience and interest in emergency care.</p>
-              <a class="job__link" href="#apply-tech-wrap" data-apply-open aria-controls="apply-tech-wrap" aria-expanded="false"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-              <div class="apply" id="apply-tech-wrap">
-                <form class="apply__form" id="apply-tech" aria-label="Apply for Veterinary Technician – Emergency Medicine" method="post" enctype="multipart/form-data" data-apply-form data-endpoint="">
-                  <div class="apply__fields">
-                    <div class="field">
-                      <label for="apply-tech-first">First Name <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-tech-first" name="name" type="text" autocomplete="given-name" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-tech-last">Last Name <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-tech-last" name="last_name" type="text" autocomplete="family-name" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-tech-email">Email Address <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-tech-email" name="email" type="email" autocomplete="email" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-tech-phone">Phone Number <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-tech-phone" name="phone" type="tel" autocomplete="tel" required />
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-tech-position">Position</label>
-                      <input id="apply-tech-position" name="position" type="text" value="Veterinary Technician – Emergency Medicine" readonly />
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-tech-cover">Cover Letter</label>
-                      <textarea id="apply-tech-cover" name="cover_letter" rows="5"></textarea>
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-tech-resume">Upload Résumé</label>
-                      <input id="apply-tech-resume" name="upload_resume" type="file" accept=".txt,.rtf,.pdf,.doc,.docx,.zip" aria-describedby="apply-tech-resume-help" data-apply-file />
-                      <p class="field__help" id="apply-tech-resume-help">One file only. 8 MB limit. Allowed types: txt, rtf, pdf, doc, docx, zip.</p>
-                    </div>
-                    <div class="field">
-                      <label for="apply-tech-heard">How did you hear about us?</label>
-                      <select id="apply-tech-heard" name="how_did_you_hear_about_us" data-apply-heard>
-                        <option value="">- None -</option>
-                        <option value="Recruiter">Recruiter</option>
-                        <option value="Job board">Job board</option>
-                        <option value="Social media">Social media</option>
-                        <option value="_other_">Other…</option>
-                      </select>
-                    </div>
-                    <div class="field" data-apply-other hidden>
-                      <label for="apply-tech-heard-other">Enter other…</label>
-                      <input id="apply-tech-heard-other" name="how_did_you_hear_about_us_other" type="text" placeholder="Enter other…" />
-                    </div>
-                    <!-- Spam trap, as on the original form: people never see or fill it -->
-                    <div class="apply__trap" aria-hidden="true">
-                      <label for="apply-tech-website">Leave this field blank</label>
-                      <input id="apply-tech-website" name="webisteurl" type="text" tabindex="-1" autocomplete="off" />
-                    </div>
-                  </div>
-
-                  <fieldset class="apply__captcha">
-                    <legend>CAPTCHA</legend>
-                    <!-- Same reCAPTCHA v2 site key as the current careers form; rendered when the form first opens -->
-                    <div data-apply-captcha data-sitekey="6LdbR_8UAAAAAFJ3jTJLOX1xG-ioVYtCFUnexYVC"></div>
-                  </fieldset>
-
-                  <p class="apply__status" role="status" data-apply-status></p>
-
-                  <div class="apply__actions">
-                    <button type="submit" class="btn btn--primary btn--lg"><span>Submit</span></button>
-                  </div>
-                </form>
-              </div>
+              <a class="job__link" href="#apply-form" data-apply="Veterinary Technician – Emergency Medicine"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
             </article>
           </div>
           <div class="job-item">
@@ -1226,73 +962,7 @@
                 <li>Prioritize ego over team well-being</li>
               </ul>
               <p>If you’re ready to lead with integrity, grow your career, and make a difference in emergency veterinary medicine, we invite you to apply today. Join a team where your voice matters, your skills are valued, and your impact is lasting. To apply, please submit your resume and a brief cover letter describing your leadership experience and interest in emergency care.</p>
-              <a class="job__link" href="#apply-reception-wrap" data-apply-open aria-controls="apply-reception-wrap" aria-expanded="false"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-              <div class="apply" id="apply-reception-wrap">
-                <form class="apply__form" id="apply-reception" aria-label="Apply for Receptionist" method="post" enctype="multipart/form-data" data-apply-form data-endpoint="">
-                  <div class="apply__fields">
-                    <div class="field">
-                      <label for="apply-reception-first">First Name <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-reception-first" name="name" type="text" autocomplete="given-name" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-reception-last">Last Name <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-reception-last" name="last_name" type="text" autocomplete="family-name" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-reception-email">Email Address <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-reception-email" name="email" type="email" autocomplete="email" required />
-                    </div>
-                    <div class="field">
-                      <label for="apply-reception-phone">Phone Number <span class="field__req" aria-hidden="true">*</span></label>
-                      <input id="apply-reception-phone" name="phone" type="tel" autocomplete="tel" required />
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-reception-position">Position</label>
-                      <input id="apply-reception-position" name="position" type="text" value="Receptionist" readonly />
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-reception-cover">Cover Letter</label>
-                      <textarea id="apply-reception-cover" name="cover_letter" rows="5"></textarea>
-                    </div>
-                    <div class="field field--full">
-                      <label for="apply-reception-resume">Upload Résumé</label>
-                      <input id="apply-reception-resume" name="upload_resume" type="file" accept=".txt,.rtf,.pdf,.doc,.docx,.zip" aria-describedby="apply-reception-resume-help" data-apply-file />
-                      <p class="field__help" id="apply-reception-resume-help">One file only. 8 MB limit. Allowed types: txt, rtf, pdf, doc, docx, zip.</p>
-                    </div>
-                    <div class="field">
-                      <label for="apply-reception-heard">How did you hear about us?</label>
-                      <select id="apply-reception-heard" name="how_did_you_hear_about_us" data-apply-heard>
-                        <option value="">- None -</option>
-                        <option value="Recruiter">Recruiter</option>
-                        <option value="Job board">Job board</option>
-                        <option value="Social media">Social media</option>
-                        <option value="_other_">Other…</option>
-                      </select>
-                    </div>
-                    <div class="field" data-apply-other hidden>
-                      <label for="apply-reception-heard-other">Enter other…</label>
-                      <input id="apply-reception-heard-other" name="how_did_you_hear_about_us_other" type="text" placeholder="Enter other…" />
-                    </div>
-                    <!-- Spam trap, as on the original form: people never see or fill it -->
-                    <div class="apply__trap" aria-hidden="true">
-                      <label for="apply-reception-website">Leave this field blank</label>
-                      <input id="apply-reception-website" name="webisteurl" type="text" tabindex="-1" autocomplete="off" />
-                    </div>
-                  </div>
-
-                  <fieldset class="apply__captcha">
-                    <legend>CAPTCHA</legend>
-                    <!-- Same reCAPTCHA v2 site key as the current careers form; rendered when the form first opens -->
-                    <div data-apply-captcha data-sitekey="6LdbR_8UAAAAAFJ3jTJLOX1xG-ioVYtCFUnexYVC"></div>
-                  </fieldset>
-
-                  <p class="apply__status" role="status" data-apply-status></p>
-
-                  <div class="apply__actions">
-                    <button type="submit" class="btn btn--primary btn--lg"><span>Submit</span></button>
-                  </div>
-                </form>
-              </div>
+              <a class="job__link" href="#apply-form" data-apply="Receptionist"><span>Apply Now</span><svg aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
             </article>
           </div>
 
@@ -1303,7 +973,80 @@
             <strong>Don’t see your role?</strong>
             <p class="openings__note">Good people are always worth meeting.</p>
           </div>
-          <a class="btn btn--primary" href="https://www.masondixonveter.com/contact-us"><svg class="btn__icon" aria-hidden="true"><use href="#icon-mail"/></svg><span>Send Us Your Resume</span></a>
+          <a class="btn btn--primary" href="#apply-form" data-apply=""><svg class="btn__icon" aria-hidden="true"><use href="#icon-mail"/></svg><span>Send Us Your Resume</span></a>
+        </div>
+
+        <!-- Application form — every "apply" call to action on the page scrolls here -->
+        <div class="apply" id="apply-form">
+          <h3 class="apply__title" id="apply-title">Apply Now</h3>
+          <form class="apply__form" aria-labelledby="apply-title" method="post" enctype="multipart/form-data" data-apply-form data-endpoint="">
+            <div class="apply__fields">
+              <div class="field">
+                <label for="apply-first">First Name <span class="field__req" aria-hidden="true">*</span></label>
+                <input id="apply-first" name="name" type="text" autocomplete="given-name" required />
+              </div>
+              <div class="field">
+                <label for="apply-last">Last Name <span class="field__req" aria-hidden="true">*</span></label>
+                <input id="apply-last" name="last_name" type="text" autocomplete="family-name" required />
+              </div>
+              <div class="field">
+                <label for="apply-email">Email Address <span class="field__req" aria-hidden="true">*</span></label>
+                <input id="apply-email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="apply-phone">Phone Number <span class="field__req" aria-hidden="true">*</span></label>
+                <input id="apply-phone" name="phone" type="tel" autocomplete="tel" required />
+              </div>
+              <div class="field field--full">
+                <label for="apply-position">Position <span class="field__req" aria-hidden="true">*</span></label>
+                <select id="apply-position" name="position" required data-apply-position>
+                  <option value="">Select a position</option>
+                  <option value="Veterinary Assistant (Entry-Level)">Veterinary Assistant (Entry-Level)</option>
+                  <option value="Veterinarian">Veterinarian</option>
+                  <option value="Veterinary Technician Shift Lead – Emergency Medicine">Veterinary Technician Shift Lead – Emergency Medicine</option>
+                  <option value="Veterinary Technician – Emergency Medicine">Veterinary Technician – Emergency Medicine</option>
+                  <option value="Receptionist">Receptionist</option>
+                </select>
+              </div>
+              <div class="field field--full">
+                <label for="apply-cover">Cover Letter</label>
+                <textarea id="apply-cover" name="cover_letter" rows="5"></textarea>
+              </div>
+              <div class="field field--full">
+                <label for="apply-resume">Upload Résumé</label>
+                <input id="apply-resume" name="upload_resume" type="file" accept=".txt,.rtf,.pdf,.doc,.docx,.zip" aria-describedby="apply-resume-help" data-apply-file />
+                <p class="field__help" id="apply-resume-help">One file only. 8 MB limit. Allowed types: txt, rtf, pdf, doc, docx, zip.</p>
+              </div>
+              <div class="field">
+                <label for="apply-heard">How did you hear about us?</label>
+                <select id="apply-heard" name="how_did_you_hear_about_us" data-apply-heard>
+                  <option value="">- None -</option>
+                  <option value="Recruiter">Recruiter</option>
+                  <option value="Job board">Job board</option>
+                  <option value="Social media">Social media</option>
+                  <option value="_other_">Other…</option>
+                </select>
+              </div>
+              <div class="field" data-apply-other hidden>
+                <label for="apply-heard-other">Enter other…</label>
+                <input id="apply-heard-other" name="how_did_you_hear_about_us_other" type="text" placeholder="Enter other…" />
+              </div>
+              <!-- Spam trap, as on the original form: people never see or fill it -->
+              <div class="apply__trap" aria-hidden="true">
+                <label for="apply-website">Leave this field blank</label>
+                <input id="apply-website" name="webisteurl" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+            </div>
+            <fieldset class="apply__captcha">
+              <legend>CAPTCHA</legend>
+              <!-- Same reCAPTCHA v2 site key as the current careers form; rendered as the form comes near -->
+              <div data-apply-captcha data-sitekey="6LdbR_8UAAAAAFJ3jTJLOX1xG-ioVYtCFUnexYVC"></div>
+            </fieldset>
+            <p class="apply__status" role="status" data-apply-status></p>
+            <div class="apply__actions">
+              <button type="submit" class="btn btn--primary btn--lg"><span>Submit</span></button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -1337,7 +1080,7 @@
           <h2 id="cta-heading">Ready for Work That Actually Means Something?</h2>
           <p class="glass-card__lead">Bring your skills. Build new ones. Be part of a team doing work that matters every single day.</p>
           <div class="btn-row">
-            <a class="btn btn--primary btn--lg" href="#openings"><svg class="btn__icon" aria-hidden="true"><use href="#icon-briefcase"/></svg><span>Apply Now</span></a>
+            <a class="btn btn--primary btn--lg" href="#apply-form" data-apply=""><svg class="btn__icon" aria-hidden="true"><use href="#icon-briefcase"/></svg><span>Apply Now</span></a>
             <a class="btn btn--ghost btn--lg" href="#openings"><span>See Open Positions</span><svg class="btn__icon btn__icon--trail" aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
           </div>
           <p class="glass-card__contact">Questions first? <a href="https://www.masondixonveter.com/contact-us">Contact Us</a></p>
@@ -1350,7 +1093,7 @@
       <div class="container faq__inner">
         <div class="faq__head" data-reveal>
           <h2 id="faq-heading">Questions Before You Apply?</h2>
-          <a class="btn btn--primary" href="#openings"><svg class="btn__icon" aria-hidden="true"><use href="#icon-briefcase"/></svg><span>Apply Now</span></a>
+          <a class="btn btn--primary" href="#apply-form" data-apply=""><svg class="btn__icon" aria-hidden="true"><use href="#icon-briefcase"/></svg><span>Apply Now</span></a>
         </div>
 
         <div class="accordion" data-reveal-stagger data-accordion>
@@ -1462,7 +1205,7 @@
 
   <!-- Sticky apply bar (mobile / tablet) -->
   <div class="call-bar" data-call-bar>
-    <a class="call-bar__btn" href="#openings">
+    <a class="call-bar__btn" href="#apply-form" data-apply="">
       <svg aria-hidden="true"><use href="#icon-briefcase"/></svg>
       <span>Apply Now</span>
     </a>
@@ -1471,8 +1214,8 @@
     </a>
   </div>
 
-  <script type="module" src="js/main.js?v=202610131401"></script>
-  <script type="module" src="js/menu.js?v=202610131401"></script>
-  <script type="module" src="js/careers.js?v=202610131401"></script>
+  <script type="module" src="js/main.js?v=202610131701"></script>
+  <script type="module" src="js/menu.js?v=202610131701"></script>
+  <script type="module" src="js/careers.js?v=202610131701"></script>
 </body>
 </html>

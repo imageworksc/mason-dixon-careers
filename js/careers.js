@@ -80,30 +80,21 @@ const initJobs = () => {
 };
 
 /* ---------------------------------------------------------------
-   Application forms — one inside each posting. "Apply Now" opens (and
-   closes) that posting's form; without JS the forms are simply shown.
-   Each form's reCAPTCHA v2 (the current careers form's site key) is
-   rendered the first time it opens, and must be ticked to submit.
+   Application form — one form under the openings. Every apply call to
+   action links to it; a posting's "Apply Now" also picks that position
+   in the dropdown. reCAPTCHA v2 (the current careers form's site key)
+   loads as the form comes near, and must be ticked to submit.
    Submission posts to data-endpoint on the form; until one is set the
    form validates but does not send, and says so.
    --------------------------------------------------------------- */
 const CAPTCHA_SRC = "https://www.google.com/recaptcha/api.js?hl=en&render=explicit&onload=masonDixonCaptchaReady";
 const MAX_RESUME_BYTES = 8 * 1024 * 1024;
 
-// Google's script loads once; widgets requested before it is ready wait in a queue
-const captchaQueue = [];
-const whenCaptchaReady = (callback) => {
-  if (window.grecaptcha?.render) { callback(); return; }
-  captchaQueue.push(callback);
-  if (document.querySelector(`script[src="${CAPTCHA_SRC}"]`)) return;
-  window.masonDixonCaptchaReady = () => captchaQueue.splice(0).forEach((fn) => fn());
-  const script = document.createElement("script");
-  script.src = CAPTCHA_SRC;
-  script.async = true;
-  document.head.append(script);
-};
-
-const initApplyForm = (form) => {
+const initApply = () => {
+  const wrap = document.getElementById("apply-form");
+  const form = wrap?.querySelector("[data-apply-form]");
+  if (!form) return;
+  const position = form.querySelector("[data-apply-position]");
   const heard = form.querySelector("[data-apply-heard]");
   const other = form.querySelector("[data-apply-other]");
   const file = form.querySelector("[data-apply-file]");
@@ -115,6 +106,41 @@ const initApplyForm = (form) => {
     status.textContent = text;
     status.classList.toggle("is-error", isError);
   };
+
+  const loadCaptcha = () => {
+    if (!captcha || captcha.dataset.loaded) return;
+    captcha.dataset.loaded = "true";
+    window.masonDixonCaptchaReady = () => {
+      captchaId = window.grecaptcha.render(captcha, { sitekey: captcha.dataset.sitekey, theme: "light" });
+    };
+    const script = document.createElement("script");
+    script.src = CAPTCHA_SRC;
+    script.async = true;
+    document.head.append(script);
+  };
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      loadCaptcha();
+    }, { rootMargin: "400px 0px" });
+    observer.observe(wrap);
+  } else {
+    loadCaptcha();
+  }
+
+  // Every apply link scrolls to the form; a posting's link also picks its position
+  document.querySelectorAll('a[href="#apply-form"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (link.dataset.apply) position.value = link.dataset.apply;
+      setStatus("");
+      loadCaptcha();
+      wrap.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      form.querySelector("input:not([type=hidden])").focus({ preventScroll: true });
+    });
+  });
 
   heard.addEventListener("change", () => { other.hidden = heard.value !== "_other_"; });
 
@@ -149,36 +175,6 @@ const initApplyForm = (form) => {
     } finally {
       button.disabled = false;
     }
-  });
-
-  // Called when the form is first opened
-  return () => {
-    if (!captcha || captcha.dataset.loaded) return;
-    captcha.dataset.loaded = "true";
-    whenCaptchaReady(() => {
-      captchaId = window.grecaptcha.render(captcha, { sitekey: captcha.dataset.sitekey, theme: "light" });
-    });
-  };
-};
-
-const initApply = () => {
-  document.querySelectorAll("[data-apply-open]").forEach((link) => {
-    const wrap = document.getElementById(link.getAttribute("aria-controls"));
-    const form = wrap?.querySelector("[data-apply-form]");
-    if (!form) return;
-    const onFirstOpen = initApplyForm(form);
-    wrap.hidden = true;
-
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      const open = wrap.hidden;
-      wrap.hidden = !open;
-      link.setAttribute("aria-expanded", String(open));
-      if (!open) return;
-      onFirstOpen();
-      wrap.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
-      form.querySelector("input:not([type=hidden])").focus({ preventScroll: true });
-    });
   });
 };
 

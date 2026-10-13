@@ -321,15 +321,14 @@ html:not(.js) .job__toggle { display: none; }
 .openings__note { margin-top: 0.15rem; font-size: 0.95rem; color: var(--color-gray); }
 
 /* ---------------------------------------------------------------------
-   7. Application form — one inside each posting, under its description,
-   with the original careers form's fields. "Apply Now" opens it; without
-   JS it is simply shown.
+   7. Application form — one form under the openings ("Don't see your
+   role?"), with the original careers form's fields and a position
+   dropdown; every apply call to action on the page scrolls here
    --------------------------------------------------------------------- */
-.apply { margin-top: var(--space-6); scroll-margin-top: calc(var(--header-offset) + 1.5rem); }
-.js .apply[hidden] { display: none; }
-.job__link[aria-expanded="true"] svg { transform: rotate(90deg); }
+.apply { margin-top: clamp(3rem, 5vw, 4rem); scroll-margin-top: calc(var(--header-offset) + 1.5rem); }
+.apply__title { margin-bottom: var(--space-5); font-size: clamp(1.6rem, 1.2vw + 1.1rem, 2.1rem); }
 .apply__form {
-  margin-top: 0; padding: clamp(1.25rem, 3vw, 2rem);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
   border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-bg-light);
 }
 
@@ -345,9 +344,6 @@ html:not(.js) .job__toggle { display: none; }
   transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
 }
 .field textarea { resize: vertical; min-height: 7rem; }
-/* Position is filled in by the posting and locked */
-.field input[readonly] { background: var(--color-lavender); border-color: transparent; color: var(--color-navy); font-weight: 600; cursor: default; }
-.field input[readonly]:focus { box-shadow: none; border-color: transparent; }
 .field input[type="file"] { min-width: 0; padding: 0.6rem; background: #fff; }
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none; border-color: var(--color-navy); box-shadow: 0 0 0 3px rgba(36, 38, 103, 0.15);
