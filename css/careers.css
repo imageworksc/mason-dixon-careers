@@ -325,25 +325,25 @@ html:not(.js) .job__toggle { display: none; }
    role?"), with the original careers form's fields and a position
    dropdown; every apply call to action on the page scrolls here
    --------------------------------------------------------------------- */
-.apply { margin-top: clamp(3rem, 5vw, 4rem); scroll-margin-top: calc(var(--header-offset) + 1.5rem); }
-.apply__title { margin-bottom: var(--space-5); font-size: clamp(1.6rem, 1.2vw + 1.1rem, 2.1rem); }
+.apply { max-width: 46rem; margin: clamp(3rem, 5vw, 4rem) auto 0; scroll-margin-top: calc(var(--header-offset) + 1.5rem); }
+.apply__title { margin-bottom: var(--space-4); font-size: clamp(1.6rem, 1.2vw + 1.1rem, 2.1rem); }
 .apply__form {
-  padding: clamp(1.25rem, 3vw, 2.5rem);
+  padding: clamp(1.25rem, 3vw, 2rem);
   border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-bg-light);
 }
 
-.apply__fields { display: grid; gap: var(--space-4) var(--space-5); }
-.field { display: grid; gap: var(--space-2); align-content: start; min-width: 0; }
+.apply__fields { display: grid; gap: var(--space-3) var(--space-4); }
+.field { display: grid; gap: 0.35rem; align-content: start; min-width: 0; }
 .field[hidden] { display: none; }
 .field label { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--color-navy); }
 .field__req { color: var(--color-red); }
 .field input, .field select, .field textarea {
-  width: 100%; padding: 0.75rem 0.9rem;
+  width: 100%; padding: 0.6rem 0.8rem;
   border: 1px solid var(--color-border); border-radius: var(--radius-sm);
   background: #fff; color: var(--color-navy); font: inherit; font-size: 0.97rem;
   transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
 }
-.field textarea { resize: vertical; min-height: 7rem; }
+.field textarea { resize: vertical; min-height: 5rem; }
 .field input[type="file"] { min-width: 0; padding: 0.6rem; background: #fff; }
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none; border-color: var(--color-navy); box-shadow: 0 0 0 3px rgba(36, 38, 103, 0.15);
@@ -359,11 +359,16 @@ html:not(.js) .job__toggle { display: none; }
 .apply__status { margin-top: var(--space-5); font-size: 0.95rem; color: var(--color-navy); }
 .apply__status:empty { display: none; }
 .apply__status.is-error { color: var(--color-red); }
-.apply__actions { margin-top: var(--space-6); display: flex; justify-content: flex-end; }
+.apply__actions { margin-top: var(--space-5); display: flex; justify-content: flex-end; }
 
 @media (min-width: 640px) {
   .apply__fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .field--full { grid-column: 1 / -1; }
+  /* CAPTCHA and Submit share the last row */
+  .apply__form { display: grid; grid-template-columns: 1fr auto; column-gap: var(--space-5); align-items: end; }
+  .apply__fields, .apply__status { grid-column: 1 / -1; }
+  .apply__status { grid-row: 3; }
+  .apply__actions { margin-top: 0; }
 }
 @media (max-width: 639px) {
   .apply__actions .btn { width: 100%; }
