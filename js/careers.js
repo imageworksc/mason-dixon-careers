@@ -68,6 +68,8 @@ const initJobs = () => {
    Application form — each posting's "Apply Now" opens the popup with
    the position filled in. Without JS (or <dialog>) the link still goes
    to the current careers page and its form.
+   reCAPTCHA v2 (the current form's site key) loads the first time the
+   popup opens, and must be ticked before submitting.
    Submission posts to data-endpoint on the form; until one is set the
    form validates but does not send, and says so.
    --------------------------------------------------------------- */
@@ -81,7 +83,23 @@ const initApply = () => {
   const other = dialog.querySelector("[data-apply-other]");
   const file = dialog.querySelector("[data-apply-file]");
   const status = dialog.querySelector("[data-apply-status]");
+  const captcha = dialog.querySelector("[data-apply-captcha]");
   const MAX_BYTES = 8 * 1024 * 1024;
+  let captchaId = null;
+
+  // Load Google's script once, on first open, and render the checkbox into the form
+  const loadCaptcha = () => {
+    if (!captcha || captcha.dataset.loaded) return;
+    captcha.dataset.loaded = "true";
+    window.masonDixonCaptchaReady = () => {
+      captchaId = window.grecaptcha.render(captcha, { sitekey: captcha.dataset.sitekey, theme: "light" });
+    };
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js?hl=en&render=explicit&onload=masonDixonCaptchaReady";
+    script.async = true;
+    document.head.append(script);
+  };
+  const captchaDone = () => captchaId === null || Boolean(window.grecaptcha?.getResponse(captchaId));
 
   const setStatus = (text, isError = false) => {
     status.textContent = text;
@@ -95,6 +113,7 @@ const initApply = () => {
       position.value = link.dataset.apply;
       setStatus("");
       dialog.showModal();
+      loadCaptcha();
     });
   });
 
@@ -112,6 +131,10 @@ const initApply = () => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
+    if (!captchaDone()) {
+      setStatus("Please complete the CAPTCHA.", true);
+      return;
+    }
     const endpoint = form.dataset.endpoint;
     if (!endpoint) {
       setStatus("This form is not connected yet, so the application was not sent.", true);
@@ -124,6 +147,7 @@ const initApply = () => {
       if (!response.ok) throw new Error(response.statusText);
       form.reset();
       other.hidden = true;
+      if (captchaId !== null) window.grecaptcha.reset(captchaId);
       setStatus("Thank you! Your application has been sent.");
     } catch {
       setStatus("Something went wrong. Please try again or call (717) 432-6030.", true);

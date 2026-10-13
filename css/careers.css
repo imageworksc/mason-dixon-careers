@@ -364,6 +364,9 @@ html:not(.js) .job__toggle { display: none; }
 
 .apply__trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
+.apply__captcha { margin: var(--space-5) 0 0; padding: 0; border: 0; min-height: 78px; }
+.apply__captcha legend { margin-bottom: var(--space-2); font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--color-navy); }
+
 .apply__status { margin-top: var(--space-5); font-size: 0.95rem; color: var(--color-navy); }
 .apply__status:empty { display: none; }
 .apply__status.is-error { color: var(--color-red); }
