@@ -152,7 +152,8 @@ const initApply = () => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
-    if (captchaId !== null && !window.grecaptcha.getResponse(captchaId)) {
+    // Required: no submission without a ticked CAPTCHA (or while it is still loading)
+    if (captchaId === null || !window.grecaptcha.getResponse(captchaId)) {
       setStatus("Please complete the CAPTCHA.", true);
       return;
     }

@@ -204,7 +204,8 @@
    document-style panel. Phones/tablets: the same roles as an accordion.
    Without JS every posting simply stacks.
    --------------------------------------------------------------------- */
-.openings__head { max-width: 46rem; margin-bottom: var(--space-7); }
+.openings { padding-block: clamp(3.5rem, 6vw, 6.5rem); }
+.openings__head { max-width: 46rem; margin-bottom: var(--space-6); }
 
 .jobs {
   display: grid; grid-template-columns: minmax(0, 1fr); /* never wider than the container */
