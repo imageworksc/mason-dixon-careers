@@ -65,25 +65,25 @@ const initJobs = () => {
 };
 
 /* ---------------------------------------------------------------
-   Application form — each posting's "Apply Now" opens the popup with
-   the position filled in. Without JS (or <dialog>) the link still goes
-   to the current careers page and its form.
-   reCAPTCHA v2 (the current form's site key) loads the first time the
-   popup opens, and must be ticked before submitting.
+   Application form — sits inline below the openings. A posting's
+   "Apply Now" scrolls to it and fills in the position; without JS the
+   link is a plain anchor to the form.
+   reCAPTCHA v2 (the current form's site key) loads once the form is
+   near the viewport, and must be ticked before submitting.
    Submission posts to data-endpoint on the form; until one is set the
    form validates but does not send, and says so.
    --------------------------------------------------------------- */
 const initApply = () => {
-  const dialog = document.querySelector("[data-apply-dialog]");
-  if (!dialog || typeof dialog.showModal !== "function") return;
-  const form = dialog.querySelector("[data-apply-form]");
-  const role = dialog.querySelector("[data-apply-role]");
-  const position = dialog.querySelector("[data-apply-position]");
-  const heard = dialog.querySelector("[data-apply-heard]");
-  const other = dialog.querySelector("[data-apply-other]");
-  const file = dialog.querySelector("[data-apply-file]");
-  const status = dialog.querySelector("[data-apply-status]");
-  const captcha = dialog.querySelector("[data-apply-captcha]");
+  const section = document.querySelector("#apply-form");
+  const form = section?.querySelector("[data-apply-form]");
+  if (!form) return;
+  const role = section.querySelector("[data-apply-role]");
+  const position = form.querySelector("[data-apply-position]");
+  const heard = form.querySelector("[data-apply-heard]");
+  const other = form.querySelector("[data-apply-other]");
+  const file = form.querySelector("[data-apply-file]");
+  const status = form.querySelector("[data-apply-status]");
+  const captcha = form.querySelector("[data-apply-captcha]");
   const MAX_BYTES = 8 * 1024 * 1024;
   let captchaId = null;
 
@@ -112,14 +112,23 @@ const initApply = () => {
       role.textContent = link.dataset.apply;
       position.value = link.dataset.apply;
       setStatus("");
-      dialog.showModal();
       loadCaptcha();
+      role.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      form.querySelector("input:not([type=hidden])").focus({ preventScroll: true });
     });
   });
 
-  dialog.querySelector("[data-apply-close]").addEventListener("click", () => dialog.close());
-  // A click on the backdrop lands on the dialog element itself
-  dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+  // Load the CAPTCHA as the form approaches, so it is ready when reached
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      loadCaptcha();
+    }, { rootMargin: "400px 0px" });
+    observer.observe(section);
+  } else {
+    loadCaptcha();
+  }
 
   heard.addEventListener("change", () => { other.hidden = heard.value !== "_other_"; });
 

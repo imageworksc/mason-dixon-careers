@@ -316,32 +316,20 @@ html:not(.js) .job__toggle { display: none; }
 
 
 /* ---------------------------------------------------------------------
-   7. Application form — a native <dialog> popup with the original
-   careers form's fields
+   7. Application form — inline, right below the openings, with the
+   original careers form's fields; a posting's "Apply Now" scrolls here
    --------------------------------------------------------------------- */
-.apply {
-  width: min(44rem, calc(100% - 2rem)); max-height: calc(100dvh - 2rem);
-  margin: auto; padding: 0; border: 0; border-radius: var(--radius-lg); /* same 14px corners as the cards */
-  background: #fff; color: var(--color-slate);
-  box-shadow: var(--shadow-float);
-}
-.apply::backdrop { background: rgba(18, 19, 58, 0.6); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
-.apply[open] { animation: apply-in var(--dur-med) var(--ease-out); }
-@keyframes apply-in { from { opacity: 0; transform: translateY(1rem); } to { opacity: 1; transform: none; } }
-
-.apply__form { padding: clamp(1.5rem, 4vw, 2.5rem); }
-.apply__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-6); }
-.apply__head h2 { font-size: clamp(1.6rem, 1.2vw + 1.1rem, 2.1rem); }
-.apply__role { margin-top: var(--space-1); font-family: var(--font-display); font-weight: 600; color: var(--color-red); }
+.apply { background: var(--color-bg-light); border-top: 1px solid var(--color-border); }
+/* Jumps land with the heading just under the sticky header */
+.apply, .apply__role { scroll-margin-top: calc(var(--header-offset) + 5rem); }
+.apply__inner { max-width: 52rem; }
+.apply__head { margin-bottom: var(--space-6); }
+.apply__role { margin-top: var(--space-2); font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--color-red); }
 .apply__role:empty { display: none; }
-.apply__close {
-  flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 50%;
-  display: inline-flex; align-items: center; justify-content: center;
-  background: var(--color-lavender); color: var(--color-navy);
-  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+.apply__form {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: #fff;
 }
-.apply__close:hover { background: var(--color-navy); color: #fff; }
-.apply__close svg { width: 1.1rem; height: 1.1rem; }
 
 .apply__fields { display: grid; gap: var(--space-4) var(--space-5); }
 .field { display: grid; gap: var(--space-2); align-content: start; }
