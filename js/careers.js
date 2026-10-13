@@ -33,7 +33,21 @@ const initJobs = () => {
     });
   };
 
-  tabs.forEach((tab, i) => tab.addEventListener("click", () => { current = i; render(); }));
+  // After switching, bring the new posting's start into view if the reader
+  // had scrolled down into the previous (often long) description
+  const showFromTop = () => {
+    const header = document.querySelector("[data-site-header]");
+    const offset = (header ? header.getBoundingClientRect().height : 0) + 16;
+    if (root.getBoundingClientRect().top >= offset) return;
+    root.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  };
+
+  tabs.forEach((tab, i) => tab.addEventListener("click", () => {
+    if (current === i) return;
+    current = i;
+    render();
+    showFromTop();
+  }));
 
   toggles.forEach((toggle, i) => toggle.addEventListener("click", () => {
     current = current === i ? -1 : i;
@@ -57,7 +71,8 @@ const initJobs = () => {
     event.preventDefault();
     current = next;
     render();
-    tabs[next].focus();
+    tabs[next].focus({ preventScroll: true });
+    showFromTop();
   });
 
   desktop.addEventListener("change", render);
