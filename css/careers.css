@@ -95,7 +95,7 @@
    ruled list on the right
    --------------------------------------------------------------------- */
 .culture { padding-block: clamp(3rem, 5vw, 4.5rem); }
-.culture__inner { display: grid; gap: var(--space-7); align-items: center; }
+.culture__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); align-items: center; }
 
 .culture__head h2 { color: #fff; }
 .culture__head p { margin-top: var(--space-4); max-width: 30rem; font-size: 1.1rem; line-height: 1.7; color: var(--text-on-dark-secondary); }
@@ -397,7 +397,7 @@ html:not(.js) .job__toggle { display: none; }
    8. Giving back — copy beside the donated-services stat
    --------------------------------------------------------------------- */
 .giving { background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
-.giving__inner { display: grid; gap: var(--space-7); align-items: center; }
+.giving__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); align-items: center; }
 .giving__copy p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 38rem; text-wrap: balance; }
 .giving__copy .btn { margin-top: var(--space-6); }
 
@@ -444,6 +444,10 @@ html:not(.js) .job__toggle { display: none; }
   .openings__more { padding: var(--space-5); }
   .newgrad .btn-row .btn, .glass-card .btn-row .btn, .openings__more .btn { flex: 1 1 100%; }
   .glass-card .btn-row { align-self: stretch; }
+}
+/* Narrow phones: long button labels wrap instead of pushing past the edge */
+@media (max-width: 379px) {
+  .btn { white-space: normal; text-align: center; }
 }
 @media (max-width: 1023px) {
   .site-footer { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }

@@ -169,7 +169,7 @@ const initApply = () => {
       if (!response.ok) throw new Error(response.statusText);
       form.reset();
       other.hidden = true;
-      if (captchaId !== null) window.grecaptcha.reset(captchaId);
+      window.grecaptcha.reset(captchaId);
       setStatus("Thank you! Your application has been sent.");
     } catch {
       setStatus("Something went wrong. Please try again or call (717) 432-6030.", true);
