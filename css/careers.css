@@ -248,9 +248,14 @@ html:not(.js) .job__toggle { display: none; }
 .job > p:not(.job__meta) { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.75; color: var(--color-slate); max-width: 38rem; }
 /* Full postings: section headings and bulleted lists */
 .job h4 {
-  margin-top: var(--space-6);
-  font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--color-navy);
+  margin-top: var(--space-7);
+  font-family: var(--font-display); font-weight: 700; font-size: 0.95rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-navy);
 }
+/* Sub-headings inside a posting (Required Qualifications, Preferred Traits…) */
+.job__sub { margin-top: var(--space-5); font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; color: var(--color-red); }
+.job > p a { color: var(--color-navy); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.job > p a:hover { color: var(--color-red); }
 .job__list { margin-top: var(--space-3); display: grid; gap: var(--space-2); max-width: 38rem; }
 .job__list li { position: relative; padding-left: 1.25rem; font-size: 1.02rem; line-height: 1.6; color: var(--color-slate); }
 .job__list li::before {
