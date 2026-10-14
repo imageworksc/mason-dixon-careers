@@ -322,11 +322,11 @@ html:not(.js) .job__toggle { display: none; }
 .openings__note { margin-top: 0.15rem; font-size: 0.95rem; color: var(--color-gray); }
 
 /* ---------------------------------------------------------------------
-   7. Application form — one form under the openings ("Don't see your
-   role?"), with the original careers form's fields and a position
+   7. Application form — one form under the openings (above "Don't
+   see your role?"), with the original careers form's fields and a position
    dropdown; every apply call to action on the page scrolls here
    --------------------------------------------------------------------- */
-.apply { max-width: 46rem; margin: clamp(3rem, 5vw, 4rem) auto 0; scroll-margin-top: calc(var(--header-offset) + 1.5rem); }
+.apply { max-width: 46rem; margin: clamp(3rem, 5vw, 4rem) auto clamp(2.5rem, 4vw, 3.5rem); scroll-margin-top: calc(var(--header-offset) + 1.5rem); }
 .apply__title { margin-bottom: var(--space-4); font-size: clamp(1.6rem, 1.2vw + 1.1rem, 2.1rem); }
 .apply__form {
   padding: clamp(1.25rem, 3vw, 2rem);
