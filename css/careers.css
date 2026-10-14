@@ -138,7 +138,10 @@
   padding: var(--space-4) 0;
   border-bottom: 1px solid var(--color-border);
 }
-.cap:last-child { border-bottom: 0; }
+/* No padding above the first row or below the last, so the list sits
+   evenly between the intro and the new-graduate banner */
+.cap:first-child { padding-top: 0; }
+.cap:last-child { border-bottom: 0; padding-bottom: 0; }
 .cap__icon {
   width: 2.75rem; height: 2.75rem; border-radius: var(--radius-sm);
   display: inline-flex; align-items: center; justify-content: center;
@@ -155,11 +158,12 @@
 
 @media (min-width: 768px) {
   .caps { grid-template-columns: repeat(2, 1fr); }
+  .cap:nth-child(2) { padding-top: 0; }
   .cap:nth-last-child(2):nth-child(even) { border-bottom: 0; } /* last row of the right column */
 }
 
 .newgrad {
-  margin-top: var(--space-6);
+  margin-top: var(--space-7); /* matches the gap above the list */
   position: relative; overflow: hidden; isolation: isolate;
   display: grid; gap: var(--space-5); align-items: center;
   padding: var(--space-6);
