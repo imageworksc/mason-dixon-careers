@@ -84,8 +84,8 @@ const initJobs = () => {
    action links to it; a posting's "Apply Now" also picks that position
    in the dropdown. reCAPTCHA v2 (the current careers form's site key)
    loads as the form comes near, and must be ticked to submit.
-   Submission posts to data-endpoint on the form; until one is set the
-   form validates but does not send, and says so.
+   The form posts to FormSubmit, which emails it (résumé attached) to
+   careers@mdaeh.com and sends the visitor back here with ?applied=1.
    --------------------------------------------------------------- */
 const CAPTCHA_SRC = "https://www.google.com/recaptcha/api.js?hl=en&render=explicit&onload=masonDixonCaptchaReady";
 const MAX_RESUME_BYTES = 8 * 1024 * 1024;
@@ -149,33 +149,38 @@ const initApply = () => {
     file.setCustomValidity(tooBig ? "Please choose a file of 8 MB or less." : "");
   });
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    if (!form.reportValidity()) return;
-    // Required: no submission without a ticked CAPTCHA (or while it is still loading)
+  // Come back to this same page after FormSubmit has sent the email
+  const next = form.querySelector("[data-apply-next]");
+  const back = new URL(window.location.href);
+  back.search = "?applied=1";
+  back.hash = "apply-form";
+  next.value = back.href;
+
+  // Arriving back from a successful submission
+  if (new URLSearchParams(window.location.search).has("applied")) {
+    setStatus("Thank you! Your application has been sent.");
+    wrap.scrollIntoView({ block: "start" });
+  }
+
+  // Native submission (so the résumé file is sent); only blocked while something is missing
+  form.addEventListener("submit", (event) => {
+    if (!form.reportValidity()) {
+      event.preventDefault();
+      return;
+    }
     if (captchaId === null || !window.grecaptcha.getResponse(captchaId)) {
+      event.preventDefault();
       setStatus("Please complete the CAPTCHA.", true);
       return;
     }
-    const endpoint = form.dataset.endpoint;
-    if (!endpoint) {
-      setStatus("This form is not connected yet, so the application was not sent.", true);
-      return;
-    }
-    const button = form.querySelector('[type="submit"]');
-    button.disabled = true;
-    try {
-      const response = await fetch(endpoint, { method: "POST", body: new FormData(form) });
-      if (!response.ok) throw new Error(response.statusText);
-      form.reset();
-      other.hidden = true;
-      window.grecaptcha.reset(captchaId);
-      setStatus("Thank you! Your application has been sent.");
-    } catch {
-      setStatus("Something went wrong. Please try again or call (717) 432-6030.", true);
-    } finally {
-      button.disabled = false;
-    }
+    setStatus("Sending your application…");
+    form.querySelector('[type="submit"]').disabled = true;
+  });
+
+  // Returning with the browser's Back button restores the page as it was left
+  window.addEventListener("pageshow", () => {
+    form.querySelector('[type="submit"]').disabled = false;
+    if (status.textContent === "Sending your application…") setStatus("");
   });
 };
 
