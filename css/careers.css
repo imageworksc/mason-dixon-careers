@@ -134,7 +134,7 @@
 /* Hairline rules only between rows: none above the first or below the last */
 .caps { display: grid; column-gap: var(--space-8); }
 .cap {
-  display: grid; grid-template-columns: auto 1fr; align-items: center; gap: var(--space-5);
+  display: grid; grid-template-columns: auto 1fr; align-items: start; gap: var(--space-5); /* top-aligned, so rows line up across both columns */
   padding: var(--space-4) 0;
   border-bottom: 1px solid var(--color-border);
 }
