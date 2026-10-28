@@ -401,9 +401,17 @@ html:not(.js) .job__toggle { display: none; }
 }
 
 /* ---------------------------------------------------------------------
-   8. Giving back — copy beside the donated-services stat
+   8. Giving back — copy beside the donated-services stat, over a
+   washed-out team photo
    --------------------------------------------------------------------- */
-.giving { background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
+.giving { position: relative; overflow: hidden; isolation: isolate; background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
+/* Team photo behind the section, washed out with the section tint so the copy stays readable */
+.giving__bg { position: absolute; inset: 0; z-index: -1; }
+.giving__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; }
+.giving__bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(238, 240, 250, 0.95) 0%, rgba(238, 240, 250, 0.9) 45%, rgba(238, 240, 250, 0.78) 100%);
+}
 .giving__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); align-items: center; }
 .giving__copy p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 38rem; text-wrap: balance; }
 .giving__copy .btn { margin-top: var(--space-6); }
@@ -437,11 +445,16 @@ html:not(.js) .job__toggle { display: none; }
   text-underline-offset: 3px; transition: text-decoration-color var(--dur-fast) var(--ease-out);
 }
 .glass-card__contact a:hover { text-decoration-color: #fff; }
-
 /* ---------------------------------------------------------------------
-   10. FAQ — address line inside an answer
+   10. FAQ — address line inside an answer; team photo under the
+   heading and Apply Now in the sticky left column
    --------------------------------------------------------------------- */
 .accordion__body strong { color: var(--color-navy); }
+.faq__photo { margin: var(--space-7) 0 0; }
+.faq__photo img {
+  width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 45%;
+  border-radius: var(--radius-lg);
+}
 
 /* ---------------------------------------------------------------------
    11. Small screens — full-width button pairs, and room at the end of
