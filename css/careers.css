@@ -427,36 +427,50 @@ html:not(.js) .job__toggle { display: none; }
 }
 
 /* ---------------------------------------------------------------------
-   8. Giving back — heading, copy, stat and CTA beside a rounded team
-   photo, in the same left-aligned, hairline style as the rest of the page
+   8. Giving back — split edge to edge: the team photo fills the left half,
+   the brand-navy right half (faint paw watermark) holds the heading,
+   copy, donated-services figure and CTA, aligned to the page container
    --------------------------------------------------------------------- */
-.giving { background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
-.giving__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); align-items: center; }
-.giving__copy p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 36rem; text-wrap: balance; }
-.giving__copy .btn { margin-top: var(--space-6); }
+.giving { display: grid; }
+.giving__photo { position: relative; margin: 0; aspect-ratio: 4 / 3; }
+.giving__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
 
-/* Donated-services figure on a hairline, like the hero facts */
+.giving__panel {
+  position: relative; overflow: hidden; isolation: isolate;
+  padding: clamp(3rem, 6vw, 5.5rem) var(--container-pad);
+  background: var(--color-navy); color: var(--text-on-dark-secondary);
+}
+.giving__paw {
+  position: absolute; right: -2rem; bottom: -3rem; z-index: -1;
+  width: 16rem; height: 16rem; color: #fff; opacity: 0.06; transform: rotate(-14deg);
+}
+.giving__panel h2 { max-width: 30rem; color: #fff; }
+.giving__panel p { margin-top: var(--space-4); max-width: 34rem; font-size: 1.05rem; line-height: 1.7; text-wrap: balance; }
+.giving__panel .btn { margin-top: var(--space-6); }
+
+/* Donated-services figure on a hairline */
 .stat {
   margin-top: var(--space-6); padding-top: var(--space-5);
-  display: grid; gap: var(--space-1);
-  border-top: 1px solid var(--color-border);
-  max-width: 36rem;
+  display: grid; gap: var(--space-1); max-width: 34rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
 }
 .stat__value {
   font-family: var(--font-display); font-weight: 700; line-height: 1;
-  font-size: clamp(2.25rem, 2.5vw + 1rem, 3.25rem); letter-spacing: -0.03em; color: var(--color-red);
+  font-size: clamp(2.25rem, 2.5vw + 1rem, 3.25rem); letter-spacing: -0.03em; color: #fff;
   font-variant-numeric: tabular-nums;
 }
-.stat__label { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--color-navy); }
+.stat__label { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: #ff8f9a; }
 
-.giving__photo { margin: 0; }
-.giving__photo img {
-  width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 35%;
-  border-radius: var(--radius-lg);
+@media (min-width: 900px) {
+  .giving {
+    --edge: max(var(--container-pad), calc((100vw - var(--container)) / 2 + var(--container-pad)));
+    grid-template-columns: 1fr 1fr;
+  }
+  .giving__photo { aspect-ratio: auto; }
+  .giving__panel { padding-left: clamp(3rem, 6vw, 6rem); padding-right: var(--edge); }
 }
-
-@media (min-width: 1024px) {
-  .giving__inner { grid-template-columns: 1fr 1fr; gap: var(--space-9); }
+@media (max-width: 639px) {
+  .giving__panel .btn { width: 100%; }
 }
 
 /* ---------------------------------------------------------------------
