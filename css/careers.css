@@ -103,7 +103,7 @@
   -webkit-mask-image: linear-gradient(90deg, #000 55%, transparent 100%);
           mask-image: linear-gradient(90deg, #000 55%, transparent 100%);
 }
-.culture__bg::after { content: ""; position: absolute; inset: 0; background: rgba(18, 19, 58, 0.5); }
+.culture__bg::after { content: ""; position: absolute; inset: 0; background: rgba(18, 19, 58, 0.55); }
 /* No paw scatter where the photo sits */
 .culture .cta-glass__paws {
   -webkit-mask-image: linear-gradient(90deg, transparent 45%, #000 65%);
