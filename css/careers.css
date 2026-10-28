@@ -427,53 +427,51 @@ html:not(.js) .job__toggle { display: none; }
 }
 
 /* ---------------------------------------------------------------------
-   8. Giving back — stat card, heading, copy and CTA on the left, with a
-   team photo behind the right half
+   8. Giving back — organic: copy beside a blob-shaped team photo, a soft
+   lavender blob behind it, a pill-shaped stat and a couple of loose paws
    --------------------------------------------------------------------- */
-.giving { position: relative; overflow: hidden; isolation: isolate; background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
-/* Team photo behind the right half, fading into the tint toward the copy */
-.giving__bg { position: absolute; inset: 0 0 0 auto; width: 55%; z-index: -1; }
-.giving__bg img {
-  width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 45%);
-          mask-image: linear-gradient(90deg, transparent 0%, #000 45%);
-}
-.giving__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); align-items: center; }
-.giving__copy p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 38rem; text-wrap: balance; }
+.giving { overflow: hidden; background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
+.giving__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-8); align-items: center; }
+.giving__copy p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 34rem; text-wrap: balance; }
 .giving__copy .btn { margin-top: var(--space-6); }
-/* The stat card leads the copy, above the heading */
-.giving .stat { width: max-content; max-width: 100%; margin-bottom: var(--space-6); }
-.giving .stat__value { font-size: clamp(2.5rem, 3.5vw, 3.5rem); }
 
-.stat .bezel__core {
-  position: relative; overflow: hidden; isolation: isolate;
-  padding: clamp(1.5rem, 2.5vw, 2.25rem) clamp(1.75rem, 3vw, 2.5rem);
-  background: linear-gradient(150deg, var(--color-navy), var(--color-navy-900));
-  color: #fff;
+.giving__art { position: relative; justify-self: center; width: min(100%, 34rem); padding: var(--space-5) var(--space-5) var(--space-7); }
+/* Irregular radii give the photo and its backdrop a hand-drawn, organic edge */
+.giving__photo { position: relative; z-index: 1; margin: 0; }
+.giving__photo img {
+  width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; object-position: 55% 40%;
+  border-radius: 58% 42% 46% 54% / 46% 52% 48% 54%;
+  box-shadow: 0 30px 60px -30px rgba(36, 38, 103, 0.45);
 }
-.stat__paw {
-  position: absolute; right: -2rem; top: -2rem; z-index: -1;
-  width: 11rem; height: 11rem; color: #fff; opacity: 0.06; transform: rotate(18deg);
+.giving__blob {
+  position: absolute; inset: 0 -4% 6% 6%; z-index: 0;
+  background: rgba(192, 29, 46, 0.08);
+  border-radius: 42% 58% 60% 40% / 55% 45% 55% 45%;
+  transform: rotate(-8deg);
+}
+.giving__paw { position: absolute; z-index: 0; color: var(--color-red); opacity: 0.18; }
+.giving__paw--1 { width: 2.4rem; height: 2.4rem; top: 2%; right: 4%; transform: rotate(18deg); }
+.giving__paw--2 { width: 1.8rem; height: 1.8rem; bottom: 18%; right: -2%; transform: rotate(-14deg); }
+
+/* Stat as a rounded pill tucked over the photo's lower edge */
+.stat {
+  position: absolute; z-index: 2; left: 0; bottom: var(--space-4);
+  display: grid; gap: 0.15rem;
+  padding: var(--space-4) var(--space-6);
+  border-radius: 999px 999px 999px 1.25rem;
+  background: var(--color-navy); color: #fff;
+  box-shadow: 0 20px 40px -18px rgba(18, 19, 58, 0.6);
 }
 .stat__value {
-  display: block; font-family: var(--font-display); font-weight: 600; line-height: 1;
-  font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.035em; color: #fff;
+  font-family: var(--font-display); font-weight: 600; line-height: 1;
+  font-size: clamp(2rem, 2.5vw + 1rem, 2.9rem); letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
 }
-.stat__label { display: block; margin-top: var(--space-3); font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--text-on-dark-secondary); }
+.stat__label { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--text-on-dark-secondary); }
 
 @media (min-width: 1024px) {
-  .giving__inner { grid-template-columns: minmax(0, 0.45fr); gap: var(--space-9); }
-}
-@media (max-width: 1023px) {
-  /* Single column: the photo sits at the bottom, below the copy */
-  .giving__bg { inset: auto 0 0; width: 100%; height: clamp(18rem, 78vw, 27rem); }
-  /* Room below the copy for the photo to show */
-  .giving__copy { padding-bottom: clamp(14rem, 60vw, 22rem); }
-  .giving__bg img {
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
-            mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
-  }
+  .giving__inner { grid-template-columns: 1fr 1fr; gap: var(--space-9); }
+  .giving__art { justify-self: end; }
 }
 
 /* ---------------------------------------------------------------------

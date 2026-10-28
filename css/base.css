@@ -139,21 +139,3 @@ p { text-wrap: pretty; }
 }
 
 .section { padding-block: var(--section-space); }
-
-/* Double-bezel frame: tinted shell + inner core with concentric radii */
-.bezel {
-  --bezel-pad: 0.5rem;
-  --bezel-radius: var(--radius-2xl);
-  padding: var(--bezel-pad);
-  border-radius: var(--bezel-radius);
-  background: rgba(36, 38, 103, 0.06);
-  border: 1px solid rgba(36, 38, 103, 0.09);
-  box-shadow: var(--shadow-float);
-}
-.bezel__core {
-  border-radius: calc(var(--bezel-radius) - var(--bezel-pad));
-  overflow: hidden;
-  background: #fff;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6);
-}
-
