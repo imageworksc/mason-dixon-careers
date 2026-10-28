@@ -427,20 +427,20 @@ html:not(.js) .job__toggle { display: none; }
 }
 
 /* ---------------------------------------------------------------------
-   8. Giving back — copy beside a team photo with the donated-services
-   stat overlapping its lower edge
+   8. Giving back — copy beside the donated-services stat, with a team
+   photo behind the right half
    --------------------------------------------------------------------- */
-.giving { background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
+.giving { position: relative; overflow: hidden; isolation: isolate; background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
+/* Team photo behind the right half, fading into the tint toward the copy; the stat card sits on it */
+.giving__bg { position: absolute; inset: 0 0 0 auto; width: 55%; z-index: -1; }
+.giving__bg img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 45%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 45%);
+}
 .giving__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); align-items: center; }
 .giving__copy p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 38rem; text-wrap: balance; }
 .giving__copy .btn { margin-top: var(--space-6); }
-
-.giving__aside { display: grid; }
-.giving__photo { margin: 0; }
-.giving__photo img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 30%; border-radius: var(--radius-lg); }
-/* The stat card rides up over the photo's lower edge */
-.giving__aside .stat { margin: -2rem var(--space-6) 0; position: relative; }
-.giving__aside .stat__value { font-size: clamp(2.5rem, 4vw, 3.75rem); }
 
 .stat .bezel__core {
   position: relative; overflow: hidden; isolation: isolate;
@@ -459,7 +459,23 @@ html:not(.js) .job__toggle { display: none; }
 }
 .stat__label { display: block; margin-top: var(--space-3); font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--text-on-dark-secondary); }
 
-@media (min-width: 1024px) { .giving__inner { grid-template-columns: 1.1fr 0.9fr; gap: var(--space-9); } }
+@media (min-width: 1024px) {
+  .giving__inner { grid-template-columns: 1.1fr 0.9fr; gap: var(--space-9); }
+  /* Card sits low and to the left of the photo, so the faces stay in view */
+  .giving .stat { align-self: end; justify-self: start; width: max-content; max-width: 100%; margin-bottom: calc(-1 * clamp(2.5rem, 4vw, 4rem)); }
+  .giving .stat__value { font-size: clamp(2.5rem, 3.5vw, 3.5rem); }
+  .giving__inner { min-height: 26rem; }
+}
+@media (max-width: 1023px) {
+  /* Single column: the photo sits behind the stat card at the bottom */
+  .giving__bg { inset: auto 0 0; width: 100%; height: 60%; }
+  /* Room above the card for the faces to show */
+  .giving .stat { margin-top: clamp(10rem, 40vw, 16rem); }
+  .giving__bg img {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
+            mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
+  }
+}
 
 /* ---------------------------------------------------------------------
    9. Final CTA — additions to the shared glass card
