@@ -95,10 +95,32 @@
    ruled list on the right
    --------------------------------------------------------------------- */
 .culture { padding-block: clamp(3rem, 5vw, 4.5rem); }
-/* Team photo behind the section, under a dense navy wash so the copy stays crisp */
-.culture__bg { position: absolute; inset: 0; z-index: 0; }
-.culture__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; opacity: 0.22; }
-.culture__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--color-navy-900) 0%, rgba(18, 19, 58, 0.6) 55%, rgba(18, 19, 58, 0.35) 100%); }
+/* Team photo behind the left half (the intro), fading into the navy */
+.culture__bg { position: absolute; inset: 0 auto 0 0; width: 55%; z-index: 0; }
+.culture__bg img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 35% 40%; opacity: 0.35;
+  /* Fades into the navy toward the list */
+  -webkit-mask-image: linear-gradient(90deg, #000 55%, transparent 100%);
+          mask-image: linear-gradient(90deg, #000 55%, transparent 100%);
+}
+.culture__bg::after { content: ""; position: absolute; inset: 0; background: rgba(18, 19, 58, 0.45); }
+/* No paw scatter where the photo sits */
+.culture .cta-glass__paws {
+  -webkit-mask-image: linear-gradient(90deg, transparent 45%, #000 65%);
+          mask-image: linear-gradient(90deg, transparent 45%, #000 65%);
+}
+@media (max-width: 1023px) {
+  /* Single column: the photo sits behind the intro at the top instead */
+  .culture__bg { inset: 0 0 auto; width: 100%; height: 60%; }
+  .culture__bg img {
+    -webkit-mask-image: linear-gradient(180deg, #000 50%, transparent 100%);
+            mask-image: linear-gradient(180deg, #000 50%, transparent 100%);
+  }
+  .culture .cta-glass__paws {
+    -webkit-mask-image: linear-gradient(180deg, transparent 50%, #000 70%);
+            mask-image: linear-gradient(180deg, transparent 50%, #000 70%);
+  }
+}
 .culture__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); align-items: center; }
 
 .culture__head h2 { color: #fff; }
