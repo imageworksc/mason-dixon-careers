@@ -459,7 +459,7 @@ html:not(.js) .job__toggle { display: none; }
   font-size: clamp(2.25rem, 2.5vw + 1rem, 3.25rem); letter-spacing: -0.03em; color: #fff;
   font-variant-numeric: tabular-nums;
 }
-.stat__label { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: #ff8f9a; }
+.stat__label { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: #e3233a; } /* brand red, a touch brighter so it holds on navy */
 
 @media (min-width: 900px) {
   .giving {
