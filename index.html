@@ -13,13 +13,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
-  <script src="js/head.js?v=202610280915"></script>
-  <link rel="stylesheet" href="css/base.css?v=202610280915" />
-  <link rel="stylesheet" href="css/components.css?v=202610280915" />
-  <link rel="stylesheet" href="css/sections.css?v=202610280915" />
-  <link rel="stylesheet" href="css/motion.css?v=202610280915" />
-  <link rel="stylesheet" href="css/menu.css?v=202610280915" />
-  <link rel="stylesheet" href="css/careers.css?v=202610280915" />
+  <script src="js/head.js?v=202610280921"></script>
+  <link rel="stylesheet" href="css/base.css?v=202610280921" />
+  <link rel="stylesheet" href="css/components.css?v=202610280921" />
+  <link rel="stylesheet" href="css/sections.css?v=202610280921" />
+  <link rel="stylesheet" href="css/motion.css?v=202610280921" />
+  <link rel="stylesheet" href="css/menu.css?v=202610280921" />
+  <link rel="stylesheet" href="css/careers.css?v=202610280921" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -548,6 +548,9 @@
 
     <!-- ============================ Culture — intro + CTA beside a ruled list ============================ -->
     <section class="section cta-glass culture" id="culture" aria-labelledby="culture-heading">
+      <div class="culture__bg" aria-hidden="true">
+        <img src="assets/images/team-icu.jpg" alt="" width="1800" height="1270" loading="lazy" />
+      </div>
       <div class="cta-glass__paws" aria-hidden="true"></div>
       <div class="cta-glass__glow cta-glass__glow--red" aria-hidden="true"></div>
       <div class="cta-glass__glow cta-glass__glow--blue" aria-hidden="true"></div>
@@ -1033,9 +1036,6 @@
 
     <!-- ============================ Giving back ============================ -->
     <section class="section giving" id="giving" aria-labelledby="giving-heading">
-      <div class="giving__bg" aria-hidden="true">
-        <img src="assets/images/team-shepherd.jpg" alt="" width="1280" height="960" loading="lazy" />
-      </div>
       <div class="container giving__inner">
         <div class="giving__copy" data-reveal>
           <h2 id="giving-heading">Our Work Matters. So Does Giving Back.</h2>
@@ -1043,12 +1043,17 @@
           <a class="btn btn--outline" href="https://www.masondixonveter.com/about-our-emergency-hospital"><span>Learn More About Mason Dixon</span><span class="btn__orb" aria-hidden="true"><svg><use href="#icon-arrow-right"/></svg></span></a>
         </div>
 
-        <div class="stat bezel" data-reveal>
-          <div class="bezel__core">
-            <svg class="stat__paw" aria-hidden="true"><use href="#icon-paw"/></svg>
-            <span class="stat__value" data-count="162414">$162,414</span>
-            <span class="stat__label">in veterinary services donated</span>
-          </div>
+        <div class="giving__aside" data-reveal>
+          <figure class="giving__photo">
+            <img src="assets/images/team-shepherd.jpg" alt="Two Mason Dixon team members with a family and their German shepherd puppy outside the hospital" width="1280" height="960" loading="lazy" />
+          </figure>
+          <div class="stat bezel">
+            <div class="bezel__core">
+              <svg class="stat__paw" aria-hidden="true"><use href="#icon-paw"/></svg>
+              <span class="stat__value" data-count="162414">$162,414</span>
+              <span class="stat__label">in veterinary services donated</span>
+            </div>
+        </div>
         </div>
       </div>
     </section>
@@ -1077,9 +1082,6 @@
         <div class="faq__head" data-reveal>
           <h2 id="faq-heading">Questions Before You Apply?</h2>
           <a class="btn btn--primary" href="#apply-form" data-apply=""><svg class="btn__icon" aria-hidden="true"><use href="#icon-briefcase"/></svg><span>Apply Now</span></a>
-          <figure class="faq__photo">
-            <img src="assets/images/team-icu.jpg" alt="Mason Dixon team members sitting together on the hospital floor with a fluffy brown dog" width="1800" height="1270" loading="lazy" />
-          </figure>
         </div>
 
         <div class="accordion" data-reveal-stagger data-accordion>
@@ -1200,8 +1202,8 @@
     </a>
   </div>
 
-  <script type="module" src="js/main.js?v=202610280915"></script>
-  <script type="module" src="js/menu.js?v=202610280915"></script>
-  <script type="module" src="js/careers.js?v=202610280915"></script>
+  <script type="module" src="js/main.js?v=202610280921"></script>
+  <script type="module" src="js/menu.js?v=202610280921"></script>
+  <script type="module" src="js/careers.js?v=202610280921"></script>
 </body>
 </html>

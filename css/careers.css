@@ -95,6 +95,10 @@
    ruled list on the right
    --------------------------------------------------------------------- */
 .culture { padding-block: clamp(3rem, 5vw, 4.5rem); }
+/* Team photo behind the section, under a dense navy wash so the copy stays crisp */
+.culture__bg { position: absolute; inset: 0; z-index: 0; }
+.culture__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; opacity: 0.22; }
+.culture__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--color-navy-900) 0%, rgba(18, 19, 58, 0.6) 55%, rgba(18, 19, 58, 0.35) 100%); }
 .culture__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); align-items: center; }
 
 .culture__head h2 { color: #fff; }
@@ -401,20 +405,20 @@ html:not(.js) .job__toggle { display: none; }
 }
 
 /* ---------------------------------------------------------------------
-   8. Giving back — copy beside the donated-services stat, over a
-   washed-out team photo
+   8. Giving back — copy beside a team photo with the donated-services
+   stat overlapping its lower edge
    --------------------------------------------------------------------- */
-.giving { position: relative; overflow: hidden; isolation: isolate; background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
-/* Team photo behind the section, washed out with the section tint so the copy stays readable */
-.giving__bg { position: absolute; inset: 0; z-index: -1; }
-.giving__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; }
-.giving__bg::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(238, 240, 250, 0.95) 0%, rgba(238, 240, 250, 0.9) 45%, rgba(238, 240, 250, 0.78) 100%);
-}
+.giving { background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
 .giving__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); align-items: center; }
 .giving__copy p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 38rem; text-wrap: balance; }
 .giving__copy .btn { margin-top: var(--space-6); }
+
+.giving__aside { display: grid; }
+.giving__photo { margin: 0; }
+.giving__photo img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 30%; border-radius: var(--radius-lg); }
+/* The stat card rides up over the photo's lower edge */
+.giving__aside .stat { margin: -2rem var(--space-6) 0; position: relative; }
+.giving__aside .stat__value { font-size: clamp(2.5rem, 4vw, 3.75rem); }
 
 .stat .bezel__core {
   position: relative; overflow: hidden; isolation: isolate;
@@ -446,15 +450,9 @@ html:not(.js) .job__toggle { display: none; }
 }
 .glass-card__contact a:hover { text-decoration-color: #fff; }
 /* ---------------------------------------------------------------------
-   10. FAQ — address line inside an answer; team photo under the
-   heading and Apply Now in the sticky left column
+   10. FAQ — address line inside an answer
    --------------------------------------------------------------------- */
 .accordion__body strong { color: var(--color-navy); }
-.faq__photo { margin: var(--space-7) 0 0; }
-.faq__photo img {
-  width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 45%;
-  border-radius: var(--radius-lg);
-}
 
 /* ---------------------------------------------------------------------
    11. Small screens — full-width button pairs, and room at the end of
