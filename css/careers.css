@@ -427,51 +427,36 @@ html:not(.js) .job__toggle { display: none; }
 }
 
 /* ---------------------------------------------------------------------
-   8. Giving back — organic: copy beside a blob-shaped team photo, a soft
-   lavender blob behind it, a pill-shaped stat and a couple of loose paws
+   8. Giving back — heading, copy, stat and CTA beside a rounded team
+   photo, in the same left-aligned, hairline style as the rest of the page
    --------------------------------------------------------------------- */
-.giving { overflow: hidden; background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
-.giving__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-8); align-items: center; }
-.giving__copy p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 34rem; text-wrap: balance; }
+.giving { background: var(--color-bg-faq); border-top: 1px solid var(--color-border); }
+.giving__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); align-items: center; }
+.giving__copy p { margin-top: var(--space-4); font-size: 1.05rem; line-height: 1.7; max-width: 36rem; text-wrap: balance; }
 .giving__copy .btn { margin-top: var(--space-6); }
 
-.giving__art { position: relative; justify-self: center; width: min(100%, 34rem); padding: var(--space-5) var(--space-5) var(--space-7); }
-/* Irregular radii give the photo and its backdrop a hand-drawn, organic edge */
-.giving__photo { position: relative; z-index: 1; margin: 0; }
-.giving__photo img {
-  width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; object-position: 55% 40%;
-  border-radius: 58% 42% 46% 54% / 46% 52% 48% 54%;
-  box-shadow: 0 30px 60px -30px rgba(36, 38, 103, 0.45);
-}
-.giving__blob {
-  position: absolute; inset: 0 -4% 6% 6%; z-index: 0;
-  background: rgba(192, 29, 46, 0.08);
-  border-radius: 42% 58% 60% 40% / 55% 45% 55% 45%;
-  transform: rotate(-8deg);
-}
-.giving__paw { position: absolute; z-index: 0; color: var(--color-red); opacity: 0.18; }
-.giving__paw--1 { width: 2.4rem; height: 2.4rem; top: 2%; right: 4%; transform: rotate(18deg); }
-.giving__paw--2 { width: 1.8rem; height: 1.8rem; bottom: 18%; right: -2%; transform: rotate(-14deg); }
-
-/* Stat as a rounded pill tucked over the photo's lower edge */
+/* Donated-services figure on a hairline, like the hero facts */
 .stat {
-  position: absolute; z-index: 2; left: 0; bottom: var(--space-4);
-  display: grid; gap: 0.15rem;
-  padding: var(--space-4) var(--space-6);
-  border-radius: 999px 999px 999px 1.25rem;
-  background: var(--color-navy); color: #fff;
-  box-shadow: 0 20px 40px -18px rgba(18, 19, 58, 0.6);
+  margin-top: var(--space-6); padding-top: var(--space-5);
+  display: grid; gap: var(--space-1);
+  border-top: 1px solid var(--color-border);
+  max-width: 36rem;
 }
 .stat__value {
-  font-family: var(--font-display); font-weight: 600; line-height: 1;
-  font-size: clamp(2rem, 2.5vw + 1rem, 2.9rem); letter-spacing: -0.03em;
+  font-family: var(--font-display); font-weight: 700; line-height: 1;
+  font-size: clamp(2.25rem, 2.5vw + 1rem, 3.25rem); letter-spacing: -0.03em; color: var(--color-red);
   font-variant-numeric: tabular-nums;
 }
-.stat__label { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--text-on-dark-secondary); }
+.stat__label { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--color-navy); }
+
+.giving__photo { margin: 0; }
+.giving__photo img {
+  width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 35%;
+  border-radius: var(--radius-lg);
+}
 
 @media (min-width: 1024px) {
   .giving__inner { grid-template-columns: 1fr 1fr; gap: var(--space-9); }
-  .giving__art { justify-self: end; }
 }
 
 /* ---------------------------------------------------------------------
