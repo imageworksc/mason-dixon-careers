@@ -198,9 +198,8 @@
   color: var(--text-on-dark-secondary);
 }
 .newgrad__paw {
-  /* Whole paw tucked in the top corner, clear of the buttons */
-  position: absolute; right: var(--space-3); top: var(--space-3); z-index: -1;
-  width: 4.5rem; height: 4.5rem; color: #fff; opacity: 0.06; transform: rotate(-14deg);
+  position: absolute; right: -1.5rem; bottom: -2.5rem; z-index: -1;
+  width: 10rem; height: 10rem; color: #fff; opacity: 0.06; transform: rotate(-14deg);
 }
 .newgrad h3 { color: #fff; font-size: clamp(1.2rem, 0.8vw + 0.95rem, 1.5rem); line-height: 1.2; }
 .newgrad p { margin-top: var(--space-2); font-size: 1rem; line-height: 1.6; max-width: 38rem; }
@@ -441,10 +440,9 @@ html:not(.js) .job__toggle { display: none; }
   padding: clamp(3rem, 6vw, 5.5rem) var(--container-pad);
   background: var(--color-navy); color: var(--text-on-dark-secondary);
 }
-/* Same paw as the culture backdrop: whole, faint, gently tilted */
 .giving__paw {
-  position: absolute; right: clamp(1.5rem, 4vw, 4rem); bottom: clamp(1.5rem, 4vw, 3.5rem); z-index: -1;
-  width: clamp(6rem, 10vw, 9rem); height: clamp(6rem, 10vw, 9rem); color: #fff; opacity: 0.06; transform: rotate(-14deg);
+  position: absolute; right: -2rem; bottom: -3rem; z-index: -1;
+  width: 16rem; height: 16rem; color: #fff; opacity: 0.06; transform: rotate(-14deg);
 }
 .giving__panel h2 { max-width: 30rem; color: #fff; }
 .giving__panel p { margin-top: var(--space-4); max-width: 34rem; font-size: 1.05rem; line-height: 1.7; text-wrap: balance; }
@@ -473,8 +471,6 @@ html:not(.js) .job__toggle { display: none; }
 }
 @media (max-width: 639px) {
   .giving__panel .btn { width: 100%; }
-  /* Keep the paw clear of the full-width button */
-  .giving__paw { top: var(--space-5); bottom: auto; right: var(--space-4); }
 }
 
 /* ---------------------------------------------------------------------
